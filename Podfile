@@ -4,5 +4,10 @@ use_frameworks!
 target 'SimpleWebRTC' do
   pod 'GoogleWebRTC'
   pod 'Socket.IO-Client-Swift', '12.0.0'
+  pod 'PromiseKit', '~> 6.0'
+  pod 'Alamofire', '~> 4.7'
+  pod 'DrawerController'
+  pod 'Kingfisher', '~> 4.0'
+  pod 'SwipeCellKit'
 end
 

@@ -7,6 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C2A2E6B2115DDDF00A31A72 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2A2E6A2115DDDF00A31A72 /* Order.swift */; };
+		6C2A2E6D2115E43B00A31A72 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2A2E6C2115E43B00A31A72 /* OrderTableViewCell.swift */; };
+		6C2DDD39211511870005A962 /* DroweViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD38211511870005A962 /* DroweViewController.swift */; };
+		6C2DDD3B211511D60005A962 /* MarketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD3A211511D60005A962 /* MarketsViewController.swift */; };
+		6C2DDD3D211514AF0005A962 /* Markets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD3C211514AF0005A962 /* Markets.swift */; };
+		6C2DDD42211518B70005A962 /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD41211518B70005A962 /* MarketCell.swift */; };
+		6C2DDD4421151B890005A962 /* MarketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD4321151B890005A962 /* MarketCell.xib */; };
+		6C2DDD4E21159EB30005A962 /* DrawerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD4C21159EB30005A962 /* DrawerCell.swift */; };
+		6C2DDD4F21159EB30005A962 /* DrawerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD4D21159EB30005A962 /* DrawerCell.xib */; };
+		6C2DDD512115A23E0005A962 /* MarketInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD502115A23E0005A962 /* MarketInfoViewController.swift */; };
+		6C2DDD532115A3DE0005A962 /* MarketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD522115A3DE0005A962 /* MarketInfo.swift */; };
+		6C2DDD552115A63F0005A962 /* Expert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD542115A63F0005A962 /* Expert.swift */; };
+		6C2DDD592115A7100005A962 /* MarketInfoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD572115A7100005A962 /* MarketInfoHeaderCell.swift */; };
+		6C2DDD5A2115A7100005A962 /* MarketInfoHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD582115A7100005A962 /* MarketInfoHeaderCell.xib */; };
+		6C2DDD5D2115A9450005A962 /* ExpertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD5B2115A9450005A962 /* ExpertCell.swift */; };
+		6C2DDD5E2115A9450005A962 /* ExpertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD5C2115A9450005A962 /* ExpertCell.xib */; };
+		6C2DDD602115B1160005A962 /* ExpertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD5F2115B1160005A962 /* ExpertViewController.swift */; };
+		6C2DDD622115BB1D0005A962 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD612115BB1D0005A962 /* Product.swift */; };
+		6C2DDD642115CA030005A962 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD632115CA030005A962 /* ProductsViewController.swift */; };
+		6C2DDD682115CC070005A962 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD662115CC070005A962 /* ProductCell.swift */; };
+		6C2DDD692115CC070005A962 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD672115CC070005A962 /* ProductCell.xib */; };
+		6C2DDD6C2115D9570005A962 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD6B2115D9570005A962 /* OrdersViewController.swift */; };
+		6C2DDD702115D9980005A962 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD6E2115D9980005A962 /* OrderTableViewCell.xib */; };
+		6CF4B8422114FD910094B61E /* BackendError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B8412114FD910094B61E /* BackendError.swift */; };
+		6CF4B8452114FF8B0094B61E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B8442114FF8B0094B61E /* BaseViewController.swift */; };
+		6CF4B848211503B40094B61E /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B847211503B40094B61E /* Storage.swift */; };
+		EE7AC0172113B78E00668663 /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */; };
+		EE7AC0192113BA5600668663 /* ConfirmCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */; };
+		EE7AC01C2113BA8C00668663 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */; };
+		EEB1949B2113A00A0017ED59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1949A2113A00A0017ED59 /* LoginViewController.swift */; };
+		EEB1949D2113A1DE0017ED59 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1949C2113A1DE0017ED59 /* Const.swift */; };
+		EEB1949F2113A2C90017ED59 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1949E2113A2C90017ED59 /* NetworkManager.swift */; };
+		EEB194A12113A6210017ED59 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB194A02113A6210017ED59 /* NetworkError.swift */; };
+		EEB194A42113A8390017ED59 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB194A32113A8390017ED59 /* Result.swift */; };
 		FC6EBDDFC3AD669B6B4F314F /* Pods_SimpleWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04890E483F3FBDB9D9FA2BE8 /* Pods_SimpleWebRTC.framework */; };
 		FD1345E820149C7400426B77 /* Date+Milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1345E720149C7400426B77 /* Date+Milliseconds.swift */; };
 		FD2A2DC72014986A00A68935 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2A2DC62014986A00A68935 /* AppDelegate.swift */; };
@@ -41,6 +75,40 @@
 		04890E483F3FBDB9D9FA2BE8 /* Pods_SimpleWebRTC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWebRTC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9CB844094E24A33758677F /* Pods-SimpleWebRTC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWebRTC.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC.release.xcconfig"; sourceTree = "<group>"; };
 		33388B56A7866F651F148C2C /* Pods-SimpleWebRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWebRTC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC.debug.xcconfig"; sourceTree = "<group>"; };
+		6C2A2E6A2115DDDF00A31A72 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		6C2A2E6C2115E43B00A31A72 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		6C2DDD38211511870005A962 /* DroweViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroweViewController.swift; sourceTree = "<group>"; };
+		6C2DDD3A211511D60005A962 /* MarketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsViewController.swift; sourceTree = "<group>"; };
+		6C2DDD3C211514AF0005A962 /* Markets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markets.swift; sourceTree = "<group>"; };
+		6C2DDD41211518B70005A962 /* MarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
+		6C2DDD4321151B890005A962 /* MarketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketCell.xib; sourceTree = "<group>"; };
+		6C2DDD4C21159EB30005A962 /* DrawerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerCell.swift; sourceTree = "<group>"; };
+		6C2DDD4D21159EB30005A962 /* DrawerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawerCell.xib; sourceTree = "<group>"; };
+		6C2DDD502115A23E0005A962 /* MarketInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketInfoViewController.swift; sourceTree = "<group>"; };
+		6C2DDD522115A3DE0005A962 /* MarketInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketInfo.swift; sourceTree = "<group>"; };
+		6C2DDD542115A63F0005A962 /* Expert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expert.swift; sourceTree = "<group>"; };
+		6C2DDD572115A7100005A962 /* MarketInfoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketInfoHeaderCell.swift; sourceTree = "<group>"; };
+		6C2DDD582115A7100005A962 /* MarketInfoHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketInfoHeaderCell.xib; sourceTree = "<group>"; };
+		6C2DDD5B2115A9450005A962 /* ExpertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertCell.swift; sourceTree = "<group>"; };
+		6C2DDD5C2115A9450005A962 /* ExpertCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertCell.xib; sourceTree = "<group>"; };
+		6C2DDD5F2115B1160005A962 /* ExpertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertViewController.swift; sourceTree = "<group>"; };
+		6C2DDD612115BB1D0005A962 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		6C2DDD632115CA030005A962 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		6C2DDD662115CC070005A962 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		6C2DDD672115CC070005A962 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		6C2DDD6B2115D9570005A962 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		6C2DDD6E2115D9980005A962 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		6CF4B8412114FD910094B61E /* BackendError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendError.swift; sourceTree = "<group>"; };
+		6CF4B8442114FF8B0094B61E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6CF4B847211503B40094B61E /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
+		EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCodeViewController.swift; sourceTree = "<group>"; };
+		EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		EEB1949A2113A00A0017ED59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EEB1949C2113A1DE0017ED59 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		EEB1949E2113A2C90017ED59 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = SimpleWebRTC/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
+		EEB194A02113A6210017ED59 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		EEB194A32113A8390017ED59 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		FD1345E720149C7400426B77 /* Date+Milliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Milliseconds.swift"; sourceTree = "<group>"; };
 		FD2A2DC32014986A00A68935 /* SimpleWebRTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWebRTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2A2DC62014986A00A68935 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +162,109 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6C2DDD40211517070005A962 /* Market */ = {
+			isa = PBXGroup;
+			children = (
+				6C2DDD562115A6E30005A962 /* Cells */,
+				6C2DDD3A211511D60005A962 /* MarketsViewController.swift */,
+				6C2DDD502115A23E0005A962 /* MarketInfoViewController.swift */,
+				6C2DDD5F2115B1160005A962 /* ExpertViewController.swift */,
+			);
+			path = Market;
+			sourceTree = "<group>";
+		};
+		6C2DDD4721159DF30005A962 /* Drower */ = {
+			isa = PBXGroup;
+			children = (
+				6C2DDD38211511870005A962 /* DroweViewController.swift */,
+				6C2DDD4C21159EB30005A962 /* DrawerCell.swift */,
+				6C2DDD4D21159EB30005A962 /* DrawerCell.xib */,
+			);
+			path = Drower;
+			sourceTree = "<group>";
+		};
+		6C2DDD562115A6E30005A962 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6C2DDD41211518B70005A962 /* MarketCell.swift */,
+				6C2DDD4321151B890005A962 /* MarketCell.xib */,
+				6C2DDD572115A7100005A962 /* MarketInfoHeaderCell.swift */,
+				6C2DDD582115A7100005A962 /* MarketInfoHeaderCell.xib */,
+				6C2DDD5B2115A9450005A962 /* ExpertCell.swift */,
+				6C2DDD5C2115A9450005A962 /* ExpertCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		6C2DDD652115CADC0005A962 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6C2DDD632115CA030005A962 /* ProductsViewController.swift */,
+				6C2DDD662115CC070005A962 /* ProductCell.swift */,
+				6C2DDD672115CC070005A962 /* ProductCell.xib */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		6C2DDD6A2115D92B0005A962 /* MyOrders */ = {
+			isa = PBXGroup;
+			children = (
+				6C2DDD6B2115D9570005A962 /* OrdersViewController.swift */,
+				6C2DDD6E2115D9980005A962 /* OrderTableViewCell.xib */,
+				6C2A2E6C2115E43B00A31A72 /* OrderTableViewCell.swift */,
+			);
+			path = MyOrders;
+			sourceTree = "<group>";
+		};
+		6CF4B8432114FF6E0094B61E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6CF4B8442114FF8B0094B61E /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6CF4B846211503940094B61E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6CF4B847211503B40094B61E /* Storage.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EE7AC0152113AE3600668663 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EEB1949E2113A2C90017ED59 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		EE7AC01A2113BA5F00668663 /* Reg */ = {
+			isa = PBXGroup;
+			children = (
+				EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */,
+				EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */,
+				EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */,
+			);
+			path = Reg;
+			sourceTree = "<group>";
+		};
+		EEB194A22113A7CC0017ED59 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				EEB194A02113A6210017ED59 /* NetworkError.swift */,
+				EEB194A32113A8390017ED59 /* Result.swift */,
+				6CF4B8412114FD910094B61E /* BackendError.swift */,
+				6C2DDD3C211514AF0005A962 /* Markets.swift */,
+				6C2DDD522115A3DE0005A962 /* MarketInfo.swift */,
+				6C2DDD542115A63F0005A962 /* Expert.swift */,
+				6C2DDD612115BB1D0005A962 /* Product.swift */,
+				6C2A2E6A2115DDDF00A31A72 /* Order.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		F13C6239578601B289AE3113 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +298,18 @@
 		FD2A2DC52014986A00A68935 /* SimpleWebRTC */ = {
 			isa = PBXGroup;
 			children = (
+				6C2DDD6A2115D92B0005A962 /* MyOrders */,
+				6C2DDD4721159DF30005A962 /* Drower */,
+				6C2DDD40211517070005A962 /* Market */,
+				6CF4B846211503940094B61E /* Service */,
+				6CF4B8432114FF6E0094B61E /* Base */,
+				EE7AC01A2113BA5F00668663 /* Reg */,
+				6C2DDD652115CADC0005A962 /* Products */,
+				EE7AC0152113AE3600668663 /* Network */,
+				EEB194A22113A7CC0017ED59 /* Entities */,
+				FD2A2DC62014986A00A68935 /* AppDelegate.swift */,
+				EEB1949C2113A1DE0017ED59 /* Const.swift */,
+				EEB1949A2113A00A0017ED59 /* LoginViewController.swift */,
 				FD2A2DCA2014986A00A68935 /* Main.storyboard */,
 				FD2A2DC82014986A00A68935 /* ViewController.swift */,
 				FD2A2DF6201498CD00A68935 /* WebRtcClient.swift */,
@@ -158,7 +341,6 @@
 		FD2A2DF5201498A300A68935 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FD2A2DC62014986A00A68935 /* AppDelegate.swift */,
 				FD2A2DCD2014986A00A68935 /* Assets.xcassets */,
 				FD2A2DCF2014986A00A68935 /* LaunchScreen.storyboard */,
 				FD2A2DD22014986A00A68935 /* Info.plist */,
@@ -186,7 +368,6 @@
 				FD2A2DC02014986A00A68935 /* Frameworks */,
 				FD2A2DC12014986A00A68935 /* Resources */,
 				DD74BEA1DEC4AFBBB755DE92 /* [CP] Embed Pods Frameworks */,
-				FF21DEEE22C8E46A26118034 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,9 +465,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C2DDD4F21159EB30005A962 /* DrawerCell.xib in Resources */,
+				6C2DDD692115CC070005A962 /* ProductCell.xib in Resources */,
+				6C2DDD5E2115A9450005A962 /* ExpertCell.xib in Resources */,
+				6C2DDD702115D9980005A962 /* OrderTableViewCell.xib in Resources */,
 				FD2A2DD12014986A00A68935 /* LaunchScreen.storyboard in Resources */,
+				6C2DDD5A2115A7100005A962 /* MarketInfoHeaderCell.xib in Resources */,
 				FD2A2DCE2014986A00A68935 /* Assets.xcassets in Resources */,
 				FD2A2DCC2014986A00A68935 /* Main.storyboard in Resources */,
+				6C2DDD4421151B890005A962 /* MarketCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,34 +519,29 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DrawerController/DrawerController.framework",
 				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF21DEEE22C8E46A26118034 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -369,11 +551,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C2DDD512115A23E0005A962 /* MarketInfoViewController.swift in Sources */,
+				6C2DDD4E21159EB30005A962 /* DrawerCell.swift in Sources */,
+				6C2DDD532115A3DE0005A962 /* MarketInfo.swift in Sources */,
+				EEB1949B2113A00A0017ED59 /* LoginViewController.swift in Sources */,
+				6C2DDD592115A7100005A962 /* MarketInfoHeaderCell.swift in Sources */,
 				FD2A2DF9201498E900A68935 /* WebRtcUtil.swift in Sources */,
+				EE7AC0192113BA5600668663 /* ConfirmCodeViewController.swift in Sources */,
+				6C2DDD602115B1160005A962 /* ExpertViewController.swift in Sources */,
+				6C2DDD42211518B70005A962 /* MarketCell.swift in Sources */,
+				6C2DDD642115CA030005A962 /* ProductsViewController.swift in Sources */,
+				6CF4B8422114FD910094B61E /* BackendError.swift in Sources */,
 				FD2A2DC92014986A00A68935 /* ViewController.swift in Sources */,
+				6CF4B8452114FF8B0094B61E /* BaseViewController.swift in Sources */,
+				6C2DDD5D2115A9450005A962 /* ExpertCell.swift in Sources */,
+				6C2DDD622115BB1D0005A962 /* Product.swift in Sources */,
+				6C2A2E6B2115DDDF00A31A72 /* Order.swift in Sources */,
+				EE7AC01C2113BA8C00668663 /* RegistrationViewController.swift in Sources */,
+				EE7AC0172113B78E00668663 /* ConfirmPhoneViewController.swift in Sources */,
+				6C2DDD39211511870005A962 /* DroweViewController.swift in Sources */,
+				6C2A2E6D2115E43B00A31A72 /* OrderTableViewCell.swift in Sources */,
 				FD2A2DF7201498CD00A68935 /* WebRtcClient.swift in Sources */,
+				6C2DDD3D211514AF0005A962 /* Markets.swift in Sources */,
+				6C2DDD552115A63F0005A962 /* Expert.swift in Sources */,
+				EEB1949F2113A2C90017ED59 /* NetworkManager.swift in Sources */,
 				FD2A2DC72014986A00A68935 /* AppDelegate.swift in Sources */,
+				EEB194A42113A8390017ED59 /* Result.swift in Sources */,
+				EEB194A12113A6210017ED59 /* NetworkError.swift in Sources */,
+				6CF4B848211503B40094B61E /* Storage.swift in Sources */,
+				6C2DDD6C2115D9570005A962 /* OrdersViewController.swift in Sources */,
 				FD1345E820149C7400426B77 /* Date+Milliseconds.swift in Sources */,
+				6C2DDD682115CC070005A962 /* ProductCell.swift in Sources */,
+				6C2DDD3B211511D60005A962 /* MarketsViewController.swift in Sources */,
+				EEB1949D2113A1DE0017ED59 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,11 +752,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VB25GCX37J;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SimpleWebRTC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.etnclp.simplewebrtc;
+				PRODUCT_BUNDLE_IDENTIFIER = webrtc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -561,11 +772,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VB25GCX37J;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SimpleWebRTC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.etnclp.simplewebrtc;
+				PRODUCT_BUNDLE_IDENTIFIER = webrtc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

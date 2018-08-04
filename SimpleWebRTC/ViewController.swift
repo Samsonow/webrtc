@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         
         localVideoView.transform = CGAffineTransform(scaleX: -1, y: 1)
         
-        let roomName = "2f36f758-0db1-4691-a4b6-e30cdc5dd11d"
+        let roomName = "MAIN_ROOM"
         let client = WebRtcClient.shared
         client.listener = self
         client.start(roomName: roomName)

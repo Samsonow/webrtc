@@ -16,7 +16,7 @@ class WebRtcClient: NSObject {
     
     static let shared = WebRtcClient()
     
-    fileprivate let socket = SocketIOClient(socketURL: URL(string: "https://sandbox.simplewebrtc.com/")!)
+    fileprivate let socket = SocketIOClient(socketURL: URL(string: "https://stun.araneobit.io")!)
     fileprivate let factory: RTCPeerConnectionFactory
     fileprivate var pc: RTCPeerConnection!
     fileprivate var localStream: RTCMediaStream?
@@ -87,9 +87,9 @@ class WebRtcClient: NSObject {
             
             if let urls = dict["urls"] as? [String] {
                 WebRTCUtil.turnServer = RTCIceServer(
-                    urlStrings: urls,
-                    username: dict["username"] as? String,
-                    credential: dict["credential"] as? String
+                    urlStrings: ["turn:webrtcweb.com:7788"],
+                    username: "muazkh",
+                    credential: "muazkh"
                 )
             }
         }

@@ -1,18 +1,57 @@
 PODS:
+  - Alamofire (4.7.3)
+  - DrawerController (4.0.0):
+    - DrawerController/Core (= 4.0.0)
+    - DrawerController/DrawerVisualStates (= 4.0.0)
+  - DrawerController/Core (4.0.0)
+  - DrawerController/DrawerVisualStates (4.0.0):
+    - DrawerController/Core
   - GoogleWebRTC (1.1.20913)
+  - Kingfisher (4.8.0)
+  - PromiseKit (6.3.4):
+    - PromiseKit/CorePromise (= 6.3.4)
+    - PromiseKit/Foundation (= 6.3.4)
+    - PromiseKit/UIKit (= 6.3.4)
+  - PromiseKit/CorePromise (6.3.4)
+  - PromiseKit/Foundation (6.3.4):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.3.4):
+    - PromiseKit/CorePromise
   - Socket.IO-Client-Swift (12.0.0):
     - StarscreamSocketIO (~> 8.0.7)
   - StarscreamSocketIO (8.0.7)
+  - SwipeCellKit (2.4.3)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - DrawerController
   - GoogleWebRTC
+  - Kingfisher (~> 4.0)
+  - PromiseKit (~> 6.0)
   - Socket.IO-Client-Swift (= 12.0.0)
+  - SwipeCellKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - DrawerController
+    - GoogleWebRTC
+    - Kingfisher
+    - PromiseKit
+    - Socket.IO-Client-Swift
+    - StarscreamSocketIO
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  DrawerController: eb1168e9f7185cc49f654ae8486917f0acb3dc88
   GoogleWebRTC: 4fedeaecffeea1b93d994616c1cc728fac5c9a13
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  PromiseKit: e1425568123ec844a944c93f2bcb29d511d39cf5
   Socket.IO-Client-Swift: 5b0154b42b3892bfb4c44fa138cbeb8afec4f6ef
   StarscreamSocketIO: 00b54e4208481ca5cef089545353aaf126bae16d
+  SwipeCellKit: cee9906e6d3a36e22ad1a852fba7f8fa0839d113
 
-PODFILE CHECKSUM: fbe9c34f8ab5090146f68f02c6a34aaa81441efe
+PODFILE CHECKSUM: 286e0f24d7407a28d4f75746dab2e855e38bf1b0
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3
