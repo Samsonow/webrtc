@@ -26,14 +26,18 @@ class MarketsViewController: BaseViewController {
         setup()
         obtainData()
         
+        startAnimating()
+        
     }
     
     private func obtainData() {
-        
+        startAnimating()
         network.obtainMarkets(parameters: [:]).done { result in
             self.markets = result.result
+            self.stopAnimating()
         }.catch { error in
-            self.handleError(error: error)
+            self.stopAnimating()
+            self.handleError(error: error, retry: self.obtainData)
         }
     
     }

@@ -15,6 +15,10 @@ class ProductsViewController: BaseViewController {
     
     let network: NetworkService = NetworkService()
     
+    var parameters: [String: Any] = [:]
+    
+    var parametersdell: [String: Any] = [:]
+    
     private var products: [Product] = [] {
         didSet {
             tableView.reloadData()
@@ -36,27 +40,32 @@ class ProductsViewController: BaseViewController {
      
     }
     
-    private func obtainData() {
+    func obtainData() {
         
         network.obtainProducts(parameters: [:]).done { result in
             self.products = result.result
         }.catch { error in
-            self.handleError(error: error)
+            self.handleError(error: error, retry: self.obtainData)
         }
         
     }
     
     private func addProduct(item: String) {
-        
-        let parameters = ["item":item]
-        
+        startAnimating()
+        parameters = ["item":item]
+        requst()
+    }
+    
+    func requst() {
         network.addProduct(parameters: parameters).done { result in
             self.products = result.result
+            self.stopAnimating()
         }.catch { error in
-            self.handleError(error: error)
+            self.stopAnimating()
+            self.handleError(error: error, retry: self.requst)
         }
-        
     }
+    
     @IBAction func addProductAction(_ sender: Any) {
         guard let item = newProductTextField.text else {
             return
@@ -66,15 +75,21 @@ class ProductsViewController: BaseViewController {
     }
     
     private func deleteProduct(id: Int) {
+        startAnimating()
+        parametersdell = ["id": id]
         
-        let parameters = ["id": id]
+
         
-        network.deleteProduct(parameters: parameters).done { result in
+    }
+    
+    func dellRequst() {
+        network.deleteProduct(parameters: parametersdell).done { result in
             self.products = result.result
+            self.stopAnimating()
         }.catch { error in
-            self.handleError(error: error)
+            self.handleError(error: error, retry: self.dellRequst)
+            self.stopAnimating()
         }
-        
     }
     
     private func setup() {

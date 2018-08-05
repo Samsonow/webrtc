@@ -14,10 +14,12 @@ class ConfirmPhoneViewController: BaseViewController {
     
     @IBOutlet weak var phoneTextField: UITextField!
     let networkService = NetworkService()
+    
+    var phone: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
- 
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,15 +33,22 @@ class ConfirmPhoneViewController: BaseViewController {
         guard let phone = phoneTextField.text else {
             return
         }
+        
+        self.phone = phone
+
+    }
     
+    func confirmPhone() -> () {
         let params = ["phone": phone]
+        
         networkService.confirmPhone(parameters: params).done { result in
-            let sender: [String: Any] = ["phone": phone, "pass" : result.result.temp_password]
+            let sender: [String: Any] = ["phone": self.phone, "pass" : result.result.temp_password]
             self.performSegue(withIdentifier: "confirmCode", sender: sender)
         }.catch { error in
-            self.handleError(error: error)
+            self.handleError(error: error, retry: {
+                self.confirmPhone()
+            })
         }
-        
     }
     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

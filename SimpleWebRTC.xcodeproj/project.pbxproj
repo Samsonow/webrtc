@@ -30,6 +30,12 @@
 		6C2DDD692115CC070005A962 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD672115CC070005A962 /* ProductCell.xib */; };
 		6C2DDD6C2115D9570005A962 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDD6B2115D9570005A962 /* OrdersViewController.swift */; };
 		6C2DDD702115D9980005A962 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DDD6E2115D9980005A962 /* OrderTableViewCell.xib */; };
+		6C76D68A21161F220026CAD0 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76D68921161F220026CAD0 /* LocationViewController.swift */; };
+		6C76D68C2116440F0026CAD0 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76D68B2116440F0026CAD0 /* Address.swift */; };
+		6C76D68E2117010B0026CAD0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76D68D2117010B0026CAD0 /* User.swift */; };
+		6C76D69021171AE00026CAD0 /* ExpertMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76D68F21171AE00026CAD0 /* ExpertMainViewController.swift */; };
+		6C76D69321173E6C0026CAD0 /* ChannelClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76D69221173E6C0026CAD0 /* ChannelClientViewController.swift */; };
+		6C76D6962117408F0026CAD0 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76D6952117408F0026CAD0 /* Channel.swift */; };
 		6CF4B8422114FD910094B61E /* BackendError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B8412114FD910094B61E /* BackendError.swift */; };
 		6CF4B8452114FF8B0094B61E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B8442114FF8B0094B61E /* BaseViewController.swift */; };
 		6CF4B848211503B40094B61E /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B847211503B40094B61E /* Storage.swift */; };
@@ -98,6 +104,12 @@
 		6C2DDD672115CC070005A962 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		6C2DDD6B2115D9570005A962 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		6C2DDD6E2115D9980005A962 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		6C76D68921161F220026CAD0 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		6C76D68B2116440F0026CAD0 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		6C76D68D2117010B0026CAD0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6C76D68F21171AE00026CAD0 /* ExpertMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertMainViewController.swift; sourceTree = "<group>"; };
+		6C76D69221173E6C0026CAD0 /* ChannelClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelClientViewController.swift; sourceTree = "<group>"; };
+		6C76D6952117408F0026CAD0 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		6CF4B8412114FD910094B61E /* BackendError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendError.swift; sourceTree = "<group>"; };
 		6CF4B8442114FF8B0094B61E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6CF4B847211503B40094B61E /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -216,6 +228,22 @@
 			path = MyOrders;
 			sourceTree = "<group>";
 		};
+		6C76D69121173DD90026CAD0 /* ExpertCase */ = {
+			isa = PBXGroup;
+			children = (
+				6C76D68F21171AE00026CAD0 /* ExpertMainViewController.swift */,
+			);
+			path = ExpertCase;
+			sourceTree = "<group>";
+		};
+		6C76D69421173E790026CAD0 /* ClientCase */ = {
+			isa = PBXGroup;
+			children = (
+				6C76D69221173E6C0026CAD0 /* ChannelClientViewController.swift */,
+			);
+			path = ClientCase;
+			sourceTree = "<group>";
+		};
 		6CF4B8432114FF6E0094B61E /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,12 +252,12 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		6CF4B846211503940094B61E /* Service */ = {
+		6CF4B846211503940094B61E /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				6CF4B847211503B40094B61E /* Storage.swift */,
 			);
-			path = Service;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		EE7AC0152113AE3600668663 /* Network */ = {
@@ -261,6 +289,9 @@
 				6C2DDD542115A63F0005A962 /* Expert.swift */,
 				6C2DDD612115BB1D0005A962 /* Product.swift */,
 				6C2A2E6A2115DDDF00A31A72 /* Order.swift */,
+				6C76D68B2116440F0026CAD0 /* Address.swift */,
+				6C76D68D2117010B0026CAD0 /* User.swift */,
+				6C76D6952117408F0026CAD0 /* Channel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -301,12 +332,15 @@
 				6C2DDD6A2115D92B0005A962 /* MyOrders */,
 				6C2DDD4721159DF30005A962 /* Drower */,
 				6C2DDD40211517070005A962 /* Market */,
-				6CF4B846211503940094B61E /* Service */,
+				6CF4B846211503940094B61E /* Storage */,
 				6CF4B8432114FF6E0094B61E /* Base */,
 				EE7AC01A2113BA5F00668663 /* Reg */,
 				6C2DDD652115CADC0005A962 /* Products */,
 				EE7AC0152113AE3600668663 /* Network */,
 				EEB194A22113A7CC0017ED59 /* Entities */,
+				6C76D68921161F220026CAD0 /* LocationViewController.swift */,
+				6C76D69121173DD90026CAD0 /* ExpertCase */,
+				6C76D69421173E790026CAD0 /* ClientCase */,
 				FD2A2DC62014986A00A68935 /* AppDelegate.swift */,
 				EEB1949C2113A1DE0017ED59 /* Const.swift */,
 				EEB1949A2113A00A0017ED59 /* LoginViewController.swift */,
@@ -368,6 +402,7 @@
 				FD2A2DC02014986A00A68935 /* Frameworks */,
 				FD2A2DC12014986A00A68935 /* Resources */,
 				DD74BEA1DEC4AFBBB755DE92 /* [CP] Embed Pods Frameworks */,
+				524A1F7A2E27B67619ECF02A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -494,6 +529,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		524A1F7A2E27B67619ECF02A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC-resources.sh",
+				"${PODS_ROOT}/YandexMapKit/YandexMapKit.framework/Versions/A/Resources/YandexMapKit.bundle",
+				"${PODS_ROOT}/YandexRuntime/YandexRuntime.framework/Versions/A/Resources/YandexRuntime.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YandexMapKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YandexRuntime.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B19E0DBE6854874C2223B321 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -520,9 +575,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWebRTC/Pods-SimpleWebRTC-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireLogger/AlamofireLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/DrawerController/DrawerController.framework",
 				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
@@ -531,9 +590,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
@@ -558,6 +621,7 @@
 				6C2DDD592115A7100005A962 /* MarketInfoHeaderCell.swift in Sources */,
 				FD2A2DF9201498E900A68935 /* WebRtcUtil.swift in Sources */,
 				EE7AC0192113BA5600668663 /* ConfirmCodeViewController.swift in Sources */,
+				6C76D69021171AE00026CAD0 /* ExpertMainViewController.swift in Sources */,
 				6C2DDD602115B1160005A962 /* ExpertViewController.swift in Sources */,
 				6C2DDD42211518B70005A962 /* MarketCell.swift in Sources */,
 				6C2DDD642115CA030005A962 /* ProductsViewController.swift in Sources */,
@@ -566,12 +630,14 @@
 				6CF4B8452114FF8B0094B61E /* BaseViewController.swift in Sources */,
 				6C2DDD5D2115A9450005A962 /* ExpertCell.swift in Sources */,
 				6C2DDD622115BB1D0005A962 /* Product.swift in Sources */,
+				6C76D6962117408F0026CAD0 /* Channel.swift in Sources */,
 				6C2A2E6B2115DDDF00A31A72 /* Order.swift in Sources */,
 				EE7AC01C2113BA8C00668663 /* RegistrationViewController.swift in Sources */,
 				EE7AC0172113B78E00668663 /* ConfirmPhoneViewController.swift in Sources */,
 				6C2DDD39211511870005A962 /* DroweViewController.swift in Sources */,
 				6C2A2E6D2115E43B00A31A72 /* OrderTableViewCell.swift in Sources */,
 				FD2A2DF7201498CD00A68935 /* WebRtcClient.swift in Sources */,
+				6C76D68A21161F220026CAD0 /* LocationViewController.swift in Sources */,
 				6C2DDD3D211514AF0005A962 /* Markets.swift in Sources */,
 				6C2DDD552115A63F0005A962 /* Expert.swift in Sources */,
 				EEB1949F2113A2C90017ED59 /* NetworkManager.swift in Sources */,
@@ -580,10 +646,13 @@
 				EEB194A12113A6210017ED59 /* NetworkError.swift in Sources */,
 				6CF4B848211503B40094B61E /* Storage.swift in Sources */,
 				6C2DDD6C2115D9570005A962 /* OrdersViewController.swift in Sources */,
+				6C76D69321173E6C0026CAD0 /* ChannelClientViewController.swift in Sources */,
 				FD1345E820149C7400426B77 /* Date+Milliseconds.swift in Sources */,
 				6C2DDD682115CC070005A962 /* ProductCell.swift in Sources */,
+				6C76D68E2117010B0026CAD0 /* User.swift in Sources */,
 				6C2DDD3B211511D60005A962 /* MarketsViewController.swift in Sources */,
 				EEB1949D2113A1DE0017ED59 /* Const.swift in Sources */,
+				6C76D68C2116440F0026CAD0 /* Address.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

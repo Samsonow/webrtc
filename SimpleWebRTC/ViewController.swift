@@ -17,6 +17,8 @@ class ViewController: UIViewController {
         }
     }
     
+    var embeddedVC: EmbeddedViewController? = nil
+    
     var localVideoStream: RTCMediaStream? {
         didSet {
             self.localVideoStream?.videoTracks[0].add(self.localVideoView)

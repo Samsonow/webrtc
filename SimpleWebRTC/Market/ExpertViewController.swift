@@ -48,7 +48,17 @@ class ExpertViewController: UIViewController {
     }
     
     @IBAction func chooseHelper(_ sender: Any) {
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "channel" {
+            let vc = segue.destination as! ChannelClientViewController
+            vc.expertId = expert.id
+        }
+    }
+
     
 
 }

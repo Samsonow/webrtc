@@ -8,13 +8,14 @@
 
 import UIKit
 import DrawerController
+import NVActivityIndicatorView
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     
     func setupLeftMenuButton() {
         let leftDrawerButton = DrawerBarButtonItem(target: self, action: #selector(leftDrawerButtonPress(_:)))
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
-        
+
         setupDrawer()
     }
     
@@ -39,20 +40,27 @@ class BaseViewController: UIViewController {
 
     }
     
-    func show(message: String) {
+    func show(message: String, retry: (()->())?) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        if let retry = retry {
+            alert.addAction(UIAlertAction(title: "Retry the request", style: .default, handler: { action in
+                retry()
+            }))
+        } else {
+            alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
+        }
+       
         
         self.present(alert, animated: true, completion: nil)
     }
     
-    func handleError(error: Error) {
+    func handleError(error: Error,  retry: (()->())? ) {
         if let backenderror = error as? NetworkError   {
             if case .message(let msg) = backenderror  {
-                self.show(message: msg)
+                self.show(message: msg, retry: nil)
             }
         }
-        self.show(message: "Custom error")
+        self.show(message: "Custom error",retry: retry)
     }
 
 }

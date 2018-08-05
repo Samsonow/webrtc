@@ -11,7 +11,7 @@ import DrawerController
 
 class DroweViewController: UITableViewController {
     
-    let items: [String] = ["Set delivery address", "Market list", "Shoping list", "My orders", "Exit account"]
+    var items: [String] = ["Set delivery address", "Market list", "Shoping list", "My orders", "Exit account"]
     let droweCellId: String = "DrawerCell"
     
     override func viewDidLoad() {
@@ -19,6 +19,28 @@ class DroweViewController: UITableViewController {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         tableView.tableHeaderView = view
         self.navigationController?.isNavigationBarHidden = true
+        
+        
+        if Storage.shared.user?.type == .expert {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
+            let nav = UINavigationController(rootViewController: controller)
+            self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+
+            items =  ["Exit account"]
+        }
+//
+//        items =  ["Set delivery address", "Market list", "Shoping list", "My orders", "Exit account"]
+//
+//
+//        items = []
+        
+        //expert = true
+        
+        
+        //sellera
+        
         super.viewDidLoad()
     }
     
@@ -45,8 +67,25 @@ class DroweViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if Storage.shared.user?.type == .expert {
+            switch indexPath.row {
+            case 0:
+                Storage.shared.clearToken()
+                self.gotoLogin()
+                return
+            default:
+                return
+            }
+        }
         switch indexPath.row {
+            
+        case 0:
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "LocationViewController")
+            let nav = UINavigationController(rootViewController: controller)
+            self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+            
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
@@ -65,7 +104,12 @@ class DroweViewController: UITableViewController {
             let controller = storyboard.instantiateViewController(withIdentifier: "OrdersViewController")
             let nav = UINavigationController(rootViewController: controller)
             self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
-
+            
+        case 4:
+            Storage.shared.clearToken()
+            
+            self.gotoLogin()
+            
         default:
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -75,6 +119,18 @@ class DroweViewController: UITableViewController {
         }
         
         
+        
+        
+    }
+    
+    func gotoLogin() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
+            let newWindow = UIWindow()
+            appDelegate.replaceWindow(newWindow)
+            newWindow.rootViewController = controller
+        }
     }
 
     

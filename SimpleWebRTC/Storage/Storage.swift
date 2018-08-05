@@ -10,8 +10,10 @@ import Foundation
 class Storage {
     
     static let shared: Storage = Storage()
-    var token: String?
+    private var token: String?
     private let keyToken: String = "token"
+    
+    var user: User?
     
     private init() {}
     
@@ -28,6 +30,12 @@ class Storage {
     
     func setToken(token: String) {
         UserDefaults.standard.set(token, forKey: keyToken)
+    }
+    
+    func clearToken() {
+        UserDefaults.standard.removeObject(forKey: keyToken)
+        token = nil
+        user = nil
     }
     
 }

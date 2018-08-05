@@ -33,7 +33,7 @@ class OrderTableViewCell: UITableViewCell {
         marketIdLabel.text = "Market ID: \(order.market_id)"
         helperLabel.text = "Helper: \(order.market_id)"
         productsLabel.text = "Products: \(order.items.count)"
-        // costLabel.text = "\(order.total_cost) rub"
+        costLable.text = "\(order.total_cost) rub"
         
         //    <Text style={[iStyle.item.date]}>{`${item.delivery_started}`}</Text>
         //    <Text style={[iStyle.item.graylil]}>{`Market ID: ${item.market_id}`}</Text>

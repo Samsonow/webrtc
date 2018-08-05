@@ -13,6 +13,6 @@ struct BackendError: Codable {
 }
 
 struct Description: Codable {
-    let code: String
+    //let code: Int
     let message: String
 }

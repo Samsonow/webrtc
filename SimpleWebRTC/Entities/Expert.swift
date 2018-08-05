@@ -10,7 +10,7 @@ import Foundation
 
 struct Expert: Codable {
     
-    let available: Bool
+    //let available: Bool
     let description: String
     let id: Int
     let image_url: String

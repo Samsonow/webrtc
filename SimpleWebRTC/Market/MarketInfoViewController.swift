@@ -18,6 +18,7 @@ class MarketInfoViewController: BaseViewController {
     
     let headerCellId: String = "MarketInfoHeaderCell"
     let expertCellID: String = "ExpertCell"
+
     
     @IBOutlet weak var table: UITableView!
     
@@ -37,7 +38,7 @@ class MarketInfoViewController: BaseViewController {
     
     private func obtainData() {
         let params = ["id": marketId]
-        
+        startAnimating()
         networkService.obtainMarketInfo(parameters: params).then { result -> Promise<Result<[Expert]>> in
             self.info = result.result
             let params = ["market_id": self.marketId]
@@ -45,16 +46,23 @@ class MarketInfoViewController: BaseViewController {
         }.done { result in
             self.experts = result.result
             self.table.reloadData()
+            self.stopAnimating()
         }.catch { error in
-            self.handleError(error: error)
+            self.stopAnimating()
+            self.handleError(error: error, retry: self.obtainData)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "expert" , let data = sender as? [String: Any] {
-            var vc = segue.destination as! ExpertViewController
+            let vc = segue.destination as! ExpertViewController
             vc.expert = data["expert"] as! Expert
+        }
+        
+        if segue.identifier == "channel" , let data = sender as? [String: Any] {
+            let vc = segue.destination as! ChannelClientViewController
+            vc.expertId = data["expert_id"] as! Int
         }
     }
 
@@ -107,6 +115,11 @@ extension MarketInfoViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MarketInfoViewController: ExpertDelegate {
     func chooseExpert(cell: UITableViewCell) {
+        guard let index = table.indexPath(for: cell) else { return }
         
+        let expert = experts[index.item - 1]
+        let sender: [String: Any] = ["expert_id" : expert.id]
+        self.performSegue(withIdentifier: "channel", sender: sender)
+
     }
 }

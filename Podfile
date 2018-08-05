@@ -9,5 +9,11 @@ target 'SimpleWebRTC' do
   pod 'DrawerController'
   pod 'Kingfisher', '~> 4.0'
   pod 'SwipeCellKit'
+  pod 'NVActivityIndicatorView'
+  pod 'YandexMapKit'
+  pod 'AlamofireNetworkActivityLogger', '~> 2.3'
+  pod 'IQKeyboardManager'
+  pod 'AlamofireLogger'
+
 end
 

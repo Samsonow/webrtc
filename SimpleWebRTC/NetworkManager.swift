@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import PromiseKit
+import AlamofireLogger
 
 class NetworkService {
     
@@ -71,8 +72,32 @@ class NetworkService {
         return networkManager.request(url: "/mrkt/getOrdersList", parameters: parameters)
     }
     
+    //MARK: - Order Address
+    
+    func setAddress(parameters: [String: Any]) -> Promise<Result<Address>> {
+        return networkManager.request(url: "/mrkt/changeAddress", parameters: parameters)
+    }
+    
+    //MARK: - User
+    
+    func obtainUser(parameters: [String: Any]) -> Promise<Result<User>> {
+        return networkManager.request(url: "/mrkt/getUser", parameters: parameters)
+    }
+    
+    //MARK: - Channel
+    
+    func obtainChannel(parameters: [String: Any]) -> Promise<Result<Channel>> {
+        return networkManager.request(url: "/mrkt/requestChannel", parameters: parameters)
+    }
+    
+    func getChannel(parameters: [String: Any]) -> Promise<Result<Channel>> {
+        return networkManager.request(url: "/mrkt/getChannel", parameters: parameters)
+    }
     
     
+    func cancelChannel(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/cancelChannel", parameters: parameters)
+    }
     
 }
 
@@ -105,9 +130,13 @@ class NetworkManager  {
             params["token"] = token
         }
         
+        
+        
+        
         return Promise { resolver in
             
-            afManager.request(URL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { response in
+            
+            afManager.request(URL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).log(.verbose).validate().responseJSON { response in
                 
                 switch response.result {
                 case .success:

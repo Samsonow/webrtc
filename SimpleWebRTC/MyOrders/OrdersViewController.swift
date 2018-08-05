@@ -35,11 +35,13 @@ class OrdersViewController: BaseViewController {
     }
     
     private func obtainData() {
-        
+        startAnimating()
         network.obtainOrder(parameters: [:]).done { result in
             self.orders = result.result
+            self.stopAnimating()
         }.catch { error in
-            self.handleError(error: error)
+            self.handleError(error: error, retry: self.obtainData)
+            self.stopAnimating()
         }
         
     }
@@ -64,6 +66,10 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: orderIdCell, for: indexPath) as! OrderTableViewCell
         cell.setup(with: orders[indexPath.item])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

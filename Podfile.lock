@@ -1,5 +1,9 @@
 PODS:
   - Alamofire (4.7.3)
+  - AlamofireLogger (0.2.1):
+    - Alamofire (~> 4.0)
+  - AlamofireNetworkActivityLogger (2.3.0):
+    - Alamofire (~> 4.6)
   - DrawerController (4.0.0):
     - DrawerController/Core (= 4.0.0)
     - DrawerController/DrawerVisualStates (= 4.0.0)
@@ -7,7 +11,11 @@ PODS:
   - DrawerController/DrawerVisualStates (4.0.0):
     - DrawerController/Core
   - GoogleWebRTC (1.1.20913)
+  - IQKeyboardManager (6.1.0)
   - Kingfisher (4.8.0)
+  - NVActivityIndicatorView (4.3.0):
+    - NVActivityIndicatorView/Presenter (= 4.3.0)
+  - NVActivityIndicatorView/Presenter (4.3.0)
   - PromiseKit (6.3.4):
     - PromiseKit/CorePromise (= 6.3.4)
     - PromiseKit/Foundation (= 6.3.4)
@@ -21,37 +29,57 @@ PODS:
     - StarscreamSocketIO (~> 8.0.7)
   - StarscreamSocketIO (8.0.7)
   - SwipeCellKit (2.4.3)
+  - YandexMapKit (3.0.0):
+    - YandexRuntime (~> 3.0)
+  - YandexRuntime (3.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - AlamofireLogger
+  - AlamofireNetworkActivityLogger (~> 2.3)
   - DrawerController
   - GoogleWebRTC
+  - IQKeyboardManager
   - Kingfisher (~> 4.0)
+  - NVActivityIndicatorView
   - PromiseKit (~> 6.0)
   - Socket.IO-Client-Swift (= 12.0.0)
   - SwipeCellKit
+  - YandexMapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AlamofireLogger
+    - AlamofireNetworkActivityLogger
     - DrawerController
     - GoogleWebRTC
+    - IQKeyboardManager
     - Kingfisher
+    - NVActivityIndicatorView
     - PromiseKit
     - Socket.IO-Client-Swift
     - StarscreamSocketIO
     - SwipeCellKit
+    - YandexMapKit
+    - YandexRuntime
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireLogger: 5ad4631418b074bf07a5e5c1220052df805e6587
+  AlamofireNetworkActivityLogger: 6f3076652ab7fa6c819b59be08ea038d339e36d8
   DrawerController: eb1168e9f7185cc49f654ae8486917f0acb3dc88
   GoogleWebRTC: 4fedeaecffeea1b93d994616c1cc728fac5c9a13
+  IQKeyboardManager: f520b0f411eaefa08058532cb50c48bfeffa8535
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  NVActivityIndicatorView: 963f62bf9f993fcf23218e55958e5b1761b9504c
   PromiseKit: e1425568123ec844a944c93f2bcb29d511d39cf5
   Socket.IO-Client-Swift: 5b0154b42b3892bfb4c44fa138cbeb8afec4f6ef
   StarscreamSocketIO: 00b54e4208481ca5cef089545353aaf126bae16d
   SwipeCellKit: cee9906e6d3a36e22ad1a852fba7f8fa0839d113
+  YandexMapKit: c32b57caf297c610917d6f4b66e416f07f1ca894
+  YandexRuntime: 3922beb365a8f0c8ff9bd7ee914eae3efbb8103b
 
-PODFILE CHECKSUM: 286e0f24d7407a28d4f75746dab2e855e38bf1b0
+PODFILE CHECKSUM: 583066d898eee6ca25f7a21a66bd807f6071d360
 
 COCOAPODS: 1.5.3
