@@ -77,9 +77,7 @@ class ProductsViewController: BaseViewController {
     private func deleteProduct(id: Int) {
         startAnimating()
         parametersdell = ["id": id]
-        
-
-        
+        dellRequst()
     }
     
     func dellRequst() {

@@ -65,6 +65,8 @@ class MarketInfoViewController: BaseViewController {
             vc.expertId = data["expert_id"] as! Int
         }
     }
+    
+    @IBAction func unindToVC1 (segue: UIStoryboardSegue) {}
 
 }
 

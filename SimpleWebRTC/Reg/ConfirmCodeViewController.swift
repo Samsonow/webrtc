@@ -51,6 +51,7 @@ class ConfirmCodeViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "createUser" , let data = sender as? [String: Any] {
             var vc = segue.destination as! RegistrationViewController
             vc.currentPassword = data["pass"] as! String

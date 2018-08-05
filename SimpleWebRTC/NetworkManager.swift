@@ -90,15 +90,37 @@ class NetworkService {
         return networkManager.request(url: "/mrkt/requestChannel", parameters: parameters)
     }
     
-    func getChannel(parameters: [String: Any]) -> Promise<Result<Channel>> {
+    func getChannel(parameters: [String: Any]) -> Promise<Result<ChannelGet>> {
         return networkManager.request(url: "/mrkt/getChannel", parameters: parameters)
     }
-    
     
     func cancelChannel(parameters: [String: Any]) -> Promise<Void> {
         return networkManager.request(url: "/mrkt/cancelChannel", parameters: parameters)
     }
     
+    //MARK: - Products
+    
+    func acceptPrice(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/acceptPrice", parameters: parameters)
+    }
+    
+    func rejectPrice(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/rejectPrice", parameters: parameters)
+    }
+    
+    //Delivery
+    
+    func startDelivery(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/startDelivery", parameters: parameters)
+    }
+    
+    func completeChannel(parameters: [String: Any]) -> Promise<Void>  {
+    
+    return networkManager.request(url: "/mrkt/completeChannel", parameters: parameters)
+    
+    }
+    
+   
 }
 
 class NetworkManager  {

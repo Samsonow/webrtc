@@ -15,7 +15,7 @@ class ChannelClientViewController: BaseViewController {
     
     var expertId: Int!
     let networkService = NetworkService()
-    var channel: Channel?
+    var channel: ChannelGet?
     
     @IBOutlet weak var infoLabel: UILabel!
     var indicatorView: NVActivityIndicatorView!
@@ -23,6 +23,8 @@ class ChannelClientViewController: BaseViewController {
     var timer = Timer()
 
     override func viewDidLoad() {
+        
+        self.navigationController?.isNavigationBarHidden = true
         
         let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         
@@ -47,7 +49,10 @@ class ChannelClientViewController: BaseViewController {
         
         let params: [String: Any] = ["expert_id": expertId]
         networkService.obtainChannel(parameters: params).done { result in
-            self.channel = result.result
+            let chanel = result.result
+           
+            self.channel = ChannelGet(form: chanel)
+    
         }.done {
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                               selector: #selector(self.timerAction), userInfo: nil, repeats: true)
@@ -58,11 +63,12 @@ class ChannelClientViewController: BaseViewController {
     
     @objc func timerAction() {
         self.networkService.getChannel(parameters: ["channel_id": self.channel?.id]).done { result in
+            self.channel = result.result
             self.handelChangeChannel(chanel: result.result)
         }
     }
     
-    private func handelChangeChannel(chanel: Channel ) {
+    private func handelChangeChannel(chanel: ChannelGet) {
         switch chanel.state {
             
         case .REQUESTED:
@@ -79,6 +85,8 @@ class ChannelClientViewController: BaseViewController {
             
         case .OPENED:
             print("OPENED")
+            timer.invalidate()
+            
             self.performSegue(withIdentifier: "webrtc", sender: nil)
 
         case .DELIVERY:
@@ -86,6 +94,9 @@ class ChannelClientViewController: BaseViewController {
             
         case .COMPLETED:
             print("COMPLETED")
+            
+        case .REFUSED:
+            print("REFUSED")
             
         case .ARCHIVED:
             print("ARCHIVED")
@@ -117,6 +128,15 @@ class ChannelClientViewController: BaseViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
         let nav = UINavigationController(rootViewController: controller)
         self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        timer.invalidate()
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "webrtc" {
+            var vc = segue.destination as! ViewController
+            vc.channelId = channel?.id ?? -1
+        }
     }
 
 }
