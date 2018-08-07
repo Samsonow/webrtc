@@ -33,6 +33,7 @@ class WebRTCUtil {
     }
     
     class var mediaStreamConstraints: RTCMediaConstraints {
+      
         return RTCMediaConstraints(
             mandatoryConstraints: nil,
             optionalConstraints: nil)

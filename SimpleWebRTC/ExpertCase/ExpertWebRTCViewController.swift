@@ -1,4 +1,14 @@
 //
+//  ExpertWebRTCViewController.swift
+//  SimpleWebRTC
+//
+//  Created by Evgen on 06.08.2018.
+//  Copyright © 2018 Erdi T. All rights reserved.
+//
+//ExpertWebRTCViewController
+import UIKit
+
+//
 //  ViewController.swift
 //  SimpleWebRTC
 //
@@ -11,28 +21,29 @@ import WebRTC
 import SwipeCellKit
 import DrawerController
 
-class ViewController: BaseViewController {
+class ExpertWebRTCViewController: BaseViewController {
     //TODO: refact
     var addParemetrs: [String: Any] = [:]
     var parametersdell: [String: Any] = [:]
     var timer = Timer()
-    var channelId: Int = 0
+    var channelId: Int!
     var channel: ChannelGet?
     
-  
+    var selectIndex: Int = 0
+    
+    
     private var products: [Product] = [] {
         didSet {
             tableView.reloadData()
         }
     }
     
-    @IBOutlet weak var startDelivery: UIButton!
     @IBOutlet weak var productTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     private let productCellId: String = "ProductCell"
     private let productAlmostReadyCell: String = "ProductAlmostReadyCell"
     private let acceptTableViewCell: String = "AcceptTableViewCell"
-
+    
     
     var remoteVideoStream: RTCMediaStream? {
         didSet {
@@ -57,26 +68,38 @@ class ViewController: BaseViewController {
     @IBOutlet weak var localVideoHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
+    
         self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-   
+        
         
         remoteVideoView.delegate = self
         localVideoView.delegate = self
-        
-        localVideoView.transform = CGAffineTransform(scaleX: -1, y: 1)
-        
+
         let roomName = "MAIN_ROOM"
         let client = WebRtcClient.shared
+    
         client.listener = self
         client.start(roomName: roomName)
         
         setup()
         obtainData()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+ 
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+       
+     
     }
     
     @IBAction func addProductAction(_ sender: Any) {
@@ -96,13 +119,13 @@ class ViewController: BaseViewController {
         let nibProduct = UINib(nibName: productCellId, bundle: nil)
         tableView.register(nibProduct, forCellReuseIdentifier: productCellId)
         
-        let productAlmost = UINib(nibName: productAlmostReadyCell, bundle: nil) 
+        let productAlmost = UINib(nibName: productAlmostReadyCell, bundle: nil)
         tableView.register(productAlmost, forCellReuseIdentifier: productAlmostReadyCell)
         
         
         let acceptNib = UINib(nibName: acceptTableViewCell, bundle: nil)
         tableView.register(acceptNib, forCellReuseIdentifier: acceptTableViewCell)
-
+        
         tableView.tableFooterView = UIView()
     }
     
@@ -110,21 +133,15 @@ class ViewController: BaseViewController {
         var resultTest = product
         resultTest.reverse()
         self.products = resultTest
-        
-        let product = resultTest.first(where: { $0.confirmed_price_seller == nil })
-        if product != nil || resultTest.isEmpty {
-            self.startDelivery.isHidden = true
-        } else {
-            self.startDelivery.isHidden = false
-        }
+
     }
     
     @objc func updateData() {
-        network.obtainProducts(parameters: [:]).done { result in
+        network.obtainProductsExpert(parameters: ["channel_id": self.channelId]).done { result in
             self.handelGetProduct(result.result)
         }
-    
-        network.getChannel(parameters: ["channel_id": self.channelId]).done { result in
+        
+        network.getChannelExpert(parameters: ["channel_id": self.channelId]).done { result in
             self.channel = result.result
             self.handelChangeChannel(chanel: result.result)
         }
@@ -138,7 +155,7 @@ class ViewController: BaseViewController {
             print("REQUESTED")
             
         case .REJECTED:
-     
+            
             print("REJECTED")
             
         case .CANCELLED:
@@ -150,19 +167,18 @@ class ViewController: BaseViewController {
             
         case .DELIVERY:
             print("DELIVERY")
+            self.performSegue(withIdentifier: "delivery", sender: nil)
+            
             
         case .COMPLETED:
             print("COMPLETED")
             
         case .REFUSED:
-       
+            timer.invalidate()
             self.performSegue(withIdentifier: "error", sender: nil)
             print("REFUSED")
-            timer.invalidate()
             
-            
-            
-   
+
         case .ARCHIVED:
             print("ARCHIVED")
             
@@ -172,7 +188,7 @@ class ViewController: BaseViewController {
     @objc func back() {
         performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
-
+    
     
     
     
@@ -180,21 +196,21 @@ class ViewController: BaseViewController {
         self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                           selector: #selector(self.updateData), userInfo: nil, repeats: true)
         network.obtainProducts(parameters: [:]).done { result in
-           self.handelGetProduct(result.result)
-        }.catch { error in
-            self.handleError(error: error, retry: self.obtainData)
+            self.handelGetProduct(result.result)
+            }.catch { error in
+                self.handleError(error: error, retry: self.obtainData)
         }
         
     }
     
     private func addProduct(item: String) {
         startAnimating()
-        addParemetrs = ["item":item]
+        addParemetrs = ["channel_id": channelId, "item":item]
         requstAddProduct()
     }
     
     func requstAddProduct() {
-        network.addProduct(parameters: addParemetrs).done { result in
+        network.addItemExpert(parameters: addParemetrs).done { result in
             self.handelGetProduct(result.result)
             self.stopAnimating()
         }.catch { error in
@@ -203,32 +219,31 @@ class ViewController: BaseViewController {
         }
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        if segue.identifier == "createUser" , let data = sender as? [String: Any] {
-            var vc = segue.destination as! RegistrationViewController
-            vc.currentPassword = data["pass"] as! String
+        
+        if segue.identifier == "setPrice" {
+            var vc = segue.destination as! ExpertSetPriceViewController
+            vc.channelId = channelId
+            vc.product = products[selectIndex]
         }
         
-        if segue.identifier == "startDelevery" {
-            var vc = segue.destination as! MapClientViewController
-            guard let channel = channel else { return }
-            vc.channel = channel
+        if segue.identifier == "delivery" {
+            timer.invalidate()
+            var vc = segue.destination as! ExpertDeliveryViewController
+            vc.channelId = channelId
         }
+        
+        
     }
-
+    
 }
 
-extension ViewController: RTCEAGLVideoViewDelegate {
+extension ExpertWebRTCViewController: RTCEAGLVideoViewDelegate {
     
     func videoView(_ videoView: RTCEAGLVideoView, didChangeVideoSize size: CGSize) {
         let scale = size.width / size.height
@@ -248,7 +263,7 @@ extension ViewController: RTCEAGLVideoViewDelegate {
     
 }
 
-extension ViewController: RtcListener {
+extension ExpertWebRTCViewController: RtcListener {
     
     func localStreamAdded(_ stream: RTCMediaStream) {
         self.localVideoStream = stream
@@ -264,7 +279,7 @@ extension ViewController: RtcListener {
 //MARK: - UITableView
 
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ExpertWebRTCViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -279,7 +294,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let sellerPrice = product.confirmed_price_seller  {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: acceptTableViewCell, for: indexPath) as! AcceptTableViewCell
-        
+            
             cell.nameLabel.text = product.item
             cell.costLabel.text = "\(sellerPrice) rub price"
             cell.costLabel.textColor = UIColor.green
@@ -297,11 +312,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let price = product.offered_price {
-            let cell = tableView.dequeueReusableCell(withIdentifier: productAlmostReadyCell, for: indexPath) as! ProductAlmostReadyCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: acceptTableViewCell, for: indexPath) as! AcceptTableViewCell
             cell.nameLabel.text = product.item
             cell.costLabel.text = "\(price) rub price"
-            
-            cell.delegateAlmostReady = self
+  
             return cell
         }
         
@@ -313,34 +327,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let product = products[indexPath.item]
-        if let offeredPrice = product.offered_price,
-            let userPrice = product.confirmed_price_user,
-            let sellerPrice = product.confirmed_price_seller  {
-            
-            return 50
-        }
-        
-        if let offeredPrice = product.offered_price, let userPrice = product.confirmed_price_user  {
-  
-            return 50
-        }
-        
-        if let price = product.offered_price {
 
-            return 140
-        }
-        
         return 50
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
+        self.performSegue(withIdentifier: "setPrice", sender: nil)
+        selectIndex = indexPath.row
     }
-    
+
 }
 
-extension ViewController: SwipeTableViewCellDelegate {
+extension ExpertWebRTCViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
@@ -361,12 +359,12 @@ extension ViewController: SwipeTableViewCellDelegate {
     
     private func deleteProduct(id: Int) {
         startAnimating()
-        parametersdell = ["id": id]
+        parametersdell = ["channel_id": channelId, "id": id]
         dellRequst()
     }
     
     func dellRequst() {
-        network.deleteProduct(parameters: parametersdell).done { result in
+        network.deleteProductExpert(parameters: parametersdell).done { result in
             self.handelGetProduct(result.result)
             self.stopAnimating()
         }.catch { error in
@@ -383,7 +381,7 @@ extension ViewController: SwipeTableViewCellDelegate {
         if let price = product.offered_price {
             return options
         }
- 
+        
         options.expansionStyle = .destructive
         options.transitionStyle = .border
         options.expansionStyle = .destructive(automaticallyDelete: false)
@@ -392,7 +390,7 @@ extension ViewController: SwipeTableViewCellDelegate {
     
 }
 
-extension ViewController: AlmostReadyDelegate {
+extension ExpertWebRTCViewController: AlmostReadyDelegate {
     
     func productOKAction(cell: UITableViewCell) {
         guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
@@ -405,5 +403,6 @@ extension ViewController: AlmostReadyDelegate {
         network.rejectPrice(parameters: ["item_id": products[index.row].id])
     }
 }
+
 
 

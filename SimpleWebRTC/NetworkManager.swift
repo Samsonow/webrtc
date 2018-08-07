@@ -115,12 +115,55 @@ class NetworkService {
     }
     
     func completeChannel(parameters: [String: Any]) -> Promise<Void>  {
-    
-    return networkManager.request(url: "/mrkt/completeChannel", parameters: parameters)
-    
+        return networkManager.request(url: "/mrkt/completeChannel", parameters: parameters)
     }
     
-   
+    
+    //EXPERT CASE
+    func setAvailability(parameters: [String: Any]) -> Promise<Void>  {
+        return networkManager.request(url: "/mrkt/experts/setAvailability", parameters: parameters)
+    }
+    
+    func setMarket(parameters: [String: Any]) -> Promise<Void>  {
+        return networkManager.request(url: "/mrkt/experts/setMarket", parameters: parameters)
+    }
+    
+    func getChannels(parameters: [String: Any]) -> Promise<Result<[ChannelGet]>>  {
+        return networkManager.request(url: "/mrkt/experts/getChannels", parameters: parameters)
+    }
+    
+    func rejectChannel(parameters: [String: Any]) -> Promise<Void>  {
+        return networkManager.request(url: "/mrkt/experts/rejectChannel", parameters: parameters)
+    }
+    
+    func acceptChannel(parameters: [String: Any]) -> Promise<Void>  {
+        return networkManager.request(url: "/mrkt/experts/acceptChannel", parameters: parameters)
+    }
+    
+    func obtainProductsExpert(parameters: [String: Any]) -> Promise<Result<[Product]>> {
+        return networkManager.request(url: "/mrkt/experts/getChannelShoppingList", parameters: parameters)
+    }
+    
+    func getChannelExpert(parameters: [String: Any]) -> Promise<Result<ChannelGet>> {
+        return networkManager.request(url: "/mrkt/experts/getChannel", parameters: parameters)
+    }
+    
+    func addItemExpert(parameters: [String: Any]) -> Promise<Result<[Product]>> {
+        return networkManager.request(url: "/mrkt/experts/addItem", parameters: parameters)
+    }
+    
+    func deleteProductExpert(parameters: [String: Any]) -> Promise<Result<[Product]>> {
+        return networkManager.request(url: "/mrkt/experts/removeItem", parameters: parameters)
+    }
+    
+    func offerPriceExpert(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/experts/offerPrice", parameters: parameters)
+    }
+    
+    func setPositionExpert(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/experts/setPosition", parameters: parameters)
+    }
+
 }
 
 class NetworkManager  {
@@ -151,9 +194,6 @@ class NetworkManager  {
         if let token = Storage.shared.getToken() {
             params["token"] = token
         }
-        
-        
-        
         
         return Promise { resolver in
             

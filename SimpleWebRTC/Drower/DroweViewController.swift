@@ -16,8 +16,8 @@ class DroweViewController: UITableViewController {
     
     override func viewDidLoad() {
         tableView.register(UINib(nibName: droweCellId, bundle: nil), forCellReuseIdentifier: droweCellId)
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        tableView.tableHeaderView = view
+        //let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        //tableView.tableHeaderView = view
         self.navigationController?.isNavigationBarHidden = true
         
         
@@ -28,7 +28,7 @@ class DroweViewController: UITableViewController {
             let nav = UINavigationController(rootViewController: controller)
             self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
 
-            items =  ["Exit account"]
+            items =  ["Home page", "Set market" , "Exit account"]
         }
 //
 //        items =  ["Set delivery address", "Market list", "Shoping list", "My orders", "Exit account"]
@@ -65,17 +65,32 @@ class DroweViewController: UITableViewController {
         return cell
     }
     
-    
+    //TODO: сделать один список с перечислениями
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if Storage.shared.user?.type == .expert {
             switch indexPath.row {
             case 0:
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
+                let nav = UINavigationController(rootViewController: controller)
+                self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+                return
+                
+            case 1:
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
+                let nav = UINavigationController(rootViewController: controller)
+                self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+            case 2:
                 Storage.shared.clearToken()
                 self.gotoLogin()
                 return
+                
             default:
                 return
             }
+            
+            return
         }
         switch indexPath.row {
             

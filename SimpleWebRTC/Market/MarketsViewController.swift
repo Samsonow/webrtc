@@ -7,10 +7,12 @@
 //
 
 import UIKit
-
+import DrawerController
 class MarketsViewController: BaseViewController {
-    
+
     let network: NetworkService = NetworkService()
+    
+    var chooseMarketId: Int = 0
     
     private var markets: [Market] = [] {
         didSet {
@@ -79,9 +81,27 @@ extension MarketsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if Storage.shared.user?.type == .expert {
+            chooseMarketId = markets[indexPath.item].id
+            setMarket()
+            return
+        }
+        
         let id = markets[indexPath.item].id
         let sender: [String: Any] = ["id" : markets[indexPath.item].id]
         self.performSegue(withIdentifier: "info", sender: sender)
+    }
+    
+    private func setMarket() {
+        let parameters: [String: Any] = ["market_id": chooseMarketId]
+        network.setMarket(parameters: parameters).done {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
+            let nav = UINavigationController(rootViewController: controller)
+            self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+        }.catch { error in
+            self.handleError(error: error, retry: self.setMarket)
+        }
     }
     
 }

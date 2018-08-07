@@ -96,6 +96,46 @@ class WebRtcClient: NSObject {
         
         socket.connect()
     }
+    
+//    - (void)swapCameraToFront{
+//    RTCMediaStream *localStream = _peerConnection.localStreams[0];
+//    [localStream removeVideoTrack:localStream.videoTracks[0]];
+//
+//    RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
+//    if (localVideoTrack) {
+//    [localStream addVideoTrack:localVideoTrack];
+//    //   [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+//    [self didReceiveLocalVideoTrack:localVideoTrack];
+//    }
+//    [_peerConnection removeStream:localStream];
+//    [_peerConnection addStream:localStream];
+//    }
+//    - (void)swapCameraToBack{
+//    RTCMediaStream *localStream = _peerConnection.localStreams[0];
+//    [localStream removeVideoTrack:localStream.videoTracks[0]];
+//
+//    RTCVideoTrack *localVideoTrack = [self createLocalVideoTrackBackCamera];
+//
+//    if (localVideoTrack) {
+//    [localStream addVideoTrack:localVideoTrack];
+//    [self didReceiveLocalVideoTrack:localVideoTrack];
+//    //[_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+//    }
+//    [_peerConnection removeStream:localStream];
+//    [_peerConnection addStream:localStream];
+//    }*/
+    
+//    func swapCameraToBack() {
+//        var localStream = self.localStream
+//        localStream?.removeVideoTrack(localStream?.videoTracks[0])
+//
+//        var localVideoTrack = RTCVideoTrack
+//
+//
+//    }
+    
+    
+    
 
     // MARK: -
     
@@ -126,15 +166,26 @@ class WebRtcClient: NSObject {
     
     /** This method creates local stream. */
     private func createLocalStream() -> RTCMediaStream {
+      
+        //WebRTCUtil.mediaStreamConstraints
         let videoSource = factory.avFoundationVideoSource(with: WebRTCUtil.mediaStreamConstraints)
         let audioSource = factory.audioSource(with: WebRTCUtil.mediaStreamConstraints)
+        videoSource.useBackCamera = true
+        
+        videoSource
+       
+    
         
         let localMS = factory.mediaStream(withStreamId: "MyStream")
         localMS.addAudioTrack(factory.audioTrack(with: audioSource, trackId: "MyAudio"))
         localMS.addVideoTrack(factory.videoTrack(with: videoSource, trackId: "MyVideo"))
+        
         listener?.localStreamAdded(localMS)
+        
         return localMS
     }
+    
+
     
     // MARK: -
     
