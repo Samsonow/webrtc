@@ -25,7 +25,9 @@ class ExpertErrorViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
         let nav = UINavigationController(rootViewController: controller)
-        //self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+        evo_drawerController?.mainViewController = nav
+    
+       // evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
     }
     
     

@@ -266,7 +266,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dmv-G1-9gH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2417" y="-1917"/>
+            <point key="canvasLocation" x="2417" y="-2047"/>
         </scene>
         <!--Drowe View Controller-->
         <scene sceneID="uBQ-et-jON">
@@ -323,7 +323,7 @@
         <!--Markets-->
         <scene sceneID="FCL-6m-RTA">
             <objects>
-                <viewController restorationIdentifier="MarketsViewController" storyboardIdentifier="MarketsViewController" id="g4V-o3-OxN" customClass="MarketsViewController" customModule="SimpleWebRTC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MarketsViewController" storyboardIdentifier="MarketsViewController" modalPresentationStyle="overCurrentContext" id="g4V-o3-OxN" customClass="MarketsViewController" customModule="SimpleWebRTC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Piw-AR-pNC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
