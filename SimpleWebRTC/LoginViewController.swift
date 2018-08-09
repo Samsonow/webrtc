@@ -65,6 +65,7 @@ class LoginViewController: BaseViewController {
     
     func requst() {
         Storage.shared.clearToken()
+        startAnimating()
         
         networkService.login(parameters: params).done { result in
             Storage.shared.setToken(token: result.result.token)
@@ -76,10 +77,11 @@ class LoginViewController: BaseViewController {
         }.then { user in
             return self.checkChanel(user: user)
         }.done {
+            self.stopAnimating()
             self.gotoDrawer()
             //self.performSegue(withIdentifier: "login", sender: nil)
         }.catch { error in
-            
+            self.stopAnimating()
             if let er = error as? NetworkError {
                 if case .openCHANNEL(let channel) = er {
                     channelStart = channel
@@ -100,6 +102,9 @@ class LoginViewController: BaseViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "DrawerController")
             //let newWindow = UIWindow()
+            
+            
+            
             appDelegate.replaceWindow(controller)
             //newWindow.rootViewController = controller
         }

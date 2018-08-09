@@ -145,11 +145,20 @@ class ChannelClientViewController: BaseViewController {
     }
     
     private func goToMarkets() {
+        guard let drawerController = navigationController?.parent as? KYDrawerController else { return }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
         let nav = UINavigationController(rootViewController: controller)
-        evo_drawerController?.mainViewController = nav
-        evo_drawerController?.setDrawerState(.closed, animated: true)
+        
+        //drawerController.performSegue(withIdentifier: "main", sender: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // change 2 to desired number of seconds
+            drawerController.mainViewController = nav
+            drawerController.setDrawerState(.closed, animated: true)
+        }
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

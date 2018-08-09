@@ -162,6 +162,11 @@ class ExpertWebRTCViewController: BaseViewController {
             print("REJECTED")
             
         case .CANCELLED:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
+            let nav = UINavigationController(rootViewController: controller)
+            evo_drawerController?.mainViewController = nav
+            evo_drawerController?.setDrawerState(.closed, animated: true)
             //я отменил
             print("CANCELLED")
             
@@ -192,7 +197,11 @@ class ExpertWebRTCViewController: BaseViewController {
     }
     
     @objc func back() {
-        performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
+        let nav = UINavigationController(rootViewController: controller)
+        evo_drawerController?.mainViewController = nav
+        //performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
     
     
