@@ -9,8 +9,9 @@
 import UIKit
 import KYDrawerController
 import NVActivityIndicatorView
+import InteractiveSideMenu
 
-class BaseViewController: UIViewController, NVActivityIndicatorViewable {
+class BaseViewController: UIViewController, NVActivityIndicatorViewable, SideMenuItemContent, Storyboardable  {
     
     func setupLeftMenuButton() {
         let leftDrawerButton = UIBarButtonItem(title: "open", style: .plain, target: self, action: #selector(leftDrawerButtonPress))
@@ -29,8 +30,8 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     }
     
     @objc func leftDrawerButtonPress(_ sender: AnyObject?) {
-        
-        evo_drawerController?.setDrawerState(.opened, animated: true)
+        showSideMenu()
+        //evo_drawerController?.setDrawerState(.opened, animated: true)
         //self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }
 

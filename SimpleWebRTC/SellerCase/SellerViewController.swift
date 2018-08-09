@@ -30,7 +30,7 @@ class SelllerViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         evo_drawerController?.setDrawerState(.opened, animated: false)
-        evo_drawerController?.setDrawerState(.closed, animated: false)
+        
         super.viewDidLoad()
         setupLeftMenuButton()
         

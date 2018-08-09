@@ -25,7 +25,7 @@ class MarketsViewController: BaseViewController {
     
     override func viewDidLoad() {
         evo_drawerController?.setDrawerState(.opened, animated: false)
-        evo_drawerController?.setDrawerState(.closed, animated: false)
+        
         
         super.viewDidLoad()
         setup()

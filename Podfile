@@ -6,7 +6,7 @@ target 'SimpleWebRTC' do
   pod 'Socket.IO-Client-Swift', '12.0.0'
   pod 'PromiseKit', '~> 6.0'
   pod 'Alamofire', '~> 4.7'
-  pod 'KYDrawerController'
+  pod 'InteractiveSideMenu'
   pod 'Kingfisher', '~> 4.0'
   pod 'SwipeCellKit'
   pod 'NVActivityIndicatorView'

@@ -9,7 +9,7 @@
 import UIKit
 import KYDrawerController
 
-class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DroweViewController: MenuContainerViewController, UITableViewDelegate, UITableViewDataSource {
     
     var items: [String] = ["Set delivery address", "Market list", "Shoping list", "My orders", "Exit account"]
     let droweCellId: String = "DrawerCell"
@@ -17,14 +17,31 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: droweCellId, bundle: nil), forCellReuseIdentifier: droweCellId)
-
-        self.navigationController?.isNavigationBarHidden = true
-        evo_drawerController = self.parent as? KYDrawerController
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // change 2 to desired number of seconds
-            self.handelDrawer()
-        }
+        
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        self.transitionOptions = TransitionOptions(duration: 0.4, visibleContentWidth: screenSize.width / 6)
+        
+        // Instantiate menu view controller by identifier
+        self.menuViewController = SampleMenuViewController.storyboardViewController()
+        
+        // Gather content items controllers
+        self.contentViewControllers = contentControllers()
+        
+        // Select initial content controller. It's needed even if the first view controller should be selected.
+        self.selectContentViewController(contentViewControllers.first!)
+        
+        self.currentItemOptions.cornerRadius = 10.0
+//
+//        tableView.register(UINib(nibName: droweCellId, bundle: nil), forCellReuseIdentifier: droweCellId)
+//
+//        self.navigationController?.isNavigationBarHidden = true
+//        evo_drawerController = self.parent as? KYDrawerController
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // change 2 to desired number of seconds
+//            self.handelDrawer()
+//        }
 
        
     }
@@ -152,7 +169,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
                 let nav = UINavigationController(rootViewController: controller)
                 evo_drawerController?.mainViewController = nav
-                evo_drawerController?.setDrawerState(.closed, animated: true)
+                
                 
                 //self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
                 return
@@ -162,7 +179,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
                 let nav = UINavigationController(rootViewController: controller)
                 evo_drawerController?.mainViewController = nav
-                evo_drawerController?.setDrawerState(.closed, animated: true)
+                
             case 2:
                 Storage.shared.clearToken()
                 self.gotoLogin()
@@ -183,21 +200,21 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let controller = storyboard.instantiateViewController(withIdentifier: "LocationViewController")
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
-            evo_drawerController?.setDrawerState(.closed, animated: true)
+            
             
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
-            evo_drawerController?.setDrawerState(.closed, animated: true)
+            
         case 2:
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "ProductsViewController")
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
-            evo_drawerController?.setDrawerState(.closed, animated: true)
+            
             
         case 3:
             
@@ -205,7 +222,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let controller = storyboard.instantiateViewController(withIdentifier: "OrdersViewController")
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
-            evo_drawerController?.setDrawerState(.closed, animated: true)
+            
             
         case 4:
             Storage.shared.clearToken()
@@ -218,7 +235,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
-            evo_drawerController?.setDrawerState(.closed, animated: true)
+            
         }
         
         

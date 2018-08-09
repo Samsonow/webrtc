@@ -8,6 +8,7 @@
 
 import UIKit
 import PromiseKit
+import SideMenu
 
 class LoginViewController: BaseViewController {
     @IBOutlet weak var phoneTextField: UITextField!
@@ -71,17 +72,27 @@ class LoginViewController: BaseViewController {
     func gotoDrawer() {
         //self.performSegue(withIdentifier: "login", sender: nil)
         
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "DrawerController")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
+        let nav = UINavigationController(rootViewController: controller)
+        
+        
+        let left = storyboard.instantiateViewController(withIdentifier: "DroweViewController")
             //let newWindow = UIWindow()
+   
+        
+            SideMenuManager.default.menuLeftNavigationController = left
+ 
+            // Enable gestures. The left and/or right menus must be set up above for these to work.
+            // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
+            SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+            SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
             
-            
-            
-            appDelegate.replaceWindow(controller)
-            //newWindow.rootViewController = controller
-        }
+            // Set up a cool background image for demo purposes
+            SideMenuManager.default.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+   
     }
     
     

@@ -48,7 +48,7 @@ class ExpertMainViewController: BaseViewController {
         super.viewDidLoad()
         
         evo_drawerController?.setDrawerState(.opened, animated: false)
-        evo_drawerController?.setDrawerState(.closed, animated: false)
+        
         setupLeftMenuButton()
     }
     
