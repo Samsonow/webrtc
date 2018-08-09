@@ -9,13 +9,14 @@
 import UIKit
 import WebRTC
 import SwipeCellKit
-import DrawerController
+import KYDrawerController
+
 
 class ViewController: BaseViewController {
     //TODO: refact
     var addParemetrs: [String: Any] = [:]
     var parametersdell: [String: Any] = [:]
-    var timer = Timer()
+    var timer: Timer?
     var channelId: Int = 0
     var channel: ChannelGet?
     
@@ -59,7 +60,8 @@ class ViewController: BaseViewController {
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
-        self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
+        evo_drawerController?.screenEdgePanGestureEnabled = false
+        //self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
    
@@ -98,7 +100,6 @@ class ViewController: BaseViewController {
         
         let productAlmost = UINib(nibName: productAlmostReadyCell, bundle: nil) 
         tableView.register(productAlmost, forCellReuseIdentifier: productAlmostReadyCell)
-        
         
         let acceptNib = UINib(nibName: acceptTableViewCell, bundle: nil)
         tableView.register(acceptNib, forCellReuseIdentifier: acceptTableViewCell)
@@ -158,7 +159,10 @@ class ViewController: BaseViewController {
        
             self.performSegue(withIdentifier: "error", sender: nil)
             print("REFUSED")
-            timer.invalidate()
+            if timer != nil {
+                timer?.invalidate()
+                timer = nil
+            }
             
             
             
@@ -177,8 +181,10 @@ class ViewController: BaseViewController {
     
     
     func obtainData() {
-        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+        if timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                           selector: #selector(self.updateData), userInfo: nil, repeats: true)
+        }
         network.obtainProducts(parameters: [:]).done { result in
            self.handelGetProduct(result.result)
         }.catch { error in
@@ -396,13 +402,30 @@ extension ViewController: AlmostReadyDelegate {
     
     func productOKAction(cell: UITableViewCell) {
         guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
-        network.acceptPrice(parameters: ["item_id": products[index.row].id])
+        
+        startAnimating()
+        
+        network.acceptPrice(parameters: ["item_id": products[index.row].id]).done {
+           self.products[index.row].confirmed_price_user = self.products[index.row].offered_price
+        }.catch { error in
+            self.stopAnimating()
+            self.handleError(error: error, retry: nil)
+        }
     }
     
     
     func productCancelAction(cell: UITableViewCell) {
         guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
-        network.rejectPrice(parameters: ["item_id": products[index.row].id])
+        
+        startAnimating()
+        
+        network.rejectPrice(parameters: ["item_id": products[index.row].id]).done {
+            self.stopAnimating()
+            self.products[index.row].offered_price = nil
+        }.catch { error in
+            self.stopAnimating()
+            self.handleError(error: error, retry: nil)
+        }
     }
 }
 

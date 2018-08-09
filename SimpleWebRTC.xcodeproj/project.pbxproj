@@ -50,6 +50,8 @@
 		6CF4B8422114FD910094B61E /* BackendError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B8412114FD910094B61E /* BackendError.swift */; };
 		6CF4B8452114FF8B0094B61E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B8442114FF8B0094B61E /* BaseViewController.swift */; };
 		6CF4B848211503B40094B61E /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF4B847211503B40094B61E /* Storage.swift */; };
+		6CFBF017211A4999004C203D /* SellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBF016211A4999004C203D /* SellerViewController.swift */; };
+		6CFBF019211A5DAC004C203D /* SellerProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFBF018211A5DAC004C203D /* SellerProduct.swift */; };
 		EE7AC0172113B78E00668663 /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */; };
 		EE7AC0192113BA5600668663 /* ConfirmCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */; };
 		EE7AC01C2113BA8C00668663 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */; };
@@ -135,6 +137,8 @@
 		6CF4B8412114FD910094B61E /* BackendError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendError.swift; sourceTree = "<group>"; };
 		6CF4B8442114FF8B0094B61E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6CF4B847211503B40094B61E /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		6CFBF016211A4999004C203D /* SellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViewController.swift; sourceTree = "<group>"; };
+		6CFBF018211A5DAC004C203D /* SellerProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerProduct.swift; sourceTree = "<group>"; };
 		EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
 		EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCodeViewController.swift; sourceTree = "<group>"; };
 		EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +306,14 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		6CFBF015211A497D004C203D /* SellerCase */ = {
+			isa = PBXGroup;
+			children = (
+				6CFBF016211A4999004C203D /* SellerViewController.swift */,
+			);
+			path = SellerCase;
+			sourceTree = "<group>";
+		};
 		EE7AC0152113AE3600668663 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,8 +325,8 @@
 		EE7AC01A2113BA5F00668663 /* Reg */ = {
 			isa = PBXGroup;
 			children = (
-				EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */,
 				EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */,
+				EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */,
 				EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */,
 			);
 			path = Reg;
@@ -334,6 +346,7 @@
 				6C76D68B2116440F0026CAD0 /* Address.swift */,
 				6C76D68D2117010B0026CAD0 /* User.swift */,
 				6C76D6952117408F0026CAD0 /* Channel.swift */,
+				6CFBF018211A5DAC004C203D /* SellerProduct.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -383,6 +396,7 @@
 				6C76D68921161F220026CAD0 /* LocationViewController.swift */,
 				6C76D69121173DD90026CAD0 /* ExpertCase */,
 				6C76D69421173E790026CAD0 /* ClientCase */,
+				6CFBF015211A497D004C203D /* SellerCase */,
 				FD2A2DC62014986A00A68935 /* AppDelegate.swift */,
 				EEB1949C2113A1DE0017ED59 /* Const.swift */,
 				EEB1949A2113A00A0017ED59 /* LoginViewController.swift */,
@@ -620,9 +634,9 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireLogger/AlamofireLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/DrawerController/DrawerController.framework",
 				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
@@ -635,9 +649,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -684,8 +698,10 @@
 				6C2A2E6B2115DDDF00A31A72 /* Order.swift in Sources */,
 				EE7AC01C2113BA8C00668663 /* RegistrationViewController.swift in Sources */,
 				EE7AC0172113B78E00668663 /* ConfirmPhoneViewController.swift in Sources */,
+				6CFBF017211A4999004C203D /* SellerViewController.swift in Sources */,
 				6C2DDD39211511870005A962 /* DroweViewController.swift in Sources */,
 				6C2A2E6D2115E43B00A31A72 /* OrderTableViewCell.swift in Sources */,
+				6CFBF019211A5DAC004C203D /* SellerProduct.swift in Sources */,
 				FD2A2DF7201498CD00A68935 /* WebRtcClient.swift in Sources */,
 				6C76D68A21161F220026CAD0 /* LocationViewController.swift in Sources */,
 				6C2DDD3D211514AF0005A962 /* Markets.swift in Sources */,

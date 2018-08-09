@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DrawerController
+import KYDrawerController
 import YandexMapKit
 import IQKeyboardManager
 import AlamofireNetworkActivityLogger
@@ -30,16 +30,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func replaceWindow(_ newWindow: UIWindow) {
-        if let oldWindow = window {
-            newWindow.frame = oldWindow.frame
-            newWindow.windowLevel = oldWindow.windowLevel
-            newWindow.screen = oldWindow.screen
-            newWindow.isHidden = false
-            window = newWindow
-            oldWindow.removeFromSuperview()
-        }
+    func replaceWindow(_ new: UIViewController) {
+        
+//        UIView.transition(with: window!, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+//            let oldState: Bool = UIView.areAnimationsEnabled
+//            UIView.setAnimationsEnabled(false)
+//            self.window!.rootViewController = new
+//            UIView.setAnimationsEnabled(oldState)
+//
+//        }, completion: { (finished: Bool) -> () in
+//            self.window!.rootViewController = new
+//            self.window?.makeKeyAndVisible()
+//        })
+       
+
+        UIView.transition(from: window!.rootViewController!.view, to: new.view, duration: 0.6, options: [.curveEaseIn, .transitionFlipFromLeft], completion: {
+            _ in
+            self.window?.rootViewController = new
+           // self.window?.makeKeyAndVisible()
+
+        })
+//
+        
+//        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        var test = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
+//
+//        let mainViewController   = test
+//
+//
+//        var droweViewController = storyboard.instantiateViewController(withIdentifier: "DroweViewControllerTest")
+//
+//        let drawerViewController = droweViewController
+//        let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
+//        drawerController.mainViewController = UINavigationController(
+//            rootViewController: mainViewController
+//        )
+//        drawerController.drawerViewController = drawerViewController
+//
+//
+//
+//
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = drawerController
+//        drawerController.setDrawerState(.opened, animated: false)
+//        window?.makeKeyAndVisible()
+
     }
+    
+    
+//    func replaceWindow(_ newWindow: UIWindow) {
+//        if let oldWindow = window {
+//            newWindow.frame = oldWindow.frame
+//            newWindow.windowLevel = oldWindow.windowLevel
+//            newWindow.screen = oldWindow.screen
+//            newWindow.isHidden = false
+//            window = newWindow
+//            oldWindow.removeFromSuperview()
+//        }
+//    }
     
 
 

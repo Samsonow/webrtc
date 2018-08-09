@@ -19,13 +19,14 @@ import UIKit
 import UIKit
 import WebRTC
 import SwipeCellKit
-import DrawerController
+import KYDrawerController
+
 
 class ExpertWebRTCViewController: BaseViewController {
     //TODO: refact
     var addParemetrs: [String: Any] = [:]
     var parametersdell: [String: Any] = [:]
-    var timer = Timer()
+    var timer: Timer?
     var channelId: Int!
     var channel: ChannelGet?
     
@@ -70,8 +71,8 @@ class ExpertWebRTCViewController: BaseViewController {
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
-    
-        self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
+        evo_drawerController?.screenEdgePanGestureEnabled = false
+        //self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
@@ -174,7 +175,10 @@ class ExpertWebRTCViewController: BaseViewController {
             print("COMPLETED")
             
         case .REFUSED:
-            timer.invalidate()
+            if timer != nil {
+                timer?.invalidate()
+                timer = nil
+            }
             self.performSegue(withIdentifier: "error", sender: nil)
             print("REFUSED")
             
@@ -193,8 +197,10 @@ class ExpertWebRTCViewController: BaseViewController {
     
     
     func obtainData() {
-        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+        if timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                           selector: #selector(self.updateData), userInfo: nil, repeats: true)
+        }
         network.obtainProducts(parameters: [:]).done { result in
             self.handelGetProduct(result.result)
             }.catch { error in
@@ -233,7 +239,10 @@ class ExpertWebRTCViewController: BaseViewController {
         }
         
         if segue.identifier == "delivery" {
-            timer.invalidate()
+            if timer != nil {
+                timer?.invalidate()
+                timer = nil
+            }
             var vc = segue.destination as! ExpertDeliveryViewController
             vc.channelId = channelId
         }
@@ -277,8 +286,6 @@ extension ExpertWebRTCViewController: RtcListener {
 
 
 //MARK: - UITableView
-
-
 extension ExpertWebRTCViewController: UITableViewDelegate, UITableViewDataSource {
     
     
@@ -390,19 +397,6 @@ extension ExpertWebRTCViewController: SwipeTableViewCellDelegate {
     
 }
 
-extension ExpertWebRTCViewController: AlmostReadyDelegate {
-    
-    func productOKAction(cell: UITableViewCell) {
-        guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
-        network.acceptPrice(parameters: ["item_id": products[index.row].id])
-    }
-    
-    
-    func productCancelAction(cell: UITableViewCell) {
-        guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
-        network.rejectPrice(parameters: ["item_id": products[index.row].id])
-    }
-}
 
 
 

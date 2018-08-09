@@ -10,12 +10,12 @@ import Foundation
 
 struct Product: Codable {
     
-    let confirmed_price_seller: Float?
+    var confirmed_price_seller: Float?
     
-    let confirmed_price_user : Float?
+    var confirmed_price_user : Float?
     let id: Int
     let item: String
-    let offered_price: Float?
+    var offered_price: Float?
     let user_id: Int
     
 //    'confirmed_price_user': None,

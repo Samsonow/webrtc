@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DrawerController
+import KYDrawerController
 class MarketsViewController: BaseViewController {
 
     let network: NetworkService = NetworkService()
@@ -24,6 +24,9 @@ class MarketsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+        evo_drawerController?.setDrawerState(.opened, animated: false)
+        evo_drawerController?.setDrawerState(.closed, animated: false)
+        
         super.viewDidLoad()
         setup()
         obtainData()
@@ -98,7 +101,8 @@ extension MarketsViewController: UITableViewDelegate, UITableViewDataSource {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
             let nav = UINavigationController(rootViewController: controller)
-            self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+            evo_drawerController?.mainViewController = nav
+            evo_drawerController?.setDrawerState(.closed, animated: true)
         }.catch { error in
             self.handleError(error: error, retry: self.setMarket)
         }

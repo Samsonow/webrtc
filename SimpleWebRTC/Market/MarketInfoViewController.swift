@@ -24,7 +24,8 @@ class MarketInfoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        evo_drawerController?.screenEdgePanGestureEnabled = true
+        self.navigationController?.isNavigationBarHidden = false
         table.register(UINib(nibName: headerCellId, bundle: nil), forCellReuseIdentifier: headerCellId)
         table.register(UINib(nibName: expertCellID, bundle: nil), forCellReuseIdentifier: expertCellID)
         table.tableFooterView = UIView()

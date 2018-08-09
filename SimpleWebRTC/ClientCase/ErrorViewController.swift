@@ -7,14 +7,19 @@
 //
 
 import UIKit
-import DrawerController
+import KYDrawerController
 
 class ErrorViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
+        
+        let evo_drawerController = self.navigationController?.parent as? KYDrawerController
+        
+       
+        evo_drawerController?.screenEdgePanGestureEnabled = false
+        //self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
 
         // Do any additional setup after loading the view.
     }
@@ -26,7 +31,7 @@ class ErrorViewController: UIViewController {
    
     
     override func didReceiveMemoryWarning() {
-        self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
+        //self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

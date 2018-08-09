@@ -47,9 +47,20 @@ class RegistrationViewController: BaseViewController {
         networkService.setName(parameters: params).done { _ in
             self.networkService.setPass(parameters: self.params2)
         }.done {
-            self.performSegue(withIdentifier: "test", sender: nil)
+            self.gotoDrawer()
         }.catch { error in
             self.handleError(error: error, retry: self.requst)
+        }
+    }
+    
+    func gotoDrawer() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "DrawerController")
+            //let newWindow = UIWindow()
+            appDelegate.replaceWindow(controller)
+            
         }
     }
     

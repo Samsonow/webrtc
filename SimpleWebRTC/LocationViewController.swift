@@ -8,7 +8,7 @@
 
 import UIKit
 import YandexMapKit
-import DrawerController
+import KYDrawerController
 import CoreLocation
 import IQKeyboardManager
 
@@ -28,8 +28,8 @@ class LocationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLeftMenuButton()
-        self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
-        
+
+        evo_drawerController?.screenEdgePanGestureEnabled = false
  
         
         isAuthorizedtoGetUserLocation()
@@ -47,10 +47,11 @@ class LocationViewController: BaseViewController {
             
         }
 
-        
-        
-        
-
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        evo_drawerController?.screenEdgePanGestureEnabled = true
     }
     
     deinit {
@@ -73,11 +74,7 @@ class LocationViewController: BaseViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.evo_drawerController?.openDrawerGestureModeMask = .all
-        self.evo_drawerController?.closeDrawerGestureModeMask = .all
-    }
-
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
  

@@ -12,4 +12,6 @@ enum NetworkError: Error {
     case error
     case decode
     case message(String)
+    
+    case openCHANNEL(ChannelGet)
 }

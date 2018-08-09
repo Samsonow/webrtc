@@ -12,7 +12,7 @@ import YandexMapKit
 class MapClientViewController: UIViewController {
 
     let networkService = NetworkService()
-    var timer = Timer()
+    var timer: Timer?
     var channel: ChannelGet!
      @IBOutlet weak var mapView: YMKMapView!
     
@@ -33,9 +33,10 @@ class MapClientViewController: UIViewController {
         mapView.mapWindow.map!.mapObjects?.addPlacemark(with: pont)
         
         mapView.mapWindow.map!.addCameraListener(with: self)
-        
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                         selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+        }
         
 
         // Do any additional setup after loading the view.

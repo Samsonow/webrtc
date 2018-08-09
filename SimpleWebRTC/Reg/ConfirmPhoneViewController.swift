@@ -35,19 +35,18 @@ class ConfirmPhoneViewController: BaseViewController {
         }
         
         self.phone = phone
+        confirmPhone()
 
     }
     
-    func confirmPhone() -> () {
+    func confirmPhone() {
         let params = ["phone": phone]
         
         networkService.confirmPhone(parameters: params).done { result in
             let sender: [String: Any] = ["phone": self.phone, "pass" : result.result.temp_password]
             self.performSegue(withIdentifier: "confirmCode", sender: sender)
         }.catch { error in
-            self.handleError(error: error, retry: {
-                self.confirmPhone()
-            })
+            self.handleError(error: error, retry: self.confirmPhone)
         }
     }
     

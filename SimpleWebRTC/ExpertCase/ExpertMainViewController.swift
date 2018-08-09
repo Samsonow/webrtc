@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class ExpertMainViewController: BaseViewController {
 
     let networkService = NetworkService()
-    var timer = Timer()
+    var timer: Timer?
     
     let available = "You are available for requests"
     let availableButton = "PAUSE"
@@ -42,26 +43,39 @@ class ExpertMainViewController: BaseViewController {
     
     @IBOutlet weak var buttonAvailable: UIButton!
     @IBOutlet weak var infoLabel: UILabel!
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        evo_drawerController?.setDrawerState(.opened, animated: false)
+        evo_drawerController?.setDrawerState(.closed, animated: false)
         setupLeftMenuButton()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        timer.invalidate()
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
-                                          selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+        if timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+                                              selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+        }
+        
     }
     
 
     deinit {
-        timer.invalidate()
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+        
     }
     
     @objc func timerAction() {
@@ -88,7 +102,7 @@ class ExpertMainViewController: BaseViewController {
             
         case .OPENED:
             print("OPENED")
-            timer.invalidate()
+   
             
             self.performSegue(withIdentifier: "webrtc", sender: nil)
             
@@ -106,8 +120,6 @@ class ExpertMainViewController: BaseViewController {
             
         }
     }
-
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -129,7 +141,10 @@ class ExpertMainViewController: BaseViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        timer.invalidate()
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
         
         if segue.identifier == "accept" {
             var vc = segue.destination as! ExpertChooseViewController
@@ -137,4 +152,28 @@ class ExpertMainViewController: BaseViewController {
         }
     }
     
+}
+
+
+extension Alamofire.SessionManager{
+    @discardableResult
+    open func requestWithoutCache(
+        _ url: URLConvertible,
+        method: HTTPMethod = .get,
+        parameters: Parameters? = nil,
+        encoding: ParameterEncoding = URLEncoding.default,
+        headers: HTTPHeaders? = nil)// also you can add URLRequest.CachePolicy here as parameter
+        -> DataRequest
+    {
+        do {
+            var urlRequest = try URLRequest(url: url, method: method, headers: headers)
+            urlRequest.cachePolicy = .reloadIgnoringCacheData // <<== Cache disabled
+            let encodedURLRequest = try encoding.encode(urlRequest, with: parameters)
+            return request(encodedURLRequest)
+        } catch {
+            // TODO: find a better way to handle error
+            print(error)
+            return request(URLRequest(url: URL(string: "http://example.com/wrong_request")!))
+        }
+    }
 }

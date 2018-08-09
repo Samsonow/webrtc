@@ -12,7 +12,7 @@ import CoreLocation
 class ExpertDeliveryViewController: BaseViewController {
 
     @IBOutlet weak var infoLable: UILabel!
-    var timer = Timer()
+    var timer: Timer?
     
     var channelId: Int = 0
     
@@ -25,12 +25,14 @@ class ExpertDeliveryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
+        evo_drawerController?.screenEdgePanGestureEnabled = false
+        //self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
         self.navigationController?.isNavigationBarHidden = true
+        if timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+                                              selector: #selector(self.updateData), userInfo: nil, repeats: true)
+        }
         
-        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
-                                          selector: #selector(self.updateData), userInfo: nil, repeats: true)
         
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -42,6 +44,13 @@ class ExpertDeliveryViewController: BaseViewController {
         }
         
 
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        evo_drawerController?.screenEdgePanGestureEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,7 +96,8 @@ class ExpertDeliveryViewController: BaseViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
             let nav = UINavigationController(rootViewController: controller)
-            self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
+            evo_drawerController?.mainViewController = nav
+            evo_drawerController?.setDrawerState(.closed, animated: true)
 
             print("COMPLETED")
             

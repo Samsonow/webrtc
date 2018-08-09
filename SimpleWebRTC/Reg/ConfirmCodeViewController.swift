@@ -34,6 +34,7 @@ class ConfirmCodeViewController: BaseViewController {
         }
         
         params = ["verification_code": code, "phone": phone]
+        requst()
     }
     
     func requst() {

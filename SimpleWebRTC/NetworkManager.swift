@@ -90,6 +90,10 @@ class NetworkService {
         return networkManager.request(url: "/mrkt/requestChannel", parameters: parameters)
     }
     
+    func getChannelsClient(parameters: [String: Any]) -> Promise<Result<[ChannelGet]>>  {
+        return networkManager.request(url: "/mrkt/getChannels", parameters: parameters)
+    }
+    
     func getChannel(parameters: [String: Any]) -> Promise<Result<ChannelGet>> {
         return networkManager.request(url: "/mrkt/getChannel", parameters: parameters)
     }
@@ -163,6 +167,21 @@ class NetworkService {
     func setPositionExpert(parameters: [String: Any]) -> Promise<Void> {
         return networkManager.request(url: "/mrkt/experts/setPosition", parameters: parameters)
     }
+    
+    //Seller
+    
+    
+    func getOfferSellers(parameters: [String: Any]) -> Promise<Result<[SellerProduct]>> {
+        return networkManager.request(url: "/mrkt/sellers/getOffers", parameters: parameters)
+    }
+    
+    func acceptOfferSellers(parameters: [String: Any]) -> Promise<Result<[SellerProduct]>> {
+        return networkManager.request(url: "/mrkt/sellers/acceptOffer", parameters: parameters)
+    }
+    
+    func rejectOfferSellers(parameters: [String: Any]) -> Promise<Result<[SellerProduct]>> {
+        return networkManager.request(url: "/mrkt/sellers/rejectOffer", parameters: parameters)
+    }
 
 }
 
@@ -198,7 +217,7 @@ class NetworkManager  {
         return Promise { resolver in
             
             
-            afManager.request(URL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).log(.verbose).validate().responseJSON { response in
+            afManager.requestWithoutCache(URL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).log(.verbose).validate().responseJSON { response in
                 
                 switch response.result {
                 case .success:

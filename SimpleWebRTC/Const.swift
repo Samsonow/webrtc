@@ -6,5 +6,10 @@
 //  Copyright © 2018 Erdi T. All rights reserved.
 //
 
+import KYDrawerController
+
 let baseURL = "https://api.araneobit.io"
 
+var evo_drawerController: KYDrawerController?
+
+var channelStart: ChannelGet?

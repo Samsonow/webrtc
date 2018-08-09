@@ -23,7 +23,7 @@ struct User: Codable {
     let address1: String?
     let city_id: Int
     let expert: Bool?
-    let seller: Bool
+    let seller: Bool?
     let country_id: Int
     let lat: Double
     let name: String
@@ -43,7 +43,11 @@ struct User: Codable {
         
         city_id = try container.decode(Int.self, forKey: .city_id)
         
-        seller = try container.decode(Bool.self, forKey: .seller)
+        if let sellerObject = try? container.decode(Seller.self, forKey: .seller) {
+            seller = true
+        } else {
+            seller = false
+        }
         
         if let expert = try? container.decode(Expert.self, forKey: .expert) {
             type = .expert
@@ -102,4 +106,9 @@ struct User: Codable {
 //    "name" : "Romk",
 //    "address2" : null
 
+}
+
+struct Seller:Codable {
+    let id: Int
+    //{"id": 16, "name": "SuperSeller", "description": "ahahha", "image_url": null, "market_id": 2, "available": true}
 }
