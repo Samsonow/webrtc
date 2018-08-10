@@ -73,7 +73,7 @@ class NetworkService {
     }
     
     //MARK: - Order Address
-    
+    //was Address
     func setAddress(parameters: [String: Any]) -> Promise<Result<Address>> {
         return networkManager.request(url: "/mrkt/changeAddress", parameters: parameters)
     }
@@ -174,12 +174,12 @@ class NetworkService {
     func getOfferSellers(parameters: [String: Any]) -> Promise<Result<[SellerProduct]>> {
         return networkManager.request(url: "/mrkt/sellers/getOffers", parameters: parameters)
     }
-    
-    func acceptOfferSellers(parameters: [String: Any]) -> Promise<Result<[SellerProduct]>> {
+    //Result<[SellerProduct]>
+    func acceptOfferSellers(parameters: [String: Any]) -> Promise<Void> {
         return networkManager.request(url: "/mrkt/sellers/acceptOffer", parameters: parameters)
     }
     
-    func rejectOfferSellers(parameters: [String: Any]) -> Promise<Result<[SellerProduct]>> {
+    func rejectOfferSellers(parameters: [String: Any]) -> Promise<Void> {
         return networkManager.request(url: "/mrkt/sellers/rejectOffer", parameters: parameters)
     }
 

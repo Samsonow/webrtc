@@ -11,12 +11,81 @@ import UIKit
 class ExpertChooseViewController: BaseViewController {
     
     let networkService = NetworkService()
-    
+    let network = NetworkService()
     var channelId: Int = 0
+    
+    var timer: Timer?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        
+    
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+                                              selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func timerAction() {
+        
+        network.getChannelExpert(parameters: ["channel_id": self.channelId]).done { result in
+            self.handelChangeChannel(chanel: result.result)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+        
+    }
+    
+    
+    private func handelChangeChannel(chanel: ChannelGet) {
+        switch chanel.state {
+            
+        case .REQUESTED:
+            print("REQUESTED")
+            
+        case .REJECTED:
+            
+            print("REJECTED")
+            
+        case .CANCELLED:
+            print("CANCELLED")
+            
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+            
+            
+        case .OPENED:
+            print("OPENED")
+            
+            
+            self.performSegue(withIdentifier: "webrtc", sender: nil)
+            
+        case .DELIVERY:
+            print("DELIVERY")
+            
+        case .COMPLETED:
+            print("COMPLETED")
+            
+        case .REFUSED:
+            print("REFUSED")
+            
+        case .ARCHIVED:
+            print("ARCHIVED")
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -20,7 +20,8 @@ class ViewController: BaseViewController {
     var channelId: Int = 0
     var channel: ChannelGet?
     
-  
+    @IBOutlet weak var hightButton: NSLayoutConstraint!
+    
     private var products: [Product] = [] {
         didSet {
             tableView.reloadData()
@@ -60,6 +61,8 @@ class ViewController: BaseViewController {
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
+        hightButton.constant = 0
+        
         evo_drawerController?.screenEdgePanGestureEnabled = false
         //self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
         super.viewDidLoad()
@@ -114,9 +117,11 @@ class ViewController: BaseViewController {
         
         let product = resultTest.first(where: { $0.confirmed_price_seller == nil })
         if product != nil || resultTest.isEmpty {
-            self.startDelivery.isHidden = true
+            hightButton.constant = 0
+            //self.startDelivery.isHidden = true
         } else {
-            self.startDelivery.isHidden = false
+            hightButton.constant = 67
+            //self.startDelivery.isHidden = false
         }
     }
     
@@ -201,6 +206,8 @@ class ViewController: BaseViewController {
     
     func requstAddProduct() {
         network.addProduct(parameters: addParemetrs).done { result in
+            self.view.endEditing(true)
+            self.productTextField.text = ""
             self.handelGetProduct(result.result)
             self.stopAnimating()
         }.catch { error in
@@ -406,7 +413,8 @@ extension ViewController: AlmostReadyDelegate {
         startAnimating()
         
         network.acceptPrice(parameters: ["item_id": products[index.row].id]).done {
-           self.products[index.row].confirmed_price_user = self.products[index.row].offered_price
+            self.stopAnimating()
+            self.products[index.row].confirmed_price_user = self.products[index.row].offered_price
         }.catch { error in
             self.stopAnimating()
             self.handleError(error: error, retry: nil)

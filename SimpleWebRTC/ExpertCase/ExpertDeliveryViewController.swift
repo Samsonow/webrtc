@@ -97,7 +97,7 @@ class ExpertDeliveryViewController: BaseViewController {
             let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
-            evo_drawerController?.setDrawerState(.closed, animated: true)
+            evo_drawerController?.setDrawerState(.closed, animated: false)
 
             print("COMPLETED")
             

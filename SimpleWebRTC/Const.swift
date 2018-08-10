@@ -10,6 +10,5 @@ import KYDrawerController
 
 let baseURL = "https://api.araneobit.io"
 
-var evo_drawerController: KYDrawerController?
-
+weak var evo_drawerController: KYDrawerController? 
 var channelStart: ChannelGet?

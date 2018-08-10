@@ -9,7 +9,7 @@
 import UIKit
 import YandexMapKit
 
-class MapClientViewController: UIViewController {
+class MapClientViewController: BaseViewController {
 
     let networkService = NetworkService()
     var timer: Timer?
@@ -24,9 +24,6 @@ class MapClientViewController: UIViewController {
         let animation = YMKAnimation(type: YMKAnimationType.smooth, duration: 0)
         let pont = YMKPoint(latitude: channel.lat, longitude: channel.long)
 
-        
-
-        
         
         mapView.mapWindow.map!.move(with: position, animationType: animation, cameraCallback: nil)
         
@@ -53,7 +50,7 @@ class MapClientViewController: UIViewController {
             
             
             //self.mapView.mapWindow.map!.mapObjects?.addPlacemark(with: pont)
-            let image = UIImage(named: "marker")
+            let image = UIImage(named: "markerl")
             
             self.mapView.mapWindow.map!.mapObjects?.addPlacemark(with: pont, image: image)
             
@@ -69,7 +66,14 @@ class MapClientViewController: UIViewController {
     
     @IBAction func okAction(_ sender: Any) {
         networkService.completeChannel(parameters: ["channel_id":channel.id]).done {
-             self.performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
+            let nav = UINavigationController(rootViewController: controller)
+            evo_drawerController?.mainViewController = nav
+            evo_drawerController?.setDrawerState(.closed, animated: false)
+
+        }.catch{ error in
+            self.handleError(error: error, retry: nil)
         }
         
     }

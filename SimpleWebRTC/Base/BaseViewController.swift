@@ -36,6 +36,7 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //МОЖЕТ ВЕРНУТЬ
         UIApplication.shared.keyWindow!.addSubview(self.view)
 
     }

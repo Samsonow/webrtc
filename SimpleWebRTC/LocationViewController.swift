@@ -38,13 +38,27 @@ class LocationViewController: BaseViewController {
         
         mapView.mapWindow.map!.addCameraListener(with: self)
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation()
+        if Storage.shared.user?.lat == 0 || Storage.shared.user?.lat == nil {
+            if (CLLocationManager.locationServicesEnabled())
+            {
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                locationManager.requestAlwaysAuthorization()
+                locationManager.startUpdatingLocation()
+                
+            }
+        } else {
+            guard let lat = Storage.shared.user?.lat, let long = Storage.shared.user?.long else { return }
             
+            let target = YMKPoint(latitude:  lat, longitude: long)
+            let position = YMKCameraPosition.init(target: target, zoom: 15, azimuth: 0, tilt: 0)
+            let animation = YMKAnimation(type: YMKAnimationType.smooth, duration: 0)
+            
+            mapView.mapWindow.map!.move(with: position, animationType: animation, cameraCallback: nil)
+        }
+        
+        if let address = Storage.shared.user?.address1 {
+            addressTextField.text = address
         }
 
     }
@@ -90,13 +104,25 @@ class LocationViewController: BaseViewController {
         }
         
         params = ["address1": addressMain, "address2": "", "lat": centerLatitude, "long": centerLongitude ]
-        
+        requst()
 
     }
     
     func requst() {
         networkService.setAddress(parameters: params).done { result in
-            print(result)
+            
+            DispatchQueue.main.async {
+                Storage.shared.user?.address1 = result.result.address1
+                Storage.shared.user?.lat = result.result.lat
+                Storage.shared.user?.long = result.result.long
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
+                let nav = UINavigationController(rootViewController: controller)
+                evo_drawerController?.mainViewController = nav
+                 evo_drawerController?.setDrawerState(.closed, animated: false)
+            }
+            
         }.catch { error in
             self.handleError(error: error, retry: self.requst)
         }

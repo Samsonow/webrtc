@@ -44,7 +44,7 @@ class SelllerViewController: BaseViewController {
         
         if timer == nil {
             timerAction()
-            self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
+            self.timer = Timer.scheduledTimer(timeInterval: 2, target: self,
                                           selector: #selector(self.timerAction), userInfo: nil, repeats: true)
         }
 
@@ -142,9 +142,9 @@ extension SelllerViewController: AlmostReadyDelegate {
         
         startAnimating()
         
-        newtworkService.acceptOfferSellers(parameters: params).done { result in
+        newtworkService.acceptOfferSellers(parameters: params).done { _ in
             self.stopAnimating()
-            self.products = result.result
+            //self.products = result.result
         }.catch { error in
             self.products[index.row].confirmed_price_seller = nil
             self.stopAnimating()
@@ -162,8 +162,8 @@ extension SelllerViewController: AlmostReadyDelegate {
         
         startAnimating()
         
-        newtworkService.rejectOfferSellers(parameters: params).done { result in
-            self.products = result.result
+        newtworkService.rejectOfferSellers(parameters: params).done { _ in
+            //self.products = result.result
             self.stopAnimating()
         }.catch { error in
             self.stopAnimating()

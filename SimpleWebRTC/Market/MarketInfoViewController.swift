@@ -18,6 +18,8 @@ class MarketInfoViewController: BaseViewController {
     
     let headerCellId: String = "MarketInfoHeaderCell"
     let expertCellID: String = "ExpertCell"
+    
+    var refreshControl = UIRefreshControl()
 
     
     @IBOutlet weak var table: UITableView!
@@ -30,7 +32,17 @@ class MarketInfoViewController: BaseViewController {
         table.register(UINib(nibName: expertCellID, bundle: nil), forCellReuseIdentifier: expertCellID)
         table.tableFooterView = UIView()
         obtainData()
+        
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        table.addSubview(refreshControl) // not required when using UITableViewController
+        
+        table.refreshControl = refreshControl
 
+    }
+    
+    @objc func refresh(sender:AnyObject) {
+        obtainData()
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,6 +12,8 @@ class MarketsViewController: BaseViewController {
 
     let network: NetworkService = NetworkService()
     
+    var refreshControl = UIRefreshControl()
+    
     var chooseMarketId: Int = 0
     
     private var markets: [Market] = [] {
@@ -24,8 +26,11 @@ class MarketsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        evo_drawerController?.setDrawerState(.opened, animated: false)
-        evo_drawerController?.setDrawerState(.closed, animated: false)
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl) // not required when using UITableViewController
+        
+        tableView.refreshControl = refreshControl
         
         super.viewDidLoad()
         setup()
@@ -35,12 +40,19 @@ class MarketsViewController: BaseViewController {
         
     }
     
+    @objc func refresh(sender:AnyObject) {
+        obtainData()
+    }
+    
     private func obtainData() {
         startAnimating()
         network.obtainMarkets(parameters: [:]).done { result in
             self.markets = result.result
             self.stopAnimating()
+            self.refreshControl.endRefreshing()
+            
         }.catch { error in
+            self.refreshControl.endRefreshing()
             self.stopAnimating()
             self.handleError(error: error, retry: self.obtainData)
         }

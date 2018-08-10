@@ -33,6 +33,7 @@ class ProductsViewController: BaseViewController {
         super.viewDidLoad()
         setup()
         obtainData()
+        newProductTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -121,6 +122,21 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+extension ProductsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        guard let item = newProductTextField.text else {
+            return true
+        }
+        newProductTextField.text = ""
+        addProduct(item: item)
+        
+        return true
+    }
+}
+
 
 extension ProductsViewController: SwipeTableViewCellDelegate {
     

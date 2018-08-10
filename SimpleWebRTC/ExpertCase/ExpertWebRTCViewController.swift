@@ -104,9 +104,11 @@ class ExpertWebRTCViewController: BaseViewController {
     }
     
     @IBAction func addProductAction(_ sender: Any) {
+       
         if let item = productTextField.text {
             addProduct(item: item)
         }
+        productTextField.text = ""
     }
     
     @IBAction func stratAction(_ sender: Any) {
@@ -396,6 +398,23 @@ extension ExpertWebRTCViewController: SwipeTableViewCellDelegate {
     }
     
 }
+
+
+extension ExpertWebRTCViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if let item = productTextField.text {
+            addProduct(item: item)
+        }
+        productTextField.text = ""
+        return true
+    }
+}
+
+
+
+
 
 
 

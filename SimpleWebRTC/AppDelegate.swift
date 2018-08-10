@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIView.transition(from: window!.rootViewController!.view, to: new.view, duration: 0.6, options: [.curveEaseIn, .transitionFlipFromLeft], completion: {
             _ in
             self.window?.rootViewController = new
-           // self.window?.makeKeyAndVisible()
+            self.window?.makeKeyAndVisible()
 
         })
 //

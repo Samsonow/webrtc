@@ -82,6 +82,7 @@ class ExpertMainViewController: BaseViewController {
         self.networkService.getChannels(parameters: [:]).done { result in
             if !result.result.isEmpty, let first = result.result.first  {
                 self.firstChannel = first
+                
             }
         }
     }
@@ -99,6 +100,8 @@ class ExpertMainViewController: BaseViewController {
             
         case .CANCELLED:
             print("CANCELLED")
+            
+        
             
         case .OPENED:
             print("OPENED")

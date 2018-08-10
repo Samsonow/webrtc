@@ -19,6 +19,32 @@ class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let token = Storage.shared.getToken() {
+            startAnimating()
+            networkService.obtainUser(parameters: [:]).map { result -> User in
+                Storage.shared.user = result.result
+                return result.result
+            }.then { user in
+                return self.checkChanel(user: user)
+            }.done {
+                self.stopAnimating()
+                self.gotoDrawer()
+            }.catch{ error in
+                
+                if let er = error as? NetworkError {
+                    if case .openCHANNEL(let channel) = er {
+                        channelStart = channel
+                        self.gotoDrawer()
+                        return
+                    }
+                }
+                
+                self.stopAnimating()
+                self.handleError(error: error, retry: nil)
+            }
+                
+        }
 
     }
 

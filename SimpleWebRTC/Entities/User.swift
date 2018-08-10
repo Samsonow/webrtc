@@ -18,14 +18,14 @@ enum TypeUser: String, Codable {
 struct User: Codable {
     
     let id: Int
-    let long: Double
+    var long: Double?
     let balance: Int
-    let address1: String?
+    var address1: String?
     let city_id: Int
     let expert: Bool?
     let seller: Bool?
     let country_id: Int
-    let lat: Double
+    var lat: Double?
     let name: String
     let address2: String?
     
