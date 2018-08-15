@@ -61,6 +61,7 @@ class ViewController: BaseViewController {
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
+        self.startDelivery.isHidden = true
         hightButton.constant = 0
         
         evo_drawerController?.screenEdgePanGestureEnabled = false
@@ -118,10 +119,10 @@ class ViewController: BaseViewController {
         let product = resultTest.first(where: { $0.confirmed_price_seller == nil })
         if product != nil || resultTest.isEmpty {
             hightButton.constant = 0
-            //self.startDelivery.isHidden = true
+            self.startDelivery.isHidden = true
         } else {
             hightButton.constant = 67
-            //self.startDelivery.isHidden = false
+            self.startDelivery.isHidden = false
         }
     }
     
@@ -168,10 +169,7 @@ class ViewController: BaseViewController {
                 timer?.invalidate()
                 timer = nil
             }
-            
-            
-            
-   
+
         case .ARCHIVED:
             print("ARCHIVED")
             
@@ -182,11 +180,9 @@ class ViewController: BaseViewController {
         performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
 
-    
-    
-    
     func obtainData() {
         if timer == nil {
+            updateData()
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                           selector: #selector(self.updateData), userInfo: nil, repeats: true)
         }
@@ -199,6 +195,12 @@ class ViewController: BaseViewController {
     }
     
     private func addProduct(item: String) {
+        
+        if item.isEmpty {
+            show(message: "Поле не должно быть пустым", retry: nil)
+            return
+        }
+        
         startAnimating()
         addParemetrs = ["item":item]
         requstAddProduct()
@@ -227,6 +229,7 @@ class ViewController: BaseViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        WebRtcClient.shared.leave()
         if segue.identifier == "createUser" , let data = sender as? [String: Any] {
             var vc = segue.destination as! RegistrationViewController
             vc.currentPassword = data["pass"] as! String

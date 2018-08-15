@@ -31,7 +31,6 @@ class MarketsViewController: BaseViewController {
         tableView.addSubview(refreshControl) // not required when using UITableViewController
         
         tableView.refreshControl = refreshControl
-        
         super.viewDidLoad()
         setup()
         obtainData()

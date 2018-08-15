@@ -29,6 +29,7 @@ class ExpertDeliveryViewController: BaseViewController {
         //self.evo_drawerController?.openDrawerGestureModeMask = .panningNavigationBar
         self.navigationController?.isNavigationBarHidden = true
         if timer == nil {
+            updateData()
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                               selector: #selector(self.updateData), userInfo: nil, repeats: true)
         }

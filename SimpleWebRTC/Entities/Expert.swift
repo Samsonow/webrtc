@@ -20,6 +20,7 @@ struct Expert: Codable {
     let name: String
     let rating: Int
     let reviews_count: Int
+    let available: Bool
 
     //let reviews': []
     

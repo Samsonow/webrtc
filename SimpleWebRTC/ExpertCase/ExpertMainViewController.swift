@@ -28,6 +28,8 @@ class ExpertMainViewController: BaseViewController {
     
     var isAvailable: Bool = true {
         didSet {
+            Storage.shared.user?.available = isAvailable
+            
             if isAvailable {
                 infoLabel.textColor = UIColor.green
                 infoLabel.text = available
@@ -46,10 +48,9 @@ class ExpertMainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        evo_drawerController?.setDrawerState(.opened, animated: false)
-        evo_drawerController?.setDrawerState(.closed, animated: false)
         setupLeftMenuButton()
+        
+        isAvailable = Storage.shared.user?.available ?? false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -63,6 +64,7 @@ class ExpertMainViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if timer == nil {
+            timerAction()
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                               selector: #selector(self.timerAction), userInfo: nil, repeats: true)
         }

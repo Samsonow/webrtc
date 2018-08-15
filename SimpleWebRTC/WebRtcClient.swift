@@ -97,6 +97,11 @@ class WebRtcClient: NSObject {
         socket.connect()
     }
     
+    func leave() {
+        getPeer().close()
+    }
+    
+    
 //    - (void)swapCameraToFront{
 //    RTCMediaStream *localStream = _peerConnection.localStreams[0];
 //    [localStream removeVideoTrack:localStream.videoTracks[0]];
@@ -150,6 +155,7 @@ class WebRtcClient: NSObject {
                 self.createOffer()
             }
         }
+        
     }
     
     /** This method creates peer connection. */
@@ -172,10 +178,8 @@ class WebRtcClient: NSObject {
         let audioSource = factory.audioSource(with: WebRTCUtil.mediaStreamConstraints)
         videoSource.useBackCamera = true
         
-        videoSource
-       
-    
-        
+        audioSource.volume = 10
+
         let localMS = factory.mediaStream(withStreamId: "MyStream")
         localMS.addAudioTrack(factory.audioTrack(with: audioSource, trackId: "MyAudio"))
         localMS.addVideoTrack(factory.videoTrack(with: videoSource, trackId: "MyVideo"))

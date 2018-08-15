@@ -104,7 +104,7 @@ class ExpertWebRTCViewController: BaseViewController {
     }
     
     @IBAction func addProductAction(_ sender: Any) {
-       
+
         if let item = productTextField.text {
             addProduct(item: item)
         }
@@ -209,6 +209,7 @@ class ExpertWebRTCViewController: BaseViewController {
     
     func obtainData() {
         if timer == nil {
+            updateData()
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                           selector: #selector(self.updateData), userInfo: nil, repeats: true)
         }
@@ -221,6 +222,12 @@ class ExpertWebRTCViewController: BaseViewController {
     }
     
     private func addProduct(item: String) {
+        
+        if item.isEmpty {
+            show(message: "Поле не должно быть пустым", retry: nil)
+            return
+        }
+        
         startAnimating()
         addParemetrs = ["channel_id": channelId, "item":item]
         requstAddProduct()
@@ -250,6 +257,7 @@ class ExpertWebRTCViewController: BaseViewController {
         }
         
         if segue.identifier == "delivery" {
+            WebRtcClient.shared.leave()
             if timer != nil {
                 timer?.invalidate()
                 timer = nil
