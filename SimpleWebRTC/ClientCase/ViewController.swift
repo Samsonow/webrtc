@@ -163,10 +163,7 @@ class ViewController: BaseViewController {
                 timer?.invalidate()
                 timer = nil
             }
-            
-            
-            
-   
+
         case .ARCHIVED:
             print("ARCHIVED")
             
@@ -177,11 +174,9 @@ class ViewController: BaseViewController {
         performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
 
-    
-    
-    
     func obtainData() {
         if timer == nil {
+            updateData()
             self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                           selector: #selector(self.updateData), userInfo: nil, repeats: true)
         }
@@ -194,6 +189,12 @@ class ViewController: BaseViewController {
     }
     
     private func addProduct(item: String) {
+        
+        if item.isEmpty {
+            show(message: "Поле не должно быть пустым", retry: nil)
+            return
+        }
+        
         startAnimating()
         addParemetrs = ["item":item]
         requstAddProduct()
@@ -220,6 +221,7 @@ class ViewController: BaseViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        WebRtcClient.shared.leave()
         if segue.identifier == "createUser" , let data = sender as? [String: Any] {
             var vc = segue.destination as! RegistrationViewController
             vc.currentPassword = data["pass"] as! String

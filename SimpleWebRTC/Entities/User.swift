@@ -30,7 +30,7 @@ struct User: Codable {
     let address2: String?
     
     var type: TypeUser = .expert
-    
+    var available: Bool
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -48,8 +48,9 @@ struct User: Codable {
         } else {
             seller = false
         }
-        
+        available = false
         if let expert = try? container.decode(Expert.self, forKey: .expert) {
+            available = expert.available
             type = .expert
         } else if seller == true {
             type = .seller

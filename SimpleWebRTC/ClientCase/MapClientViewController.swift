@@ -14,7 +14,7 @@ class MapClientViewController: UIViewController {
     let networkService = NetworkService()
     var timer: Timer?
     var channel: ChannelGet!
-     @IBOutlet weak var mapView: YMKMapView!
+    @IBOutlet weak var mapView: YMKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,7 @@ class MapClientViewController: UIViewController {
         
         mapView.mapWindow.map!.addCameraListener(with: self)
         if timer == nil {
+            timerAction()
             timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                         selector: #selector(self.timerAction), userInfo: nil, repeats: true)
         }

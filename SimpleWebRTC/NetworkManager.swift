@@ -37,6 +37,12 @@ class NetworkService {
         return networkManager.request(url: "/auth/setNewPassword", parameters: parameters)
     }
     
+    //MARK: - User
+    
+    func obtainUser(parameters: [String: Any]) -> Promise<Result<User>> {
+        return networkManager.request(url: "/mrkt/getUser", parameters: parameters)
+    }
+    
     //MARK: - Market
     
     func obtainMarkets(parameters: [String: Any]) -> Promise<Result<[Market]>> {
@@ -78,11 +84,7 @@ class NetworkService {
         return networkManager.request(url: "/mrkt/changeAddress", parameters: parameters)
     }
     
-    //MARK: - User
-    
-    func obtainUser(parameters: [String: Any]) -> Promise<Result<User>> {
-        return networkManager.request(url: "/mrkt/getUser", parameters: parameters)
-    }
+
     
     //MARK: - Channel
     

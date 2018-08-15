@@ -22,11 +22,12 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationController?.isNavigationBarHidden = true
         evo_drawerController = self.parent as? KYDrawerController
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // change 2 to desired number of seconds
+//        evo_drawerController?.setDrawerState(.opened, animated: false)
+//        evo_drawerController?.setDrawerState(.closed, animated: false)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // change 2 to desired number of seconds
             self.handelDrawer()
         }
-
-       
     }
     
     func handelDrawer() {
@@ -98,6 +99,8 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             evo_drawerController?.mainViewController = nav
             
         }
+        evo_drawerController?.setDrawerState(.opened, animated: false)
+        evo_drawerController?.setDrawerState(.closed, animated: false)
         tableView.reloadData()
 
     }

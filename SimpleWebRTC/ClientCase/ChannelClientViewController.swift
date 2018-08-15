@@ -52,6 +52,7 @@ class ChannelClientViewController: BaseViewController {
         
         if let channel = self.channel {
             if timer == nil {
+                timerAction()
                 self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                               selector: #selector(self.timerAction), userInfo: nil, repeats: true)
             }
@@ -65,14 +66,15 @@ class ChannelClientViewController: BaseViewController {
             self.channel = ChannelGet(form: chanel)
     
         }.done {
+            //TODO: посмотерть почему еще раз стартую таймер
             if self.timer == nil {
+                self.timerAction()
                 self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
                                               selector: #selector(self.timerAction), userInfo: nil, repeats: true)
             }
         }.catch { error in
             self.handleError(error: error, retry: self.obtainData)
             
-           
         }
     }
     
