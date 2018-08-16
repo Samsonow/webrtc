@@ -55,6 +55,8 @@
 		EE7AC0172113B78E00668663 /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */; };
 		EE7AC0192113BA5600668663 /* ConfirmCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */; };
 		EE7AC01C2113BA8C00668663 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */; };
+		EE9E5EED21261C2A003DD864 /* PageControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9E5EEC21261C2A003DD864 /* PageControl.storyboard */; };
+		EE9E5EF02126258D003DD864 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9E5EEF2126258D003DD864 /* PageViewController.swift */; };
 		EEB1949B2113A00A0017ED59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1949A2113A00A0017ED59 /* LoginViewController.swift */; };
 		EEB1949D2113A1DE0017ED59 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1949C2113A1DE0017ED59 /* Const.swift */; };
 		EEB1949F2113A2C90017ED59 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1949E2113A2C90017ED59 /* NetworkManager.swift */; };
@@ -142,6 +144,8 @@
 		EE7AC0162113B78E00668663 /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
 		EE7AC0182113BA5600668663 /* ConfirmCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCodeViewController.swift; sourceTree = "<group>"; };
 		EE7AC01B2113BA8C00668663 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		EE9E5EEC21261C2A003DD864 /* PageControl.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PageControl.storyboard; sourceTree = "<group>"; };
+		EE9E5EEF2126258D003DD864 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		EEB1949A2113A00A0017ED59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EEB1949C2113A1DE0017ED59 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		EEB1949E2113A2C90017ED59 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = SimpleWebRTC/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
@@ -332,6 +336,15 @@
 			path = Reg;
 			sourceTree = "<group>";
 		};
+		EE9E5EEE2126255C003DD864 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				EE9E5EEC21261C2A003DD864 /* PageControl.storyboard */,
+				EE9E5EEF2126258D003DD864 /* PageViewController.swift */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
 		EEB194A22113A7CC0017ED59 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +409,7 @@
 				6C76D68921161F220026CAD0 /* LocationViewController.swift */,
 				6C76D69121173DD90026CAD0 /* ExpertCase */,
 				6C76D69421173E790026CAD0 /* ClientCase */,
+				EE9E5EEE2126255C003DD864 /* PageControl */,
 				6CFBF015211A497D004C203D /* SellerCase */,
 				FD2A2DC62014986A00A68935 /* AppDelegate.swift */,
 				EEB1949C2113A1DE0017ED59 /* Const.swift */,
@@ -562,6 +576,7 @@
 				6C2DDD702115D9980005A962 /* OrderTableViewCell.xib in Resources */,
 				FD2A2DD12014986A00A68935 /* LaunchScreen.storyboard in Resources */,
 				6C2DDD5A2115A7100005A962 /* MarketInfoHeaderCell.xib in Resources */,
+				EE9E5EED21261C2A003DD864 /* PageControl.storyboard in Resources */,
 				FD2A2DCE2014986A00A68935 /* Assets.xcassets in Resources */,
 				FD2A2DCC2014986A00A68935 /* Main.storyboard in Resources */,
 				6C2DDD4421151B890005A962 /* MarketCell.xib in Resources */,
@@ -713,6 +728,7 @@
 				EEB194A12113A6210017ED59 /* NetworkError.swift in Sources */,
 				6C06306B21190DDC00971424 /* ExpertDeliveryViewController.swift in Sources */,
 				6CF4B848211503B40094B61E /* Storage.swift in Sources */,
+				EE9E5EF02126258D003DD864 /* PageViewController.swift in Sources */,
 				6C2DDD6C2115D9570005A962 /* OrdersViewController.swift in Sources */,
 				6C76D69321173E6C0026CAD0 /* ChannelClientViewController.swift in Sources */,
 				FD1345E820149C7400426B77 /* Date+Milliseconds.swift in Sources */,
