@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Roboto-ThinItalic</string>
+		<string>Roboto-Thin</string>
+		<string>Roboto-Medium</string>
+		<string>Roboto-MediumItalic</string>
+		<string>Roboto-Regular</string>
+		<string>Roboto-BlackItalic</string>
+		<string>Roboto-Bold</string>
+		<string>Roboto-BoldItalic</string>
+		<string>Roboto-Italic</string>
+		<string>Roboto-Light</string>
+		<string>Roboto-LightItalic</string>
+		<string>Roboto-Black</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -47,8 +62,6 @@
 	<string>Текст</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

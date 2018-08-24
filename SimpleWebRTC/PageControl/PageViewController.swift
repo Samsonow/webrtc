@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol DelegatbalePage: AnyObject {
+    var delegate: PageDelegate? { get set }
+}
+
+protocol PageDelegate: AnyObject {
+    func selectNext(viewController: UIViewController)
+}
+
 class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     
@@ -43,9 +51,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     
     func configurePageControl() {
         // The total number of pages that are available is based on how many available colors we have.
-        pageControl = UIPageControl(frame: CGRect(x: 0,y: UIScreen.main.bounds.maxY - 50,width: UIScreen.main.bounds.width,height: 50))
+        pageControl = UIPageControl(frame: CGRect(x: 0,y: UIScreen.main.bounds.maxY - 50,width: UIScreen.main.bounds.width/3,height: 50))
         self.pageControl.numberOfPages = orderedViewControllers.count
         self.pageControl.currentPage = 0
+        
         self.pageControl.tintColor = UIColor.black
         self.pageControl.pageIndicatorTintColor = UIColor.white
         self.pageControl.currentPageIndicatorTintColor = UIColor.black
@@ -53,7 +62,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     }
     
     func newVc(viewController: String) -> UIViewController {
-        return UIStoryboard(name: "PageControl", bundle: nil).instantiateViewController(withIdentifier: viewController)
+        let controller = UIStoryboard(name: "PageControl", bundle: nil).instantiateViewController(withIdentifier: viewController) as! DelegatbalePage
+        controller.delegate = self
+        
+        return controller as! UIViewController
     }
     
     
@@ -90,16 +102,16 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
-        
         let nextIndex = viewControllerIndex + 1
         let orderedViewControllersCount = orderedViewControllers.count
         
         // User is on the last view controller and swiped right to loop to
         // the first view controller.
         guard orderedViewControllersCount != nextIndex else {
-            return orderedViewControllers.first
+            return nil
             // Uncommment the line below, remove the line above if you don't want the page control to loop.
             // return nil
+            
         }
         
         guard orderedViewControllersCount > nextIndex else {
@@ -110,6 +122,24 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     }
     
     
+}
+
+extension PageViewController: PageDelegate {
+    func selectNext(viewController: UIViewController) {
+        
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
+            fatalError()
+        }
+        let nextIndex = viewControllerIndex + 1
+        let nextVc = orderedViewControllers[nextIndex]
+        
+        setViewControllers([nextVc],
+                           direction: .forward,
+                           animated: true,
+                           completion: nil)
+        
+        self.pageControl.currentPage = nextIndex
+    }
 }
 
 

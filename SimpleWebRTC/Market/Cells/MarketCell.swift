@@ -16,6 +16,15 @@ class MarketCell: UITableViewCell {
     @IBOutlet weak var imageMarket: UIImageView!
     
     override func awakeFromNib() {
+        
+        self.layer.masksToBounds = false
+        self.clipsToBounds = false
+        self.layer.cornerRadius = 10
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowRadius = 3
+        
         super.awakeFromNib()
         // Initialization code
     }

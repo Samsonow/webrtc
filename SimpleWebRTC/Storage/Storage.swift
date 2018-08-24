@@ -12,6 +12,7 @@ class Storage {
     static let shared: Storage = Storage()
     private var token: String?
     private let keyToken: String = "token"
+    private let keyLaunch: String = "launch"
     
     var user: User?
     
@@ -36,6 +37,19 @@ class Storage {
         UserDefaults.standard.removeObject(forKey: keyToken)
         token = nil
         user = nil
+    }
+    
+    var isFirstLaunch: Bool {
+        
+        get {
+         
+            let isFirst = UserDefaults.standard.object(forKey: keyLaunch) as? Bool
+            return isFirst ?? true
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: keyLaunch)
+        }
     }
     
 }

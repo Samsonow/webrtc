@@ -26,6 +26,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityLogger.shared.startLogging()
         
         NetworkActivityLogger.shared.level = .debug
+        
+        let isFirst = Storage.shared.isFirstLaunch
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let startController: UIViewController
+        print(isFirst)
+        if isFirst {
+            
+            let storyboard = UIStoryboard(name: "PageControl", bundle: nil)
+            startController = storyboard.instantiateInitialViewController()!
+        } else {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            startController = storyboard.instantiateInitialViewController()!
+        }
+        
+        self.window?.rootViewController = startController
+        self.window?.makeKeyAndVisible()
 
         return true
     }
