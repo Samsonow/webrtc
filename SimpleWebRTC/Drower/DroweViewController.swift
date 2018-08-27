@@ -17,6 +17,9 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundColor = UIColor.clear
+
         tableView.register(UINib(nibName: droweCellId, bundle: nil), forCellReuseIdentifier: droweCellId)
 
         self.navigationController?.isNavigationBarHidden = true
@@ -127,6 +130,27 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: droweCellId, for: indexPath) as! DrawerCell
         let index = indexPath.item
         cell.titleLabel.text = items[index]
+        
+        if items[index] == "Set delivery address" {
+            cell.iconImage.image = UIImage(named: "addressIcon")
+        }
+        
+        if items[index] == "Market list" || items[index] == "Set market" {
+            cell.iconImage.image = UIImage(named: "marketIcon")
+        }
+        
+        if items[index] == "Shoping list" {
+            cell.iconImage.image = UIImage(named: "marketIcon")
+        }
+        
+        if items[index] == "My orders" {
+            cell.iconImage.image = UIImage(named: "myOrdersIcon")
+        }
+        
+        if items[index] == "Exit account" {
+            cell.iconImage.image = UIImage(named: "exitIcon")
+        }
+
         return cell
     }
     
@@ -224,7 +248,10 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         
-        
+        let currentCell = tableView.cellForRow(at: indexPath) as! DrawerCell
+        currentCell.backgroundColor = UIColor.white
+        currentCell.selectedView.isHidden = false
+
         evo_drawerController?.setDrawerState(.closed, animated: false)
     }
     
@@ -237,6 +264,18 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             newWindow.rootViewController = controller
         }
     }
+    
+    
+
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let deselectedCell = tableView.cellForRow(at: indexPath) as! DrawerCell
+        deselectedCell.backgroundColor = UIColor.clear
+        deselectedCell.selectedView.isHidden = true
+    }
+    
+    
+    
 
     
 }

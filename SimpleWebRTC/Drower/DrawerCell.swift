@@ -11,9 +11,14 @@ import UIKit
 class DrawerCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var selectedView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
