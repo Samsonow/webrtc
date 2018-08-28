@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'SimpleWebRTC' do
     
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'SwiftPhoneNumberFormatter'
   pod 'GoogleWebRTC'
   pod 'Socket.IO-Client-Swift', '12.0.0'

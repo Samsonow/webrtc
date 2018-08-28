@@ -11,7 +11,6 @@ import UIKit
 class ExpertViewController: UIViewController {
 
     @IBOutlet weak var smallImage: UIImageView!
-    @IBOutlet weak var bigImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var chooseButton: UIButton!
@@ -33,7 +32,6 @@ class ExpertViewController: UIViewController {
     func setup() {
         if let url = URL(string: expert.image_url) {
             smallImage.kf.setImage(with: url)
-            bigImage.kf.setImage(with: url)
         }
         nameLabel.text = expert.name
         ratingLabel.text = "Rating\(expert.rating)"
