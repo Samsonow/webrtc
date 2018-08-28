@@ -8,9 +8,10 @@
 
 import UIKit
 import PromiseKit
+import SwiftPhoneNumberFormatter
 
 class LoginViewController: BaseViewController {
-    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var phoneTextField: PhoneFormattedTextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     let networkService = NetworkService()
@@ -19,6 +20,10 @@ class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        phoneTextField.config.defaultConfiguration = PhoneFormat(defaultPhoneFormat: "(###) ###-##-##")
+        phoneTextField.prefix = "+7 "
+        
         
         if let token = Storage.shared.getToken() {
             startAnimating()

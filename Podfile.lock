@@ -23,6 +23,7 @@ PODS:
   - Socket.IO-Client-Swift (12.0.0):
     - StarscreamSocketIO (~> 8.0.7)
   - StarscreamSocketIO (8.0.7)
+  - SwiftPhoneNumberFormatter (1.4)
   - SwipeCellKit (2.4.3)
   - YandexMapKit (3.0.0):
     - YandexRuntime (~> 3.0)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - PromiseKit (~> 6.0)
   - Socket.IO-Client-Swift (= 12.0.0)
+  - SwiftPhoneNumberFormatter
   - SwipeCellKit
   - YandexMapKit
 
@@ -55,6 +57,7 @@ SPEC REPOS:
     - PromiseKit
     - Socket.IO-Client-Swift
     - StarscreamSocketIO
+    - SwiftPhoneNumberFormatter
     - SwipeCellKit
     - YandexMapKit
     - YandexRuntime
@@ -71,10 +74,11 @@ SPEC CHECKSUMS:
   PromiseKit: e1425568123ec844a944c93f2bcb29d511d39cf5
   Socket.IO-Client-Swift: 5b0154b42b3892bfb4c44fa138cbeb8afec4f6ef
   StarscreamSocketIO: 00b54e4208481ca5cef089545353aaf126bae16d
+  SwiftPhoneNumberFormatter: 089f2a71dd7be621e0045b01c689cd38eac0ce58
   SwipeCellKit: cee9906e6d3a36e22ad1a852fba7f8fa0839d113
   YandexMapKit: c32b57caf297c610917d6f4b66e416f07f1ca894
   YandexRuntime: 3922beb365a8f0c8ff9bd7ee914eae3efbb8103b
 
-PODFILE CHECKSUM: a4c8ebfc77adaa006bb98a91133d6c83673b223b
+PODFILE CHECKSUM: 24237c674032dcc74f4d2751b81d506039c25499
 
 COCOAPODS: 1.5.3

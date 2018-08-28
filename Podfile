@@ -2,6 +2,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'SimpleWebRTC' do
+    
+  pod 'SwiftPhoneNumberFormatter'
   pod 'GoogleWebRTC'
   pod 'Socket.IO-Client-Swift', '12.0.0'
   pod 'PromiseKit', '~> 6.0'
