@@ -13,22 +13,38 @@ import KYDrawerController
 
 class ChannelClientViewController: BaseViewController {
     
-    var expertId: Int!
+    var expertId: Int = 0
     let networkService = NetworkService()
     var channel: ChannelGet?
     
+    @IBOutlet weak var arrowIcon: UIImageView!
+    @IBOutlet weak var cancelIcon: UIImageView!
+    @IBOutlet weak var cancelCallButton: UIButton!
+    @IBOutlet weak var retutnToMarketsButton: UIButton!
+    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var infoLabel: UILabel!
     var indicatorView: NVActivityIndicatorView!
     
     var timer: Timer?
 
     override func viewDidLoad() {
+        
+        let colorTop =  UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 40/255.0, green: 40/255.0, blue: 40/255.0, alpha: 1.0).cgColor
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+        
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+
 
         self.navigationController?.isNavigationBarHidden = true
         
         let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         
-        indicatorView = NVActivityIndicatorView(frame: frame, type: .lineScale, color: UIColor.red, padding: nil)
+        indicatorView = NVActivityIndicatorView(frame: frame, type: .ballSpinFadeLoader, color: UIColor.white, padding: nil)
         self.view.addSubview(indicatorView)
         
         indicatorView.center = self.view.convert(self.view.center, from:self.view.superview)
@@ -92,8 +108,13 @@ class ChannelClientViewController: BaseViewController {
             print("REQUESTED")
             
         case .REJECTED:
-            infoLabel.isHidden = false
-            infoLabel.text = "Expert rejected"
+
+            infoLabel.text = "Запрос отклонен экспертом"
+            retutnToMarketsButton.isHidden = false
+            cancelCallButton.isHidden = true
+            cancelIcon.isHidden = false
+            arrowIcon.isHidden = false
+            
             indicatorView.stopAnimating()
             print("REJECTED")
             
@@ -129,6 +150,9 @@ class ChannelClientViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
+    }
+    @IBAction func returnToMarket(_ sender: Any) {
+        self.goToMarkets()
     }
     
     @IBAction func cancelAction(_ sender: Any) {

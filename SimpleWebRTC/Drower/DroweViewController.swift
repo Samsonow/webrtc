@@ -90,7 +90,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 if chanel.state == .REQUESTED {
                     controller = storyboard.instantiateViewController(withIdentifier: "ChannelClientViewController")
-                    (controller as! ChannelClientViewController).expertId = chanel.expert_id
+                    (controller as! ChannelClientViewController).expertId = chanel.expert_id!
                     (controller as! ChannelClientViewController).channel = chanel
                 }
             }
