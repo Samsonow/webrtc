@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let mapKitKey: String = "80c9b836-c8bb-40e5-a490-dacd8d2f4a8b"
 
     var window: UIWindow?
-
+    let barAppearance = UIBarButtonItem.appearance()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -45,7 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = startController
         self.window?.makeKeyAndVisible()
-
+        
+//        let backImage = UIImage(named: "backIcon")
+//        let backButtomImage = backImage?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 5)
+//        barAppearance.setBackButtonBackgroundImage(backButtomImage, for: .normal, barMetrics: .default)
         return true
     }
     

@@ -22,6 +22,7 @@ class MarketsViewController: BaseViewController {
         }
     }
     private let mardetIdCell = "MarketCell"
+    private let marketHeaderCell = "MarketHeaderCell"
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -60,7 +61,10 @@ class MarketsViewController: BaseViewController {
     
     private func setup() {
         tableView.register(UINib(nibName: mardetIdCell, bundle: nil), forCellReuseIdentifier: mardetIdCell)
-        tableView.tableFooterView = UIView()
+        tableView.register(UINib(nibName: marketHeaderCell, bundle: nil), forCellReuseIdentifier: marketHeaderCell)
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
+        tableView.tableFooterView = view
         tableView.backgroundColor = UIColor.clear
         setupLeftMenuButton()
     }
@@ -84,30 +88,55 @@ class MarketsViewController: BaseViewController {
 extension MarketsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return markets.count
+        return markets.count + 1
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        
+        if section == 1 {
+            return 10
+        }
+        
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+
+        return view
+    }
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: marketHeaderCell, for: indexPath) as! MarketHeaderCell
+            return cell
+        }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: mardetIdCell, for: indexPath) as! MarketCell
-        cell.setup(with: markets[indexPath.section])
+        cell.setup(with: markets[indexPath.section - 1])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if indexPath.section == 0 { return }
+        
         if Storage.shared.user?.type == .expert {
-            chooseMarketId = markets[indexPath.section].id
+            chooseMarketId = markets[indexPath.section - 1].id
             setMarket()
             return
         }
         
-        let id = markets[indexPath.item].id
-        let sender: [String: Any] = ["id" : markets[indexPath.section].id]
+        let id = markets[indexPath.section - 1].id
+        let sender: [String: Any] = ["id" : markets[indexPath.section - 1].id]
         self.performSegue(withIdentifier: "info", sender: sender)
     }
     

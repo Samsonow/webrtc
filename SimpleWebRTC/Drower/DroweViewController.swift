@@ -11,8 +11,9 @@ import KYDrawerController
 
 class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var items: [String] = ["Set delivery address", "Market list", "Shoping list", "My orders", "Exit account"]
+    var items: [String] = ["Set delivery address", "Market list", "Shoping list", "My orders"]
     let droweCellId: String = "DrawerCell"
+    var firstCell: DrawerCell?
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -57,7 +58,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             evo_drawerController?.mainViewController = nav
             evo_drawerController?.mainSegueIdentifier = nil
         
-            items =  ["Home page", "Set market" , "Exit account"]
+            items =  ["Home page", "Set market"]
             
         }
         
@@ -69,7 +70,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             evo_drawerController?.mainViewController = nav
             
             
-            items =  ["Exit account"]
+            items =  []
         }
         
         if Storage.shared.user?.type == .client {
@@ -137,6 +138,10 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if items[index] == "Market list" || items[index] == "Set market" {
             cell.iconImage.image = UIImage(named: "marketIcon")
+            firstCell = cell as? DrawerCell
+            cell.backgroundColor = .white
+            (cell as? DrawerCell)?.selectedView.isHidden = false
+
         }
         
         if items[index] == "Shoping list" {
@@ -251,7 +256,11 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let currentCell = tableView.cellForRow(at: indexPath) as! DrawerCell
         currentCell.backgroundColor = UIColor.white
         currentCell.selectedView.isHidden = false
-
+        
+        firstCell?.backgroundColor = UIColor.clear
+        firstCell?.selectedView.isHidden = true
+        firstCell = nil
+        
         evo_drawerController?.setDrawerState(.closed, animated: false)
     }
     
@@ -275,7 +284,17 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
+    @IBAction func exitAction(_ sender: Any) {
+        
+        Storage.shared.clearToken()
+        
+        self.gotoLogin()
+    }
     
-
+    @IBAction func closeAction(_ sender: Any) {
+        evo_drawerController?.setDrawerState(.closed, animated: true)
+        
+    }
+    
     
 }

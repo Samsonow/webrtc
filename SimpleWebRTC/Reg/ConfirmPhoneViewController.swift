@@ -29,7 +29,83 @@ class ConfirmPhoneViewController: BaseViewController {
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
+        
+        
+        if let token = Storage.shared.getToken() {
+            startAnimating()
+            networkService.obtainUser(parameters: [:]).map { result -> User in
+                Storage.shared.user = result.result
+                return result.result
+                }.then { user in
+                    return self.checkChanel(user: user)
+                }.done {
+                    self.stopAnimating()
+                    self.gotoDrawer()
+                }.catch{ error in
+                    
+                    if let er = error as? NetworkError {
+                        if case .openCHANNEL(let channel) = er {
+                            channelStart = channel
+                            self.gotoDrawer()
+                            return
+                        }
+                    }
+                    
+                    self.stopAnimating()
+                    self.handleError(error: error, retry: nil)
+            }
+            
+        }
+        
 
+    }
+    
+    private func gotoDrawer() {
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "DrawerController")
+            appDelegate.replaceWindow(controller)
+
+        }
+    }
+    
+    
+    private func checkChanel(user: User) -> Promise<Void> {
+        return Promise { resolver in
+            if user.type == .client {
+                networkService.getChannelsClient(parameters: [:]).done { result in
+                    if result.result.isEmpty {
+                        resolver.fulfill(())
+                    } else {
+                        let channel = result.result[0]
+                        let error = NetworkError.openCHANNEL(channel)
+                        resolver.reject(error)
+                    }
+                    }.catch { error in
+                        resolver.reject(NetworkError.message(error.localizedDescription))
+                }
+            }
+            
+            if user.type == .expert {
+                networkService.getChannels(parameters: [:]).done{ result in
+                    if result.result.isEmpty {
+                        resolver.fulfill(())
+                    } else {
+                        let channel = result.result[0]
+                        let error = NetworkError.openCHANNEL(channel)
+                        resolver.reject(error)
+                    }
+                    
+                    }.catch { error in
+                        resolver.reject(NetworkError.message(error.localizedDescription))
+                }
+            }
+            if user.type == .seller {
+                resolver.fulfill(())
+            }
+        }
     }
     
     deinit {

@@ -13,7 +13,8 @@ import NVActivityIndicatorView
 class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     
     func setupLeftMenuButton() {
-        let leftDrawerButton = UIBarButtonItem(title: "open", style: .plain, target: self, action: #selector(leftDrawerButtonPress))
+        
+        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "drawerIcon"), style: .plain, target: self, action: #selector(leftDrawerButtonPress))
 
             //DrawerBarButtonItem(target: self, action: #selector(leftDrawerButtonPress(_:)))
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
@@ -31,11 +32,33 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     @objc func leftDrawerButtonPress(_ sender: AnyObject?) {
         
         evo_drawerController?.setDrawerState(.opened, animated: true)
+        
+
+        
         //self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      
+        
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+        
+        
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backIcon")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "backIcon")
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         //МОЖЕТ ВЕРНУТЬ
         UIApplication.shared.keyWindow!.addSubview(self.view)
 

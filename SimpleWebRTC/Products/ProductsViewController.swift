@@ -25,6 +25,9 @@ class ProductsViewController: BaseViewController {
         }
     }
     private let productCellId: String = "ProductCell"
+    private let headerProductsCell: String = "HeaderProductsCell"
+    
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var newProductTextField: UITextField!
@@ -93,6 +96,8 @@ class ProductsViewController: BaseViewController {
     
     private func setup() {
         tableView.register(UINib(nibName: productCellId, bundle: nil), forCellReuseIdentifier: productCellId)
+        tableView.register(UINib(nibName: headerProductsCell, bundle: nil), forCellReuseIdentifier: headerProductsCell)
+
         tableView.tableFooterView = UIView()
         if isFromDrawer {
             setupLeftMenuButton()
@@ -105,13 +110,18 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products.count
+        return products.count + 1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: headerProductsCell, for: indexPath) as! HeaderProductsCell
+            return cell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: productCellId, for: indexPath) as! ProductCell
-        cell.titleLabel.text = products[indexPath.item].item
+        cell.titleLabel.text = products[indexPath.item - 1].item
         cell.delegate = self
         return cell
     }
@@ -144,7 +154,7 @@ extension ProductsViewController: SwipeTableViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            let id = self.products[indexPath.item].id
+            let id = self.products[indexPath.item - 1].id
             self.deleteProduct(id: id)
             // handle action by updating model with deletion
             print("test")
