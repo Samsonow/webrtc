@@ -28,6 +28,10 @@ struct Product: Codable {
             return .confirmClient(price)
         }
         
+        if nil != offered_price {
+            return .confirmExpert
+        }
+        
         return .none
     }
     
@@ -41,5 +45,6 @@ struct Product: Codable {
 enum TypeConfirm {
     case confirmSiller(Float)
     case confirmClient(Float)
+    case confirmExpert
     case none
 }

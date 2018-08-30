@@ -18,7 +18,7 @@
         <!--Add Product PopVC-->
         <scene sceneID="EwZ-8j-A7L">
             <objects>
-                <viewController id="hjP-Vi-DRi" customClass="AddProductPopVC" customModule="SimpleWebRTC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddProductPopVC" id="hjP-Vi-DRi" customClass="AddProductPopVC" customModule="SimpleWebRTC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pzw-iW-ujw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,6 +49,9 @@
                                 <state key="normal" title="Add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="didSelectAddButton:" destination="hjP-Vi-DRi" eventType="touchUpInside" id="YL5-pH-EjY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -68,6 +71,7 @@
                         <viewLayoutGuide key="safeArea" id="SLn-Mq-pkt"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="fgy-Po-1Af" id="Po3-yc-dwo"/>
                         <outlet property="tableView" destination="Vh8-mv-Hjw" id="T27-dT-PcM"/>
                     </connections>
                 </viewController>
