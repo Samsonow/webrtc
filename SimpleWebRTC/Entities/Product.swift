@@ -18,9 +18,28 @@ struct Product: Codable {
     var offered_price: Float?
     let user_id: Int
     
+    func getType() -> TypeConfirm {
+        
+        if nil != offered_price, nil != confirmed_price_user, let price = confirmed_price_seller {
+            return .confirmSiller(price)
+        }
+        
+        if nil != offered_price, let price = confirmed_price_user {
+            return .confirmClient(price)
+        }
+        
+        return .none
+    }
+    
 //    'confirmed_price_user': None,
 //    'id': 1,
 //    'item': 'Пряники',
 //    'offered_price': None,
 //    'user_id': 1
+}
+
+enum TypeConfirm {
+    case confirmSiller(Float)
+    case confirmClient(Float)
+    case none
 }

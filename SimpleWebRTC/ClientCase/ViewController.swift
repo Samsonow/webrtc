@@ -20,6 +20,8 @@ class ViewController: BaseViewController {
     var channelId: Int = 0
     var channel: ChannelGet?
     
+    let network = NetworkService()
+    
     @IBOutlet weak var hightButton: NSLayoutConstraint!
     
     private var products: [Product] = [] {
@@ -42,7 +44,7 @@ class ViewController: BaseViewController {
         }
     }
     
-    let network = NetworkService()
+    
     
     var localVideoStream: RTCMediaStream? {
         didSet {
@@ -278,8 +280,6 @@ extension ViewController: RtcListener {
 
 
 //MARK: - UITableView
-
-
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     

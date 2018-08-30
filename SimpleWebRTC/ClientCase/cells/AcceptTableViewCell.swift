@@ -12,6 +12,9 @@ class AcceptTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
+    @IBOutlet weak var confirmImage: UIImageView!
+    @IBOutlet weak var wightConfirmImage: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
   
@@ -19,8 +22,23 @@ class AcceptTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
- 
+    }
+    
+    func setConfirmExpert() {
+        confirmImage.image = UIImage(named: "confirmed1")
+        wightConfirmImage.constant = 13
+        confirmImage.isHidden = false
+    }
+    
+    func setConfirmSiller() {
+        confirmImage.image = UIImage(named: "confirmed2")
+        wightConfirmImage.constant = 13
+        confirmImage.isHidden = false
+    }
+    
+    func setWithoutPrice() {
+        wightConfirmImage.constant = 0
+        confirmImage.isHidden = true
     }
     
 }
