@@ -7,22 +7,45 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class ExpertChooseViewController: BaseViewController {
     
+    var indicatorView: NVActivityIndicatorView!
     let networkService = NetworkService()
     let network = NetworkService()
     var channelId: Int = 0
     
     var timer: Timer?
     
-
+    @IBOutlet weak var gradientView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
-    
         
+        let colorTop =  UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 40/255.0, green: 40/255.0, blue: 40/255.0, alpha: 1.0).cgColor
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+        
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+        
+        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        
+        indicatorView = NVActivityIndicatorView(frame: frame, type: .ballSpinFadeLoader, color: UIColor.white, padding: nil)
+        self.view.addSubview(indicatorView)
+        
+        indicatorView.center = self.view.convert(self.view.center, from:self.view.superview)
+        
+        indicatorView.startAnimating()
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

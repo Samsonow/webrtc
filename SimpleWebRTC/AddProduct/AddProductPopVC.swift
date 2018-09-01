@@ -10,6 +10,21 @@ import UIKit
 import SwipeCellKit
 import KYDrawerController
 
+protocol AddProductPopVCDelegate: class {
+    func handelGetProduct(_ product: [Product])
+    func addProductAction()
+    func dellProduct(with id: Int)
+    func didSelectRowAt(index :Int)
+    
+    var products: [Product] {get set}
+}
+
+extension AddProductPopVCDelegate {
+    func didSelectRowAt(index :Int) {
+        
+    }
+}
+
 class AddProductPopVC: BaseViewController {
 
     @IBOutlet weak var addButton: UIButton!
@@ -19,7 +34,7 @@ class AddProductPopVC: BaseViewController {
     var addParemetrs: [String: Any] = [:]
     var parametersdell: [String: Any] = [:]
     
-    weak var delegate: ViewController?
+    weak var delegate: AddProductPopVCDelegate?
     
     let lastFullView: CGFloat = 100
 
@@ -179,6 +194,10 @@ extension AddProductPopVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectRowAt(index: indexPath.item)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
@@ -206,23 +225,9 @@ extension AddProductPopVC: SwipeTableViewCellDelegate {
     
     
     private func deleteProduct(id: Int) {
-        startAnimating()
-        parametersdell = ["id": id]
-        dellRequst()
+        delegate?.dellProduct(with: id)
     }
-    
-    func dellRequst() {
-        network.deleteProduct(parameters: parametersdell).done { result in
-            self.delegate?.handelGetProduct(result.result)
-            //self.handelGetProduct(result.result)
-            self.stopAnimating()
-        }.catch { error in
-            self.handleError(error: error, retry: self.dellRequst)
-            self.stopAnimating()
-        }
-    }
-    
-    
+
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
         let product = products[indexPath.item]
         var options = SwipeOptions()

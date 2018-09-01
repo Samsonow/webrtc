@@ -14,8 +14,8 @@ class ExpertMainViewController: BaseViewController {
     let networkService = NetworkService()
     var timer: Timer?
     
-    let available = "You are available for requests"
-    let availableButton = "PAUSE"
+    let available = "Вы в режиме ожидания, скоро с вами свяжется клиент"
+    let availableButton = "РЕЖИМ СНА"
     
     var firstChannel: ChannelGet! {
         didSet {
@@ -23,8 +23,8 @@ class ExpertMainViewController: BaseViewController {
         }
     }
     
-    let unavailable = "You are unavailable at the moment"
-    let unavailableButton = "MAKE ME AVAILABLE"
+    let unavailable = "Вы недоступны в данный момент, пожалуйста нажмите на кнопку ВЕРНУТЬСЯ, что бы продолжить работу"
+    let unavailableButton = "ВЕРНУТЬСЯ"
     
     var isAvailable: Bool = true {
         didSet {

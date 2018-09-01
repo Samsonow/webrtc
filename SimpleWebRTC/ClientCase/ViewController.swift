@@ -13,7 +13,8 @@ import KYDrawerController
 import IQKeyboardManager
 
 
-class ViewController: BaseViewController {
+class ViewController: BaseViewController, AddProductPopVCDelegate {
+    
     //TODO: refact
     var addParemetrs: [String: Any] = [:]
     var parametersdell: [String: Any] = [:]
@@ -32,7 +33,7 @@ class ViewController: BaseViewController {
     @IBOutlet weak var remouteWight: NSLayoutConstraint!
     @IBOutlet weak var hightButton: NSLayoutConstraint!
     
-    private var products: [Product] = [] {
+    var products: [Product] = [] {
         didSet {
             delegate?.products = products
         }
@@ -432,6 +433,24 @@ extension ViewController: AddProductDelegate {
         
         addProductView = nil
         viewFon = nil
+    }
+    
+    
+    func dellProduct(with id: Int) {
+
+        startAnimating()
+        parametersdell = ["id": id]
+        dellRequst()
+    }
+    
+    func dellRequst() {
+        network.deleteProduct(parameters: parametersdell).done { result in
+            self.handelGetProduct(result.result)
+            self.stopAnimating()
+        }.catch { error in
+            self.handleError(error: error, retry: self.dellRequst)
+            self.stopAnimating()
+        }
     }
 
 }

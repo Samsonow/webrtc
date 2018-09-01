@@ -51,6 +51,9 @@ class ChannelClientViewController: BaseViewController {
         
         indicatorView.startAnimating()
         
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         super.viewDidLoad()
         obtainData()
     }
