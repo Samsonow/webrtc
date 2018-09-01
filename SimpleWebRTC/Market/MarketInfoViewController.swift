@@ -8,37 +8,57 @@
 
 import UIKit
 import PromiseKit
+import Kingfisher
 
 class MarketInfoViewController: BaseViewController {
     
     var marketId: Int = -1
     let networkService = NetworkService()
-    var info: MarketInfo?
+    var info: MarketInfo? {
+        didSet {
+            nameLabel.text = info?.name
+            if let url = URL(string: (info?.image_url)!) {
+                imageMarket.kf.setImage(with: url)
+            }
+        }
+    }
     var experts: [Expert] = []
     
-    let headerCellId: String = "MarketInfoHeaderCell"
-    let expertCellID: String = "ExpertCell"
+    private let expertCollectionViewCell = "ExpertCollectionViewCell"
     
+    @IBOutlet weak var nameLabel: UILabel!
     var refreshControl = UIRefreshControl()
-
+    @IBOutlet weak var imageMarket: UIImageView!
     
-    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.statusBarStyle = .lightContent
         evo_drawerController?.screenEdgePanGestureEnabled = true
-        self.navigationController?.isNavigationBarHidden = false
-        table.register(UINib(nibName: headerCellId, bundle: nil), forCellReuseIdentifier: headerCellId)
-        table.register(UINib(nibName: expertCellID, bundle: nil), forCellReuseIdentifier: expertCellID)
-        table.tableFooterView = UIView()
+
         obtainData()
         
-        
-        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
-        table.addSubview(refreshControl) // not required when using UITableViewController
-        
-        table.refreshControl = refreshControl
+        setupCollection()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    private func setupCollection() {
+        collectionView.register(UINib(nibName: expertCollectionViewCell, bundle: nil),
+                                forCellWithReuseIdentifier: expertCollectionViewCell)
     }
     
     @objc func refresh(sender:AnyObject) {
@@ -47,6 +67,9 @@ class MarketInfoViewController: BaseViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    @IBAction func closeVC(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func obtainData() {
@@ -58,7 +81,7 @@ class MarketInfoViewController: BaseViewController {
             return self.networkService.obtainExperts(parameters: params)
         }.done { result in
             self.experts = result.result
-            self.table.reloadData()
+            self.collectionView.reloadData()
             self.stopAnimating()
         }.catch { error in
             self.stopAnimating()
@@ -83,45 +106,56 @@ class MarketInfoViewController: BaseViewController {
 
 }
 
-extension MarketInfoViewController: UITableViewDelegate, UITableViewDataSource {
+extension MarketInfoViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return experts.count + 1
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return experts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: expertCollectionViewCell,
+                                                      for: indexPath) as! ExpertCollectionViewCell
         
-        if indexPath.item == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: headerCellId, for: indexPath) as! MarketInfoHeaderCell
-            
-            if let urltring = info?.image_url, let url = URL(string: urltring) {
-                cell.imageMarket.kf.setImage(with: url)
-            }
-            cell.nameMarket.text = info?.name
-            
-            return cell
+        let expert = experts[indexPath.section]
+        
+        if let url = URL(string: expert.image_url) {
+            cell.imageExpert.kf.setImage(with: url)
         }
-
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: expertCellID, for: indexPath) as! ExpertCell
-        cell.setup(with: experts[indexPath.item - 1])
-        cell.expertDelegate = self
+        cell.nameExpertLabel.text = expert.name
+        cell.setRating(rating: expert.rating)
+        
+        cell.contentView.layer.cornerRadius = 10.0
+        cell.contentView.layer.masksToBounds = true
+        
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cell.layer.shadowRadius = 4
+        cell.layer.shadowOpacity = 0.4
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.item == 0 {
-            return 300
-        }
-        return 80
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let widthCell: CGFloat = 150.0
+        let heightCell = self.collectionView.frame.height - 20
+        
+        return CGSize(width: widthCell, height: heightCell)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.item == 0 { return }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let expert = experts[indexPath.item - 1]
+        let index = indexPath.row
+        let expert = experts[index]
         let sender: [String: Any] = ["expert" : expert]
         self.performSegue(withIdentifier: "expert", sender: sender)
     }
@@ -130,11 +164,11 @@ extension MarketInfoViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MarketInfoViewController: ExpertDelegate {
     func chooseExpert(cell: UITableViewCell) {
-        guard let index = table.indexPath(for: cell) else { return }
-        
-        let expert = experts[index.item - 1]
-        let sender: [String: Any] = ["expert_id" : expert.id]
-        self.performSegue(withIdentifier: "channel", sender: sender)
+//        guard let index = table.indexPath(for: cell) else { return }
+//
+//        let expert = experts[index.item - 1]
+//        let sender: [String: Any] = ["expert_id" : expert.id]
+//        self.performSegue(withIdentifier: "channel", sender: sender)
 
     }
 }

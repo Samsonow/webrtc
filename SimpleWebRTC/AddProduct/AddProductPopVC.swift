@@ -14,6 +14,7 @@ class AddProductPopVC: BaseViewController {
 
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+
     
     var addParemetrs: [String: Any] = [:]
     var parametersdell: [String: Any] = [:]
@@ -50,7 +51,10 @@ class AddProductPopVC: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        prepareBackgroundView()
+        if delegate == nil {
+            prepareBackgroundView()
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +63,7 @@ class AddProductPopVC: BaseViewController {
         UIView.animate(withDuration: 0.6, animations: { [weak self] in
             let frame = self?.view.frame
             let yComponent = self?.partialView
-            self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height - 100)
+            self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height) // - 100
         })
     }
     @IBAction func didSelectAddButton(_ sender: Any) {
@@ -160,14 +164,15 @@ extension AddProductPopVC: UITableViewDelegate, UITableViewDataSource {
         switch product.getType() {
             
         case .confirmSiller(let price):
-            cell.costLabel.text = "\(price) rub price"
+            cell.costLabel.text = "\(price) руб"
             cell.setConfirmSiller()
             
         case .confirmClient(let price):
-            cell.costLabel.text = "\(price) rub price"
+            cell.costLabel.text = "\(price) руб"
             cell.setConfirmExpert()
             
         default:
+            cell.costLabel.text = ""
             cell.setWithoutPrice()
         }
         

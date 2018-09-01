@@ -20,13 +20,15 @@ class ExpertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chooseButton.layer.cornerRadius = 8
-        
-        smallImage.layer.cornerRadius = 60
-        smallImage.layer.masksToBounds = true
-        smallImage.layer.borderWidth = 0
+
+
         
         setup()
+    }
+    
+    
+    @IBAction func closeViewController(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setup() {

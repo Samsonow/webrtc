@@ -10,23 +10,21 @@ import UIKit
 import Kingfisher
 
 class MarketCell: UITableViewCell {
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var helpersLabel: UILabel!
     @IBOutlet weak var imageMarket: UIImageView!
     
     override func awakeFromNib() {
-        
-        self.layer.masksToBounds = false
-        self.clipsToBounds = false
-        self.layer.cornerRadius = 10
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 1
-        self.layer.shadowOffset = CGSize(width: 0, height: 2)
-        self.layer.shadowRadius = 4
-        
         super.awakeFromNib()
         // Initialization code
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.layer.shadowRadius = 4
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.masksToBounds = false
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

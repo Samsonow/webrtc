@@ -6,52 +6,64 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MarketInfoHeaderCell" rowHeight="182" id="KGk-i7-Jjw" customClass="MarketInfoHeaderCell" customModule="SimpleWebRTC" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MarketInfoHeaderCell" rowHeight="290" id="KGk-i7-Jjw" customClass="MarketInfoHeaderCell" customModule="SimpleWebRTC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="290"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="181.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="365" height="289.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZwY-Jm-oY5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="181.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="183"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="183" id="hUl-z7-4Do"/>
+                        </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CNc-XY-rfC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="181.5"/>
-                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="0.54035541373239437" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXd-Hf-yqI">
-                        <rect key="frame" x="130.5" y="77.5" width="59" height="27.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Восстановить пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4DA-nP-i2C">
+                        <rect key="frame" x="20" y="193" width="325" height="39"/>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="33"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите номер телефона" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XT-Pc-cl8">
+                        <rect key="frame" x="20" y="238" width="325" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="ZwY-Jm-oY5" secondAttribute="bottom" id="08K-Op-9e8"/>
-                    <constraint firstItem="CNc-XY-rfC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0ha-fF-Whl"/>
-                    <constraint firstAttribute="trailing" secondItem="CNc-XY-rfC" secondAttribute="trailing" id="0oV-Fm-5bn"/>
-                    <constraint firstAttribute="trailing" secondItem="ZwY-Jm-oY5" secondAttribute="trailing" id="OBo-LX-TS5"/>
-                    <constraint firstAttribute="bottom" secondItem="CNc-XY-rfC" secondAttribute="bottom" id="PdL-9C-MdS"/>
-                    <constraint firstItem="ZwY-Jm-oY5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Sex-li-xnu"/>
-                    <constraint firstItem="CNc-XY-rfC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Uuz-Fs-Qgb"/>
-                    <constraint firstItem="ZwY-Jm-oY5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bQs-yD-URj"/>
-                    <constraint firstItem="rXd-Hf-yqI" firstAttribute="centerY" secondItem="ZwY-Jm-oY5" secondAttribute="centerY" id="jNk-Qb-3ce"/>
-                    <constraint firstItem="rXd-Hf-yqI" firstAttribute="centerX" secondItem="ZwY-Jm-oY5" secondAttribute="centerX" id="jtD-Rg-pT7"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="0XT-Pc-cl8" secondAttribute="bottom" priority="250" constant="5" id="240-fD-u5r"/>
+                    <constraint firstItem="ZwY-Jm-oY5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HNQ-pj-qlm"/>
+                    <constraint firstItem="ZwY-Jm-oY5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="O4a-bf-tW4"/>
+                    <constraint firstItem="4DA-nP-i2C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="QiB-Bd-PQY"/>
+                    <constraint firstItem="0XT-Pc-cl8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="UUj-VZ-iq3"/>
+                    <constraint firstAttribute="trailing" secondItem="0XT-Pc-cl8" secondAttribute="trailing" constant="20" id="aBO-Hs-Fp0"/>
+                    <constraint firstAttribute="trailing" secondItem="4DA-nP-i2C" secondAttribute="trailing" constant="20" id="f1I-Fx-4K2"/>
+                    <constraint firstItem="0XT-Pc-cl8" firstAttribute="top" secondItem="4DA-nP-i2C" secondAttribute="bottom" constant="6" id="iKz-bb-e9f"/>
+                    <constraint firstItem="4DA-nP-i2C" firstAttribute="top" secondItem="ZwY-Jm-oY5" secondAttribute="bottom" constant="10" id="jqV-O3-BS3"/>
+                    <constraint firstAttribute="trailing" secondItem="ZwY-Jm-oY5" secondAttribute="trailing" id="y2E-Gu-uTs"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="descriptionLabel" destination="0XT-Pc-cl8" id="Swz-Lg-MpO"/>
                 <outlet property="imageMarket" destination="ZwY-Jm-oY5" id="z9x-cC-jWc"/>
-                <outlet property="nameMarket" destination="rXd-Hf-yqI" id="D2B-6B-tFE"/>
+                <outlet property="nameMarket" destination="4DA-nP-i2C" id="85g-LF-I0R"/>
             </connections>
-            <point key="canvasLocation" x="34" y="-4"/>
+            <point key="canvasLocation" x="53.5" y="55"/>
         </tableViewCell>
     </objects>
 </document>

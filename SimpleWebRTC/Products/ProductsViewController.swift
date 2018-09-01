@@ -8,6 +8,7 @@
 
 import UIKit
 import SwipeCellKit
+import IQKeyboardManager
 
 class ProductsViewController: BaseViewController {
 
@@ -28,17 +29,38 @@ class ProductsViewController: BaseViewController {
     private let headerProductsCell: String = "HeaderProductsCell"
     
     
+    var addProductView: AddProductView?
+    var viewFon: UIView?
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var newProductTextField: UITextField!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardNotification(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                               object: nil)
         setup()
         obtainData()
-        newProductTextField.delegate = self
     }
-
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        IQKeyboardManager.shared().isEnabled = false
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.shared().isEnabled = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
      
@@ -71,12 +93,75 @@ class ProductsViewController: BaseViewController {
     }
     
     @IBAction func addProductAction(_ sender: Any) {
-        guard let item = newProductTextField.text else {
-            return
-        }
-        newProductTextField.text = ""
-        addProduct(item: item)
+        
+        guard addProductView == nil else { return }
+        
+        let view = Bundle.main.loadNibNamed("AddProductView", owner: self, options: nil)?.first as! AddProductView
+        
+        
+        let y = self.view.frame.height - (self.view.frame.height / 3)
+        view.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height / 3)
+        view.delegate = self
+        
+        let viewFon = UIView(frame: self.view.frame)
+        
+        viewFon.backgroundColor = UIColor.black
+        viewFon.alpha = 0.3
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.checkAction(sender:)))
+        viewFon.addGestureRecognizer(gesture)
+        
+        self.addProductView = view
+        self.viewFon = viewFon
+        
+        self.view.addSubview(viewFon)
+        
+        self.view.addSubview(view)
+        
+//        guard let item = newProductTextField.text else {
+//            return
+//        }
+//        newProductTextField.text = ""
+//        addProduct(item: item)
     }
+    
+    
+    
+    @objc func checkAction(sender : UITapGestureRecognizer) {
+        self.addProductView?.removeFromSuperview()
+        self.viewFon?.removeFromSuperview()
+        self.view.endEditing(true)
+        
+        addProductView = nil
+        viewFon = nil
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                
+                let y = self.view.frame.height - (self.view.frame.height / 3)
+                addProductView?.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height / 3)
+            } else {
+                
+                let y = self.view.frame.height - (self.view.frame.height / 3) - (endFrame?.size.height ?? 0.0)
+                addProductView?.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height / 3)
+            }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
+    }
+    
     
     private func deleteProduct(id: Int) {
         startAnimating()
@@ -131,20 +216,14 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
 
     }
     
-}
-
-extension ProductsViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        guard let item = newProductTextField.text else {
-            return true
+        if indexPath.item == 0 {
+            return 100
         }
-        newProductTextField.text = ""
-        addProduct(item: item)
-        
-        return true
+        return 44
     }
+    
 }
 
 
@@ -173,8 +252,26 @@ extension ProductsViewController: SwipeTableViewCellDelegate {
         options.expansionStyle = .destructive(automaticallyDelete: false)
         return options
     }
+    
+    
 
 }
+
+extension ProductsViewController: AddProductDelegate {
+    
+    func addNewProduct(title: String) {
+        addProduct(item: title)
+        
+        self.addProductView?.removeFromSuperview()
+        self.viewFon?.removeFromSuperview()
+        self.view.endEditing(true)
+        
+        addProductView = nil
+        viewFon = nil
+    }
+    
+}
+
 
 
 

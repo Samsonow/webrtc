@@ -21,12 +21,15 @@ class ViewController: BaseViewController {
     var channelId: Int = 0
     var channel: ChannelGet?
     
+    
     weak var delegate: AddProductPopVC?
     var addProductView: AddProductView?
     var viewFon: UIView?
     
     let network = NetworkService()
     
+    @IBOutlet weak var endBoughtButton: UIButton!
+    @IBOutlet weak var remouteWight: NSLayoutConstraint!
     @IBOutlet weak var hightButton: NSLayoutConstraint!
     
     private var products: [Product] = [] {
@@ -89,7 +92,11 @@ class ViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         IQKeyboardManager.shared().isEnabled = false
-        addBottomSheetView()
+        if delegate == nil {
+           addBottomSheetView()
+            self.view.bringSubview(toFront: endBoughtButton)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,8 +114,8 @@ class ViewController: BaseViewController {
         let storyboard = UIStoryboard(name: "AddProduct", bundle: nil)
         let bottomSheetVC = storyboard.instantiateViewController(withIdentifier: "AddProductPopVC")
         
-        let height = view.frame.height
-        let width  = view.frame.width
+        let height = UIScreen.main.bounds.height
+        let width  = UIScreen.main.bounds.width
         
         bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
         
@@ -385,7 +392,11 @@ extension ViewController: RTCEAGLVideoViewDelegate {
         switch videoView {
         case remoteVideoView:
             let height = videoView.frame.width / scale
-            remoteVideoHeightConstraint.constant = height
+            let wight = videoView.frame.height / scale
+//            let x = videoView.frame.origin.x
+//            let y = videoView.frame.origin.y
+            remouteWight.constant = wight
+            ///remoteVideoHeightConstraint.constant = height
             videoView.layoutIfNeeded()
         case localVideoView:
             let height = videoView.frame.width / scale
@@ -414,7 +425,13 @@ extension ViewController: AddProductDelegate {
     
     func addNewProduct(title: String) {
         addProduct(item: title)
-        addProductView?.removeFromSuperview()
+
+        self.addProductView?.removeFromSuperview()
+        self.viewFon?.removeFromSuperview()
+        self.view.endEditing(true)
+        
+        addProductView = nil
+        viewFon = nil
     }
 
 }

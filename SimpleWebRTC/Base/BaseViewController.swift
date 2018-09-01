@@ -41,9 +41,6 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
-        
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -52,7 +49,6 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
-        
         
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backIcon")
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "backIcon")

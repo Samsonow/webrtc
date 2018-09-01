@@ -12,6 +12,8 @@ class MarketInfoHeaderCell: UITableViewCell {
 
     @IBOutlet weak var imageMarket: UIImageView!
     @IBOutlet weak var nameMarket: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

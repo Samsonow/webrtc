@@ -30,14 +30,20 @@ class MarketsViewController: BaseViewController {
         
         refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl) // not required when using UITableViewController
-        
+        UIApplication.shared.statusBarStyle = .default
         tableView.refreshControl = refreshControl
         super.viewDidLoad()
         setup()
         obtainData()
         
         startAnimating()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     @objc func refresh(sender:AnyObject) {
@@ -110,6 +116,8 @@ extension MarketsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = UIColor.clear
+        view.clipsToBounds = false
+        view.layer.masksToBounds = false
 
         return view
     }
@@ -122,6 +130,7 @@ extension MarketsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: mardetIdCell, for: indexPath) as! MarketCell
         cell.setup(with: markets[indexPath.section - 1])
+
         return cell
     }
     

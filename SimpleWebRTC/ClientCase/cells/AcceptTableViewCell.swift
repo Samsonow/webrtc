@@ -37,6 +37,7 @@ class AcceptTableViewCell: UITableViewCell {
     }
     
     func setWithoutPrice() {
+     
         wightConfirmImage.constant = 0
         confirmImage.isHidden = true
     }
