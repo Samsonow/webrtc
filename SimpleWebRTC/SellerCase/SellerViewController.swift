@@ -23,24 +23,82 @@ class SelllerViewController: BaseViewController {
     
     var products: [SellerProduct] = [] {
         didSet {
-            tableView.reloadData()
+
+            products.forEach({ (product) in
+                let type = product.getType()
+                if case .none(let price) = type {
+                    self.showConfirm(with: price, id: product.id )
+                }
+            })
+            //tableView.reloadData()
         }
     }
+    
+    
+    private func showConfirm(with price: Float, id: Int) {
+        
+        let alert = UIAlertController(title: "Предлагаемая цена", message: "\(price) руб", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { action in
+            
+            self.confirmPrice(with: id)
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Отмена", style: .default, handler: { action in
 
-    @IBOutlet weak var tableView: UITableView!
+           self.reject(with: id)
+            
+        }))
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    private func confirmPrice(with id: Int) {
+        let params = ["item_id": id]
+
+        startAnimating()
+
+        newtworkService.acceptOfferSellers(parameters: params).done { _ in
+            self.stopAnimating()
+            //self.products = result.result
+        }.catch { error in
+            self.stopAnimating()
+            self.handleError(error: error, retry: nil)
+        }
+    }
+    
+    private func reject(with id: Int) {
+
+        let params = ["item_id": id]
+
+        startAnimating()
+
+        newtworkService.rejectOfferSellers(parameters: params).done { _ in
+            //self.products = result.result
+            self.stopAnimating()
+        }.catch { error in
+            self.stopAnimating()
+            self.handleError(error: error, retry: nil)
+        }
+    }
+    
+    
+
+   // @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         evo_drawerController?.setDrawerState(.opened, animated: false)
         evo_drawerController?.setDrawerState(.closed, animated: false)
         super.viewDidLoad()
         setupLeftMenuButton()
         
-        tableView.tableFooterView = UIView()
-        
-        let productAlmost = UINib(nibName: productAlmostReadyCell, bundle: nil)
-        tableView.register(productAlmost, forCellReuseIdentifier: productAlmostReadyCell)
-        
-        let acceptNib = UINib(nibName: acceptTableViewCell, bundle: nil)
-        tableView.register(acceptNib, forCellReuseIdentifier: acceptTableViewCell)
+//        tableView.tableFooterView = UIView()
+//
+//        let productAlmost = UINib(nibName: productAlmostReadyCell, bundle: nil)
+//        tableView.register(productAlmost, forCellReuseIdentifier: productAlmostReadyCell)
+//
+//        let acceptNib = UINib(nibName: acceptTableViewCell, bundle: nil)
+//        tableView.register(acceptNib, forCellReuseIdentifier: acceptTableViewCell)
         
         if timer == nil {
             timerAction()
@@ -133,42 +191,45 @@ extension SelllerViewController: UITableViewDelegate, UITableViewDataSource {
 extension SelllerViewController: AlmostReadyDelegate {
     
     func productOKAction(cell: UITableViewCell) {
-        guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
-        let product = products[index.row]
-    
-        products[index.row].confirmed_price_seller = products[index.row].confirmed_price_user
-        
-        let params = ["item_id": product.id]
-        
-        startAnimating()
-        
-        newtworkService.acceptOfferSellers(parameters: params).done { _ in
-            self.stopAnimating()
-            //self.products = result.result
-        }.catch { error in
-            self.products[index.row].confirmed_price_seller = nil
-            self.stopAnimating()
-            self.handleError(error: error, retry: nil)
-        }
+//        //guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
+//        let product = products[index.row]
+//
+//        products[index.row].confirmed_price_seller = products[index.row].confirmed_price_user
+//
+//        let params = ["item_id": product.id]
+//
+//        startAnimating()
+//
+//        newtworkService.acceptOfferSellers(parameters: params).done { _ in
+//            self.stopAnimating()
+//            //self.products = result.result
+//        }.catch { error in
+//            self.products[index.row].confirmed_price_seller = nil
+//            self.stopAnimating()
+//            self.handleError(error: error, retry: nil)
+//        }
     }
+    
+    
+    
 
     func productCancelAction(cell: UITableViewCell) {
-        guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
-        let product = products[index.row]
-        
-        products[index.row].confirmed_price_seller = nil
-        
-        let params = ["item_id": product.id]
-        
-        startAnimating()
-        
-        newtworkService.rejectOfferSellers(parameters: params).done { _ in
-            //self.products = result.result
-            self.stopAnimating()
-        }.catch { error in
-            self.stopAnimating()
-            self.handleError(error: error, retry: nil)
-        }
+//        //guard let index = tableView.indexPath(for: cell), products.count > index.row else { return }
+//        let product = products[index.row]
+//
+//        products[index.row].confirmed_price_seller = nil
+//
+//        let params = ["item_id": product.id]
+//
+//        startAnimating()
+//
+//        newtworkService.rejectOfferSellers(parameters: params).done { _ in
+//            //self.products = result.result
+//            self.stopAnimating()
+//        }.catch { error in
+//            self.stopAnimating()
+//            self.handleError(error: error, retry: nil)
+//        }
 
     }
 }

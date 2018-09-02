@@ -12,7 +12,7 @@ import Foundation
 struct SellerProduct: Codable {
     let id: Int
     let unit: String
-    var offered_price: Int
+    var offered_price: Float
     var offered_price_total: Int
     var confirmed_price_seller: Int?
     let seller_id: Int
@@ -20,7 +20,27 @@ struct SellerProduct: Codable {
     let user_id: Int
     let item: String
     let qty: Int
+    
+    
+    func getType() -> TypeConfirmSiller {
+        
+        if let price = confirmed_price_seller {
+            return .confirm
+        }
+        
+        return .none(offered_price)
+
+    }
+    
 }
+
+
+enum TypeConfirmSiller {
+    case confirm
+    case none(Float)
+}
+
+
 
 //"unit" : "шт",
 //"offered_price" : 65,

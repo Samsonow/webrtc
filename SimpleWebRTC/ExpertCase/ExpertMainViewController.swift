@@ -31,12 +31,14 @@ class ExpertMainViewController: BaseViewController {
             Storage.shared.user?.available = isAvailable
             
             if isAvailable {
-                infoLabel.textColor = UIColor.green
+                
+                buttonAvailable.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
                 infoLabel.text = available
                 buttonAvailable.setTitle(availableButton, for: .normal)
             } else {
-                infoLabel.textColor = UIColor.red
+
                 infoLabel.text = unavailable
+                buttonAvailable.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                 buttonAvailable.setTitle(unavailableButton, for: .normal)
             }
         }

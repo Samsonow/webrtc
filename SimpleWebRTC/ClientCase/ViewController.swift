@@ -206,11 +206,19 @@ class ViewController: BaseViewController, AddProductPopVCDelegate {
         }
     }
     
-    
+    //TODO: products
     func handelGetProduct(_ product: [Product]) {
+    
         var resultTest = product
         resultTest.reverse()
         self.products = resultTest
+        
+        products.forEach({ (product) in
+            let type = product.getType()
+            if case .confirmExpert = type {
+                self.showConfirm(with: product.offered_price ?? 0, id: product.id )
+            }
+        })
         
         let product = resultTest.first(where: { $0.confirmed_price_seller == nil })
         if product != nil || resultTest.isEmpty {
@@ -225,13 +233,6 @@ class ViewController: BaseViewController, AddProductPopVCDelegate {
     @objc func updateData() {
         network.obtainProducts(parameters: [:]).done { result in
             let products = result.result
-            
-            products.forEach({ (product) in
-                let type = product.getType()
-                if case .confirmExpert = type {
-                    self.showConfirm(with: product.offered_price ?? 0, id: product.id )
-                }
-            })
             
             self.handelGetProduct(result.result)
         }

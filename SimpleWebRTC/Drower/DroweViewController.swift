@@ -138,11 +138,27 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if items[index] == "Market list" || items[index] == "Set market" {
             cell.iconImage.image = UIImage(named: "marketIcon")
-            firstCell = cell as? DrawerCell
-            cell.backgroundColor = .white
-            (cell as? DrawerCell)?.selectedView.isHidden = false
-
+            
+            if Storage.shared.user?.type == .client {
+                firstCell = cell
+                cell.backgroundColor = .white
+                cell.selectedView.isHidden = false
+            }
+            
         }
+        
+        
+        if items[index] == "Home page" {
+            cell.iconImage.image = UIImage(named: "homeIcon")
+            
+            if Storage.shared.user?.type == .expert {
+                firstCell = cell
+                cell.backgroundColor = .white
+                cell.selectedView.isHidden = false
+            }
+            
+        }
+        
         
         if items[index] == "Shoping list" {
             cell.iconImage.image = UIImage(named: "marketIcon")
@@ -186,7 +202,6 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 
                 //self.evo_drawerController?.setCenter(nav, withCloseAnimation: true, completion: nil)
-                return
                 
             case 1:
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -202,6 +217,17 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             default:
                 return
             }
+            
+            
+            let currentCell = tableView.cellForRow(at: indexPath) as! DrawerCell
+            currentCell.backgroundColor = UIColor.white
+            currentCell.selectedView.isHidden = false
+            
+            firstCell?.backgroundColor = UIColor.clear
+            firstCell?.selectedView.isHidden = true
+            firstCell = nil
+            
+            evo_drawerController?.setDrawerState(.closed, animated: false)
             
             return
         }

@@ -992,7 +992,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ожидание эксперта" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdv-nv-p23">
-                                        <rect key="frame" x="121.33333333333333" y="486.33333333333331" width="132.66666666666669" height="17"/>
+                                        <rect key="frame" x="122.33333333333331" y="486.33333333333331" width="131" height="17"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" white="0.86824544270833337" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1335,11 +1335,6 @@
                                 <state key="normal" title="РЕЖИМ СНА">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="actionPause:" destination="Jtd-ny-v8G" eventType="touchUpInside" id="GFQ-Fx-9bj"/>
                                 </connections>
@@ -1574,8 +1569,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uem-wM-Bkn">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uem-wM-Bkn">
+                                <rect key="frame" x="20" y="88" width="335" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="p1E-aX-H7m" id="s7E-bB-K0O"/>
@@ -1586,8 +1581,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="J4l-EJ-ymf" firstAttribute="bottom" secondItem="uem-wM-Bkn" secondAttribute="bottom" id="53w-9S-u8M"/>
-                            <constraint firstItem="uem-wM-Bkn" firstAttribute="leading" secondItem="J4l-EJ-ymf" secondAttribute="leading" id="8G4-Kz-t4D"/>
-                            <constraint firstItem="J4l-EJ-ymf" firstAttribute="trailing" secondItem="uem-wM-Bkn" secondAttribute="trailing" id="irx-79-tlX"/>
+                            <constraint firstItem="uem-wM-Bkn" firstAttribute="leading" secondItem="J4l-EJ-ymf" secondAttribute="leading" constant="20" id="8G4-Kz-t4D"/>
+                            <constraint firstItem="J4l-EJ-ymf" firstAttribute="trailing" secondItem="uem-wM-Bkn" secondAttribute="trailing" constant="20" id="irx-79-tlX"/>
                             <constraint firstItem="uem-wM-Bkn" firstAttribute="top" secondItem="J4l-EJ-ymf" secondAttribute="top" id="urV-qO-G1Z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J4l-EJ-ymf"/>
@@ -1801,7 +1796,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SoX-ns-3vI" secondAttribute="bottom" id="AH6-sD-3Nl"/>
                             <constraint firstItem="Xy9-lE-50u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CHZ-gE-UGj"/>
@@ -1855,13 +1850,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ИНФОРМАЦИЯ ПО СОЕДИНЕНИЮ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-bB-gPy">
-                                <rect key="frame" x="20" y="98" width="335" height="77"/>
+                                <rect key="frame" x="20" y="98" width="335" height="77.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="К сожелению эксперт отменил вызов, нажмите на кнопку, что бы перейти к списку маркетов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-0t-LEp">
-                                <rect key="frame" x="20" y="181" width="335" height="57.333333333333343"/>
+                                <rect key="frame" x="20" y="181.66666666666666" width="335" height="57.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2105,25 +2100,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1AY-j0-KUE">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SAx-An-z7a">
-                                        <rect key="frame" x="0.0" y="16" width="375" height="718"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="YZR-dW-YeH" id="PPg-WB-9q5"/>
-                                            <outlet property="delegate" destination="YZR-dW-YeH" id="auJ-6w-JOn"/>
-                                        </connections>
-                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подождите и вам предложат продать товар" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsP-we-Rq3">
+                                        <rect key="frame" x="20" y="55" width="335" height="38.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПОКУПКИ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNx-YF-gcX">
+                                        <rect key="frame" x="20" y="10" width="335" height="39"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="33"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="SAx-An-z7a" secondAttribute="bottom" id="FB2-qH-ihH"/>
-                                    <constraint firstItem="SAx-An-z7a" firstAttribute="leading" secondItem="1AY-j0-KUE" secondAttribute="leading" id="VVz-fx-fJU"/>
-                                    <constraint firstAttribute="trailing" secondItem="SAx-An-z7a" secondAttribute="trailing" id="nQn-S9-Zhg"/>
-                                    <constraint firstItem="SAx-An-z7a" firstAttribute="top" secondItem="1AY-j0-KUE" secondAttribute="top" constant="16" id="wwo-9m-OIJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZNx-YF-gcX" secondAttribute="trailing" constant="20" id="2mv-oG-tTw"/>
+                                    <constraint firstItem="dsP-we-Rq3" firstAttribute="top" secondItem="ZNx-YF-gcX" secondAttribute="bottom" constant="6" id="9e0-eB-XAM"/>
+                                    <constraint firstItem="dsP-we-Rq3" firstAttribute="top" secondItem="ZNx-YF-gcX" secondAttribute="bottom" constant="6" id="D1E-3M-eVT"/>
+                                    <constraint firstItem="ZNx-YF-gcX" firstAttribute="top" secondItem="1AY-j0-KUE" secondAttribute="top" constant="10" id="JG8-ZO-4kR"/>
+                                    <constraint firstItem="dsP-we-Rq3" firstAttribute="leading" secondItem="1AY-j0-KUE" secondAttribute="leading" constant="20" id="N1t-F8-u73"/>
+                                    <constraint firstAttribute="trailing" secondItem="dsP-we-Rq3" secondAttribute="trailing" constant="20" id="QmK-rF-ODi"/>
+                                    <constraint firstItem="ZNx-YF-gcX" firstAttribute="leading" secondItem="1AY-j0-KUE" secondAttribute="leading" constant="20" id="cYs-8u-vAE"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1AY-j0-KUE" firstAttribute="top" secondItem="Rtj-9e-SF7" secondAttribute="top" id="0GH-Rt-id8"/>
                             <constraint firstItem="Rtj-9e-SF7" firstAttribute="trailing" secondItem="1AY-j0-KUE" secondAttribute="trailing" id="NIQ-3g-ZDS"/>
@@ -2132,9 +2134,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rtj-9e-SF7"/>
                     </view>
-                    <connections>
-                        <outlet property="tableView" destination="SAx-An-z7a" id="yiE-oz-lGt"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G0u-xd-fM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2163,13 +2162,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="К сожелению клиент отменил вызов, нажмите на кнопку, что бы перейти к списку маркетов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3F-LU-Vys">
-                                <rect key="frame" x="20" y="137" width="335" height="57.333333333333343"/>
+                                <rect key="frame" x="20" y="137.66666666666666" width="335" height="57.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ИНФОРМАЦИЯ ПО СОЕДИНЕНИЮ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtS-0C-9kp">
-                                <rect key="frame" x="20" y="54" width="335" height="77"/>
+                                <rect key="frame" x="20" y="54.000000000000007" width="335" height="77.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
