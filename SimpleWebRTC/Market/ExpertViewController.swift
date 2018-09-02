@@ -16,13 +16,12 @@ class ExpertViewController: UIViewController {
     @IBOutlet weak var chooseButton: UIButton!
     @IBOutlet weak var descriptionView: UITextView!
     
+    @IBOutlet var ratingCollectionImage: [UIImageView]!
+    
     var expert: Expert!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        
         setup()
     }
     
@@ -36,11 +35,24 @@ class ExpertViewController: UIViewController {
             smallImage.kf.setImage(with: url)
         }
         nameLabel.text = expert.name
-        ratingLabel.text = "Rating\(expert.rating)"
+        ratingLabel.text = "\(expert.rating)"
+        
+        setRating(with: expert.rating)
         
         descriptionView.text = expert.description
         
     }
+    
+    func setRating(with rating: Int) {
+        ratingLabel.text = String(rating)
+        for i in 0...rating {
+            guard i < ratingCollectionImage.count else { return }
+            
+            ratingCollectionImage[i].isHidden = false
+        }
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,7 +70,5 @@ class ExpertViewController: UIViewController {
             vc.expertId = expert.id
         }
     }
-
-    
 
 }

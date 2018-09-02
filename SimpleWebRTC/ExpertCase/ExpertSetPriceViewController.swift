@@ -18,9 +18,13 @@ class ExpertSetPriceViewController: BaseViewController {
     let networkService = NetworkService()
     
     override func viewDidLoad() {
-        self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {

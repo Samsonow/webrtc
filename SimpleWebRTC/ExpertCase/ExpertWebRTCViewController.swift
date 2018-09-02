@@ -67,6 +67,7 @@ class ExpertWebRTCViewController: BaseViewController, AddProductPopVCDelegate {
     @IBOutlet weak var remoteVideoHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var localVideoHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var localWidthConstraint: NSLayoutConstraint!
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -333,8 +334,11 @@ extension ExpertWebRTCViewController: RTCEAGLVideoViewDelegate {
             remoteVideoHeightConstraint.constant = height
             videoView.layoutIfNeeded()
         case localVideoView:
-            let height = videoView.frame.width / scale
-            localVideoHeightConstraint.constant = height
+            let width = videoView.frame.height * scale
+            
+            localWidthConstraint.constant = width
+            
+            //localVideoHeightConstraint.constant = height
             videoView.layoutIfNeeded()
         default:
             break

@@ -154,7 +154,7 @@ extension MarketInfoViewController: UICollectionViewDelegate, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let index = indexPath.row
+        let index = indexPath.section
         let expert = experts[index]
         let sender: [String: Any] = ["expert" : expert]
         self.performSegue(withIdentifier: "expert", sender: sender)

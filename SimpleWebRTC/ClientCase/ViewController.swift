@@ -393,8 +393,8 @@ extension ViewController: RTCEAGLVideoViewDelegate {
         let scale = size.width / size.height
         switch videoView {
         case remoteVideoView:
-            let height = videoView.frame.width / scale
-            let wight = videoView.frame.height / scale
+           // let height = videoView.frame.width / scale
+            let wight = videoView.frame.height * scale
 //            let x = videoView.frame.origin.x
 //            let y = videoView.frame.origin.y
             remouteWight.constant = wight

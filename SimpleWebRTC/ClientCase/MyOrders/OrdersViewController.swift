@@ -18,6 +18,7 @@ class OrdersViewController: BaseViewController {
         }
     }
     private let orderIdCell = "OrderTableViewCell"
+    private let ordersHeaderCell = "OrdersHeaderCell"
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -30,6 +31,8 @@ class OrdersViewController: BaseViewController {
     private func setup() {
         
         tableView.register(UINib(nibName: orderIdCell, bundle: nil), forCellReuseIdentifier: orderIdCell)
+        tableView.register(UINib(nibName: ordersHeaderCell, bundle: nil), forCellReuseIdentifier: ordersHeaderCell)
+        
         tableView.tableFooterView = UIView()
         setupLeftMenuButton()
     }
@@ -58,12 +61,17 @@ class OrdersViewController: BaseViewController {
 extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders.count
+        return orders.count + 1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: orderIdCell, for: indexPath) as! OrderTableViewCell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ordersHeaderCell, for: indexPath) as! OrdersHeaderCell
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ordersHeaderCell, for: indexPath) as! OrderTableViewCell
         cell.setup(with: orders[indexPath.item])
         return cell
     }
@@ -78,6 +86,28 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
 //        let sender: [String: Any] = ["id" : markets[indexPath.item].id]
 //        self.performSegue(withIdentifier: "info", sender: sender)
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        
+        if section == 1 {
+            return 10
+        }
+        
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        view.clipsToBounds = false
+        view.layer.masksToBounds = false
+        
+        return view
+    }
+    
     
 }
 

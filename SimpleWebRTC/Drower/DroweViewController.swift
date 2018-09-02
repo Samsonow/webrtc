@@ -26,7 +26,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationController?.isNavigationBarHidden = true
         evo_drawerController = self.parent as? KYDrawerController
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { // change 2 to desired number of seconds
             self.handelDrawer()
         }
     }
@@ -68,6 +68,7 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let controller = storyboard.instantiateViewController(withIdentifier: "SelllerViewController")
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
+            evo_drawerController?.mainSegueIdentifier = nil
             
             
             items =  []
