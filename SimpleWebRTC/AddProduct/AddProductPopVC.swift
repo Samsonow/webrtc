@@ -189,6 +189,7 @@ extension AddProductPopVC: UITableViewDelegate, UITableViewDataSource {
         default:
             cell.costLabel.text = ""
             cell.setWithoutPrice()
+            cell.delegate = self
         }
         
         return cell

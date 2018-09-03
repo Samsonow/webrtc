@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class AcceptTableViewCell: UITableViewCell {
+class AcceptTableViewCell: SwipeTableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!

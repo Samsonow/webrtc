@@ -51,7 +51,7 @@ class MapClientViewController: BaseViewController {
             
             
             //self.mapView.mapWindow.map!.mapObjects?.addPlacemark(with: pont)
-            let image = UIImage(named: "markerl")
+            let image = UIImage(named: "iconPin")
             
             self.mapView.mapWindow.map!.mapObjects?.addPlacemark(with: pont, image: image)
             
@@ -85,9 +85,7 @@ class MapClientViewController: BaseViewController {
 extension MapClientViewController: YMKMapCameraListener {
     
     func onCameraPositionChanged(with map: YMKMap?, cameraPosition: YMKCameraPosition, cameraUpdateSource: YMKCameraUpdateSource, finished: Bool) {
-        
-  
-        
+
     }
     
 }

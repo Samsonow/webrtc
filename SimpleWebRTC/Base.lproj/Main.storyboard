@@ -857,7 +857,7 @@
                                 <color key="textColor" red="0.69803921568627447" green="0.69803921568627447" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LCR-hu-Fq8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="LCR-hu-Fq8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="492"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9M-st-3N5">
@@ -1053,7 +1053,7 @@
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHF-hT-umj">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                                 <state key="normal" title="Вернуться к Маркетам">
                                                     <color key="titleColor" red="0.96512959740000004" green="0.94606068350000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" red="0.85239353920000005" green="0.85378641020000001" blue="0.88779145079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1837,7 +1837,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="67" id="icj-Xb-1fu"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                 <state key="normal" title="ЗАВЕРШИТЬ ПОКУПКИ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1949,7 +1949,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABL-6u-GfH" customClass="YMKMapView">
-                                <rect key="frame" x="0.0" y="88" width="375" height="630"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="718"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACr-m2-KTD">
@@ -1958,7 +1958,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="PBh-uG-fJk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                 <state key="normal" title="ДОСТАВКА ЗАВЕРШЕНА">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1973,9 +1973,8 @@
                             <constraint firstItem="ABL-6u-GfH" firstAttribute="leading" secondItem="4F8-Lc-4nK" secondAttribute="leading" id="DW2-Dq-v6J"/>
                             <constraint firstItem="ACr-m2-KTD" firstAttribute="leading" secondItem="4F8-Lc-4nK" secondAttribute="leading" id="Fap-rT-XVI"/>
                             <constraint firstItem="ACr-m2-KTD" firstAttribute="top" secondItem="ABL-6u-GfH" secondAttribute="bottom" id="HEh-13-hZp"/>
+                            <constraint firstItem="ABL-6u-GfH" firstAttribute="top" secondItem="Xv2-CL-Pwn" secondAttribute="top" id="Ijo-5h-HGG"/>
                             <constraint firstItem="ABL-6u-GfH" firstAttribute="leading" secondItem="4F8-Lc-4nK" secondAttribute="leading" id="Knf-6X-yu9"/>
-                            <constraint firstItem="ABL-6u-GfH" firstAttribute="top" secondItem="4F8-Lc-4nK" secondAttribute="top" id="d3v-RY-ppR"/>
-                            <constraint firstItem="ABL-6u-GfH" firstAttribute="top" secondItem="4F8-Lc-4nK" secondAttribute="top" id="gYJ-sK-SOq"/>
                             <constraint firstItem="4F8-Lc-4nK" firstAttribute="trailing" secondItem="ACr-m2-KTD" secondAttribute="trailing" id="gdS-U3-bnn"/>
                             <constraint firstItem="4F8-Lc-4nK" firstAttribute="trailing" secondItem="ABL-6u-GfH" secondAttribute="trailing" id="rgV-Up-BMC"/>
                             <constraint firstItem="ABL-6u-GfH" firstAttribute="trailing" secondItem="4F8-Lc-4nK" secondAttribute="trailing" id="tZA-Ep-lVZ"/>
@@ -1990,7 +1989,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdO-rr-bW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="pSU-Ou-hVk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="8649" y="-1608"/>
+            <point key="canvasLocation" x="8648.7999999999993" y="-1608.6206896551726"/>
         </scene>
         <!--Expert WebRTC View Controller-->
         <scene sceneID="uSQ-Zb-gFb">
@@ -2340,6 +2339,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ciw-AG-VnG"/>
-        <segue reference="Dwn-rd-RQ5"/>
+        <segue reference="Kbu-Jx-i5q"/>
     </inferredMetricsTieBreakers>
 </document>

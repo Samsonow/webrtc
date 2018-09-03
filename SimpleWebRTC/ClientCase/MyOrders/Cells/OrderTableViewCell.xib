@@ -80,6 +80,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Lv6-hq-MQm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="3aR-wM-APM"/>
                     <constraint firstAttribute="trailing" secondItem="Lv6-hq-MQm" secondAttribute="trailing" id="Bcj-el-4DI"/>
@@ -89,6 +90,7 @@
                     <constraint firstAttribute="bottom" secondItem="Lv6-hq-MQm" secondAttribute="bottom" id="zFk-bW-412"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="costLable" destination="YYP-cj-XdD" id="xPX-Aw-WYm"/>

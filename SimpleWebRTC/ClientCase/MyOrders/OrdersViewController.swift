@@ -17,7 +17,7 @@ class OrdersViewController: BaseViewController {
             tableView.reloadData()
         }
     }
-    private let orderIdCell = "OrderTableViewCell"
+    private let orderTableViewCell = "OrderTableViewCell"
     private let ordersHeaderCell = "OrdersHeaderCell"
     
     @IBOutlet weak var tableView: UITableView!
@@ -30,7 +30,7 @@ class OrdersViewController: BaseViewController {
     
     private func setup() {
         
-        tableView.register(UINib(nibName: orderIdCell, bundle: nil), forCellReuseIdentifier: orderIdCell)
+        tableView.register(UINib(nibName: orderTableViewCell, bundle: nil), forCellReuseIdentifier: orderTableViewCell)
         tableView.register(UINib(nibName: ordersHeaderCell, bundle: nil), forCellReuseIdentifier: ordersHeaderCell)
         
         tableView.tableFooterView = UIView()
@@ -60,19 +60,24 @@ class OrdersViewController: BaseViewController {
 
 extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return orders.count + 1
     }
     
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ordersHeaderCell, for: indexPath) as! OrdersHeaderCell
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: ordersHeaderCell, for: indexPath) as! OrderTableViewCell
-        cell.setup(with: orders[indexPath.item])
+        let cell = tableView.dequeueReusableCell(withIdentifier: orderTableViewCell, for: indexPath) as! OrderTableViewCell
+        cell.setup(with: orders[indexPath.section - 1])
         return cell
     }
     

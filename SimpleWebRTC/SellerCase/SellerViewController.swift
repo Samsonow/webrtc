@@ -19,6 +19,8 @@ class SelllerViewController: BaseViewController {
     private let acceptTableViewCell: String = "AcceptTableViewCell"
     var newtworkService = NetworkService()
     
+    var currentAlert: UIAlertController?
+    
     var timer: Timer?
     
     var products: [SellerProduct] = [] {
@@ -37,19 +39,25 @@ class SelllerViewController: BaseViewController {
     
     private func showConfirm(with price: Float, id: Int) {
         
+        guard  currentAlert == nil else {
+            return
+        }
+        
         let alert = UIAlertController(title: "Предлагаемая цена", message: "\(price) руб", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { action in
             
             self.confirmPrice(with: id)
+            self.currentAlert = nil
             
         }))
         
         alert.addAction(UIAlertAction(title: "Отмена", style: .default, handler: { action in
-
-           self.reject(with: id)
+            
+            self.reject(with: id)
+            self.currentAlert = nil
             
         }))
-        
+        currentAlert = alert
         present(alert, animated: true, completion: nil)
         
     }
@@ -98,12 +106,17 @@ class SelllerViewController: BaseViewController {
 //        let acceptNib = UINib(nibName: acceptTableViewCell, bundle: nil)
 //        tableView.register(acceptNib, forCellReuseIdentifier: acceptTableViewCell)
         
-        if timer == nil {
-            timerAction()
-            self.timer = Timer.scheduledTimer(timeInterval: 2, target: self,
-                                          selector: #selector(self.timerAction), userInfo: nil, repeats: true)
-        }
 
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if timer == nil {
+
+            self.timer = Timer.scheduledTimer(timeInterval: 2, target: self,
+                                              selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+        }
     }
     
     deinit {
