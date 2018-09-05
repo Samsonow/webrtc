@@ -1845,19 +1845,46 @@
                                     <action selector="stratAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sPA-9A-cHq"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelCall" translatesAutoresizingMaskIntoConstraints="NO" id="ABU-zy-sfI">
+                                <rect key="frame" x="20" y="60" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="W8F-V6-EKs"/>
+                                    <constraint firstAttribute="height" constant="34" id="aA1-D0-MlC"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCK-Fz-g6X">
+                                <rect key="frame" x="16" y="44" width="60" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="CGo-ON-hTX"/>
+                                    <constraint firstAttribute="height" constant="80" id="H4X-KP-jSa"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelAction:" destination="iXa-wI-V7X" eventType="touchUpInside" id="mru-ya-SAn"/>
+                                    <action selector="cancelCall:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1el-CW-3Vk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="ABU-zy-sfI" secondAttribute="bottom" constant="-50" id="2Zn-xT-Ohy"/>
+                            <constraint firstItem="FCK-Fz-g6X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="47I-8K-RhM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SoX-ns-3vI" secondAttribute="bottom" id="AH6-sD-3Nl"/>
                             <constraint firstItem="Xy9-lE-50u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CHZ-gE-UGj"/>
                             <constraint firstItem="SoX-ns-3vI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IGs-Rc-OTP"/>
                             <constraint firstItem="Xy9-lE-50u" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Pyv-Sj-zfg"/>
                             <constraint firstItem="SoX-ns-3vI" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bJI-FE-Dce"/>
                             <constraint firstItem="Xy9-lE-50u" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="fRx-np-2Gy"/>
+                            <constraint firstItem="ABU-zy-sfI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="msr-18-Eaq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="FCK-Fz-g6X" secondAttribute="bottom" constant="-80" id="r4g-2m-7i8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Qh9-bs-CX2"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="endBoughtButton" destination="SoX-ns-3vI" id="hAX-vh-i42"/>
                         <outlet property="hightButton" destination="icj-Xb-1fu" id="vXj-gd-hpu"/>
@@ -1900,13 +1927,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ИНФОРМАЦИЯ ПО СОЕДИНЕНИЮ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-bB-gPy">
-                                <rect key="frame" x="20" y="98" width="335" height="77.666666666666686"/>
+                                <rect key="frame" x="20" y="54" width="335" height="77"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="К сожелению эксперт отменил вызов, нажмите на кнопку, что бы перейти к списку маркетов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-0t-LEp">
-                                <rect key="frame" x="20" y="181.66666666666666" width="335" height="57.333333333333343"/>
+                                <rect key="frame" x="20" y="137" width="335" height="57.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2013,16 +2040,42 @@
                                     <constraint firstAttribute="width" constant="375" id="Oim-C0-r4U"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancelCall" translatesAutoresizingMaskIntoConstraints="NO" id="yap-u9-29V">
+                                <rect key="frame" x="20" y="60" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Di5-XZ-J42"/>
+                                    <constraint firstAttribute="width" constant="34" id="s5k-Fv-5xV"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1i-6p-N8r">
+                                <rect key="frame" x="10" y="44" width="60" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="FFS-VC-JFI"/>
+                                    <constraint firstAttribute="height" constant="80" id="jcY-w0-0aX"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelAction:" destination="iXa-wI-V7X" eventType="touchUpInside" id="L3p-Cy-8f4"/>
+                                    <action selector="cancelCall:" destination="4UM-ol-OrU" eventType="touchUpInside" id="cZo-VW-USs"/>
+                                    <action selector="cancelCall:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jnJ-Ov-xDI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="t39-fE-B7X" firstAttribute="trailing" secondItem="hNc-Uf-lsd" secondAttribute="trailing" id="0J4-go-vhH"/>
                             <constraint firstItem="t39-fE-B7X" firstAttribute="width" secondItem="PVe-g9-Agp" secondAttribute="width" id="26v-5O-bTc"/>
+                            <constraint firstItem="hNc-Uf-lsd" firstAttribute="top" secondItem="O1i-6p-N8r" secondAttribute="bottom" constant="-80" id="2Wx-i6-rpY"/>
                             <constraint firstItem="t39-fE-B7X" firstAttribute="leading" secondItem="hNc-Uf-lsd" secondAttribute="leading" id="5Lm-vM-Otb"/>
+                            <constraint firstItem="yap-u9-29V" firstAttribute="leading" secondItem="hNc-Uf-lsd" secondAttribute="leading" constant="20" id="SlC-dP-A3l"/>
                             <constraint firstItem="BEB-7M-hjl" firstAttribute="leading" secondItem="hNc-Uf-lsd" secondAttribute="leading" id="U3J-ZT-HPD"/>
+                            <constraint firstItem="O1i-6p-N8r" firstAttribute="leading" secondItem="hNc-Uf-lsd" secondAttribute="leading" constant="10" id="Xcc-vW-yea"/>
                             <constraint firstItem="t39-fE-B7X" firstAttribute="top" secondItem="hNc-Uf-lsd" secondAttribute="top" id="axE-TE-CcG"/>
                             <constraint firstItem="BEB-7M-hjl" firstAttribute="top" secondItem="PVe-g9-Agp" secondAttribute="top" id="b1O-qt-Eyw"/>
                             <constraint firstItem="hNc-Uf-lsd" firstAttribute="bottom" secondItem="BEB-7M-hjl" secondAttribute="bottom" id="dgQ-60-2t3"/>
+                            <constraint firstItem="hNc-Uf-lsd" firstAttribute="top" secondItem="yap-u9-29V" secondAttribute="bottom" constant="-50" id="pH9-im-CvD"/>
                             <constraint firstItem="t39-fE-B7X" firstAttribute="leading" secondItem="hNc-Uf-lsd" secondAttribute="leading" id="vcV-xA-vHo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hNc-Uf-lsd"/>

@@ -67,6 +67,27 @@ class ExpertWebRTCViewController: BaseViewController, AddProductPopVCDelegate {
     @IBOutlet weak var remoteVideoHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var localVideoHeightConstraint: NSLayoutConstraint!
     
+    @IBAction func cancelCall(_ sender: Any) {
+        refuseChanne()
+    }
+    
+    private func refuseChanne() {
+        
+        let params = ["channel_id":channelId]
+        
+        startAnimating()
+        
+        network.refuseChannelClient(parameters: params).done {
+            
+            self.stopAnimating()
+            WebRtcClient.shared.leave()
+            }.catch { error in
+                
+                self.stopAnimating()
+                self.handleError(error: error, retry: self.refuseChanne)
+        }
+    }
+    
     @IBOutlet weak var localWidthConstraint: NSLayoutConstraint!
     // MARK: - Lifecycle
     

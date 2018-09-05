@@ -104,6 +104,11 @@ class NetworkService {
         return networkManager.request(url: "/mrkt/cancelChannel", parameters: parameters)
     }
     
+    //Отмена созданного канала
+    func refuseChannelClient(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/refuseChannel", parameters: parameters)
+    }
+    
     //MARK: - Products
     
     func acceptPrice(parameters: [String: Any]) -> Promise<Void> {
@@ -170,9 +175,14 @@ class NetworkService {
         return networkManager.request(url: "/mrkt/experts/setPosition", parameters: parameters)
     }
     
+    //Отмена созданного канала
+    func refuseChannelExpert(parameters: [String: Any]) -> Promise<Void> {
+        return networkManager.request(url: "/mrkt/experts/refuseChannel", parameters: parameters)
+    }
+    
+    
+    
     //Seller
-    
-    
     func getOfferSellers(parameters: [String: Any]) -> Promise<Result<[SellerProduct]>> {
         return networkManager.request(url: "/mrkt/sellers/getOffers", parameters: parameters)
     }

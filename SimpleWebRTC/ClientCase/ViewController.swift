@@ -18,6 +18,7 @@ class ViewController: BaseViewController, AddProductPopVCDelegate {
     //TODO: refact
     var addParemetrs: [String: Any] = [:]
     var parametersdell: [String: Any] = [:]
+    var refuseParameters: [String: Any] = [:]
     var timer: Timer?
     var channelId: Int = 0
     var channel: ChannelGet?
@@ -61,6 +62,26 @@ class ViewController: BaseViewController, AddProductPopVCDelegate {
     @IBOutlet weak var remoteVideoHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var localVideoHeightConstraint: NSLayoutConstraint!
     
+    @IBAction func cancelCall(_ sender: Any) {
+        refuseChanne()
+    }
+    
+    private func refuseChanne() {
+        
+        let params = ["channel_id":channelId]
+        
+        startAnimating()
+        
+        network.refuseChannelClient(parameters: params).done {
+            
+            self.stopAnimating()
+            WebRtcClient.shared.leave()
+        }.catch { error in
+            
+            self.stopAnimating()
+            self.handleError(error: error, retry: self.refuseChanne)
+        }
+    }
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
