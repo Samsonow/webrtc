@@ -92,6 +92,7 @@
 		EEB1949F2113A2C90017ED59 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1949E2113A2C90017ED59 /* NetworkManager.swift */; };
 		EEB194A12113A6210017ED59 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB194A02113A6210017ED59 /* NetworkError.swift */; };
 		EEB194A42113A8390017ED59 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB194A32113A8390017ED59 /* Result.swift */; };
+		EEC439862141D1DF0051A131 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC439852141D1DF0051A131 /* AudioToolbox.framework */; };
 		FC6EBDDFC3AD669B6B4F314F /* Pods_SimpleWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04890E483F3FBDB9D9FA2BE8 /* Pods_SimpleWebRTC.framework */; };
 		FD1345E820149C7400426B77 /* Date+Milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1345E720149C7400426B77 /* Date+Milliseconds.swift */; };
 		FD2A2DC72014986A00A68935 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2A2DC62014986A00A68935 /* AppDelegate.swift */; };
@@ -211,6 +212,8 @@
 		EEB1949E2113A2C90017ED59 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = SimpleWebRTC/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 		EEB194A02113A6210017ED59 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		EEB194A32113A8390017ED59 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		EEC439852141D1DF0051A131 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EEC439872141D1DF0051A131 /* SimpleWebRTC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleWebRTC.entitlements; sourceTree = "<group>"; };
 		FD1345E720149C7400426B77 /* Date+Milliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Milliseconds.swift"; sourceTree = "<group>"; };
 		FD2A2DC32014986A00A68935 /* SimpleWebRTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWebRTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2A2DC62014986A00A68935 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC6EBDDFC3AD669B6B4F314F /* Pods_SimpleWebRTC.framework in Frameworks */,
+				EEC439862141D1DF0051A131 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +515,7 @@
 		F13C6239578601B289AE3113 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EEC439852141D1DF0051A131 /* AudioToolbox.framework */,
 				04890E483F3FBDB9D9FA2BE8 /* Pods_SimpleWebRTC.framework */,
 			);
 			name = Frameworks;
@@ -541,6 +546,7 @@
 		FD2A2DC52014986A00A68935 /* SimpleWebRTC */ = {
 			isa = PBXGroup;
 			children = (
+				EEC439872141D1DF0051A131 /* SimpleWebRTC.entitlements */,
 				6CD3EE4D213ADA2800AEAE11 /* supportClass */,
 				6C2DDD4721159DF30005A962 /* Drower */,
 				6C2DDD40211517070005A962 /* Market */,
@@ -677,6 +683,11 @@
 					FD2A2DC22014986A00A68935 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+						};
 					};
 					FD2A2DD62014986A00A68935 = {
 						CreatedOnToolsVersion = 9.2;
@@ -1083,6 +1094,7 @@
 			baseConfigurationReference = 33388B56A7866F651F148C2C /* Pods-SimpleWebRTC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimpleWebRTC/SimpleWebRTC.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1105,6 +1117,7 @@
 			baseConfigurationReference = 1B9CB844094E24A33758677F /* Pods-SimpleWebRTC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimpleWebRTC/SimpleWebRTC.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

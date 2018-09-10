@@ -95,6 +95,7 @@ class WebRtcClient: NSObject {
         }
         
         socket.connect()
+        changeAudioTrack()
     }
     
     func leave() {
@@ -179,14 +180,27 @@ class WebRtcClient: NSObject {
         videoSource.useBackCamera = true
         
         audioSource.volume = 10
-
+ 
         let localMS = factory.mediaStream(withStreamId: "MyStream")
         localMS.addAudioTrack(factory.audioTrack(with: audioSource, trackId: "MyAudio"))
         localMS.addVideoTrack(factory.videoTrack(with: videoSource, trackId: "MyVideo"))
         
         listener?.localStreamAdded(localMS)
         
+        
         return localMS
+    }
+    
+    func changeAudioTrack() {
+        let audio = AVAudioSession.sharedInstance()
+        do {
+            try audio.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
+            try audio.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+        } catch { error
+            print(error)
+            print("!!!!!")
+        }
+        
     }
     
 

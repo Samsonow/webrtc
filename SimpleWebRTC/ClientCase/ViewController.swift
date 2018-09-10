@@ -76,6 +76,13 @@ class ViewController: BaseViewController, AddProductPopVCDelegate {
             
             self.stopAnimating()
             WebRtcClient.shared.leave()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
+            let nav = UINavigationController(rootViewController: controller)
+            evo_drawerController?.mainViewController = nav
+            evo_drawerController?.setDrawerState(.opened, animated: false)
+            evo_drawerController?.setDrawerState(.closed, animated: false)
+            
         }.catch { error in
             
             self.stopAnimating()

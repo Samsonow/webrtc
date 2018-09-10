@@ -81,10 +81,17 @@ class ExpertWebRTCViewController: BaseViewController, AddProductPopVCDelegate {
             
             self.stopAnimating()
             WebRtcClient.shared.leave()
-            }.catch { error in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ExpertMainViewController")
+            let nav = UINavigationController(rootViewController: controller)
+            evo_drawerController?.mainViewController = nav
+            evo_drawerController?.setDrawerState(.opened, animated: false)
+            evo_drawerController?.setDrawerState(.closed, animated: false)
+        }.catch { error in
                 
-                self.stopAnimating()
-                self.handleError(error: error, retry: self.refuseChanne)
+            self.stopAnimating()
+            self.handleError(error: error, retry: self.refuseChanne)
         }
     }
     
