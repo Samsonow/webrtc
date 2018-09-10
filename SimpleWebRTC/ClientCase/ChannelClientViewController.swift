@@ -16,6 +16,9 @@ class ChannelClientViewController: BaseViewController {
     var expertId: Int = 0
     let networkService = NetworkService()
     var channel: ChannelGet?
+    var callDuration: Double = 25
+    //Expert
+    var isAnsweredCall: Bool = false
     
     @IBOutlet weak var arrowIcon: UIImageView!
     @IBOutlet weak var cancelIcon: UIImageView!
@@ -56,6 +59,27 @@ class ChannelClientViewController: BaseViewController {
         
         super.viewDidLoad()
         obtainData()
+        
+        
+        //id expert not answerd diration
+        DispatchQueue.main.asyncAfter(deadline: .now() + callDuration) { // change 2 to desired number of seconds
+            if self.isAnsweredCall == true { return }
+            if self.timer != nil {
+                self.timer?.invalidate()
+                self.timer = nil
+            }
+            
+            if let channel = self.channel {
+                let params = ["channel_id": channel.id]
+                self.networkService.cancelChannel(parameters: params).ensure {
+                    self.goToMarkets()
+                }
+                return
+            }
+           
+            self.goToMarkets()
+        }
+        
     }
     
     deinit {
@@ -85,7 +109,7 @@ class ChannelClientViewController: BaseViewController {
             self.channel = ChannelGet(form: chanel)
     
         }.done {
-            //TODO: посмотерть почему еще раз стартую таймер
+            //TODO: Первый тамер в случае если до этого
             if self.timer == nil {
                 self.timerAction()
                 self.timer = Timer.scheduledTimer(timeInterval: 5, target: self,
@@ -112,6 +136,7 @@ class ChannelClientViewController: BaseViewController {
             
         case .REJECTED:
 
+            isAnsweredCall = false
             infoLabel.text = "Запрос отклонен экспертом"
             retutnToMarketsButton.isHidden = false
             cancelCallButton.isHidden = true
@@ -166,7 +191,9 @@ class ChannelClientViewController: BaseViewController {
             return
         }
         
-        let parameters: [String: Any] = ["channel_id": channel?.id]
+        guard let id = channel?.id  else { return }
+        
+        let parameters: [String: Any] = ["channel_id": id]
         networkService.cancelChannel(parameters: parameters).always {
             self.goToMarkets()
         }
@@ -191,6 +218,7 @@ class ChannelClientViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        isAnsweredCall = true
         if timer != nil {
             timer?.invalidate()
             timer = nil

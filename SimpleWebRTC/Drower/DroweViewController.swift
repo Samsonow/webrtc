@@ -69,12 +69,25 @@ class DroweViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let nav = UINavigationController(rootViewController: controller)
             evo_drawerController?.mainViewController = nav
             evo_drawerController?.mainSegueIdentifier = nil
-            
-            
+
             items =  []
         }
         
         if Storage.shared.user?.type == .client {
+            
+            if Storage.shared.user?.lat == 0 || Storage.shared.user?.lat == nil  {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "LocationViewController")
+                
+                let nav = UINavigationController(rootViewController: controller)
+                
+                evo_drawerController?.mainViewController = nav
+                
+                evo_drawerController?.setDrawerState(.opened, animated: false)
+                evo_drawerController?.setDrawerState(.closed, animated: false)
+                return
+            }
+            
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             var controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")

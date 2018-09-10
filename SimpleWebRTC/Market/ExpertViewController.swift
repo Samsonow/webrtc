@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpertViewController: UIViewController {
+class ExpertViewController: BaseViewController {
 
     @IBOutlet weak var smallImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,6 +19,8 @@ class ExpertViewController: UIViewController {
     @IBOutlet var ratingCollectionImage: [UIImageView]!
     
     var expert: Expert!
+    var channelGet: ChannelGet?
+    let networkService = NetworkService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +63,23 @@ class ExpertViewController: UIViewController {
     
     @IBAction func chooseHelper(_ sender: Any) {
         
+        let params: [String: Any] = ["expert_id": expert.id]
+        networkService.obtainChannel(parameters: params).done { result in
+            let chanel = result.result
+            self.channelGet = ChannelGet(form: chanel)
+            self.performSegue(withIdentifier: "callExpert", sender: sender)
+        }.catch { error in
+            self.handleError(error: error, retry: nil)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "channel" {
+        if segue.identifier == "callExpert" {
+            guard let channel = channelGet else { return }
             let vc = segue.destination as! ChannelClientViewController
-            vc.expertId = expert.id
+            vc.channel = channel
         }
     }
 

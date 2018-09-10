@@ -12,3 +12,5 @@ let baseURL = "https://api.araneobit.io"
 
 weak var evo_drawerController: KYDrawerController? 
 var channelStart: ChannelGet?
+
+var isEmptyAdressClient: Bool?

@@ -34,9 +34,8 @@ class MarketsViewController: BaseViewController {
         tableView.refreshControl = refreshControl
         super.viewDidLoad()
         setup()
-        obtainData()
         
-        startAnimating()
+        obtainData()
 
     }
     

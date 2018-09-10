@@ -27,11 +27,9 @@ class LocationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLeftMenuButton()
-
-        evo_drawerController?.screenEdgePanGestureEnabled = false
- 
         
+        evo_drawerController?.screenEdgePanGestureEnabled = false
+
         isAuthorizedtoGetUserLocation()
         
         addressTextField.delegate = self
@@ -48,6 +46,8 @@ class LocationViewController: BaseViewController {
                 
             }
         } else {
+            setupLeftMenuButton()
+            
             guard let lat = Storage.shared.user?.lat, let long = Storage.shared.user?.long else { return }
             
             let target = YMKPoint(latitude:  lat, longitude: long)
@@ -112,6 +112,7 @@ class LocationViewController: BaseViewController {
         networkService.setAddress(parameters: params).done { result in
             
             DispatchQueue.main.async {
+                self.setupLeftMenuButton()
                 Storage.shared.user?.address1 = result.result.address1
                 Storage.shared.user?.lat = result.result.lat
                 Storage.shared.user?.long = result.result.long
@@ -120,7 +121,7 @@ class LocationViewController: BaseViewController {
                 let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
                 let nav = UINavigationController(rootViewController: controller)
                 evo_drawerController?.mainViewController = nav
-                 evo_drawerController?.setDrawerState(.closed, animated: false)
+                evo_drawerController?.setDrawerState(.closed, animated: false)
             }
             
         }.catch { error in

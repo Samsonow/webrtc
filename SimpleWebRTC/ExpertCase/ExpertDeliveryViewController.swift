@@ -34,17 +34,29 @@ class ExpertDeliveryViewController: BaseViewController {
                                               selector: #selector(self.updateData), userInfo: nil, repeats: true)
         }
         
-        
+        isAuthorizedtoGetUserLocation() 
         if (CLLocationManager.locationServicesEnabled())
         {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
+            //locationManager.allowsBackgroundLocationUpdates = true
+            locationManager.distanceFilter = 3
+
             locationManager.startUpdatingLocation()
-            
         }
         
+//
 
+        
+    }
+    
+    //if we have no permission to access user location, then ask user for permission.
+    func isAuthorizedtoGetUserLocation() {
+        
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse     {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     
@@ -60,14 +72,21 @@ class ExpertDeliveryViewController: BaseViewController {
     }
     
     @objc func updateData() {
+        
+        if centerLatitude == 0 {
+            self.isAuthorizedtoGetUserLocation()
+        }
 
-        network.setPositionExpert(parameters: ["lat":centerLatitude, "long": centerLongitude])
-        
-        
+        network.setPositionExpert(parameters: ["lat":centerLatitude, "long": centerLongitude]).catch { error in
+            print(error)
+        }
+
         network.getChannelExpert(parameters: ["channel_id": self.channelId]).done { result in
             self.handelChangeChannel(chanel: result.result)
             
             self.infoLable.text = result.result.delivery_address
+        }.catch { error in
+            print(error)
         }
     }
     
@@ -117,7 +136,7 @@ class ExpertDeliveryViewController: BaseViewController {
 extension ExpertDeliveryViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+ 
         let location = locations.last! as CLLocation
         
         centerLatitude = location.coordinate.latitude
@@ -125,6 +144,12 @@ extension ExpertDeliveryViewController: CLLocationManagerDelegate {
         
         locationManager.stopUpdatingLocation()
         
+    }
+    
+    func locationManager(_ manager: CLLocationManager,
+                         didFailWithError error: Error) {
+        print(error)
+        print("error")
     }
     
 }

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationUsageDescription</key>
+	<string>Используем локацию для передачи клиенту</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Используем локацию для передачи клиенту</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>UIAppFonts</key>
@@ -57,7 +61,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Camera usage description</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Текст</string>
+	<string>Используем локацию для передачи клиенту</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone usage description</string>
 	<key>NSMotionUsageDescription</key>

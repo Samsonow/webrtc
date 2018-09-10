@@ -14,4 +14,6 @@ enum NetworkError: Error {
     case message(String)
     
     case openCHANNEL(ChannelGet)
+    
+    case emptyAddress
 }

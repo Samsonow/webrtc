@@ -30,6 +30,7 @@ class ErrorViewController: UIViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: "MarketsViewController")
         let nav = UINavigationController(rootViewController: controller)
         evo_drawerController?.mainViewController = nav
+        evo_drawerController?.setDrawerState(.closed, animated: true)
         //performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
     

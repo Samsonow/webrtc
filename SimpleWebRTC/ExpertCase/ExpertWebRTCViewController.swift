@@ -77,7 +77,7 @@ class ExpertWebRTCViewController: BaseViewController, AddProductPopVCDelegate {
         
         startAnimating()
         
-        network.refuseChannelClient(parameters: params).done {
+        network.refuseChannelExpert(parameters: params).done {
             
             self.stopAnimating()
             WebRtcClient.shared.leave()

@@ -51,7 +51,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     
     func configurePageControl() {
         // The total number of pages that are available is based on how many available colors we have.
-        pageControl = UIPageControl(frame: CGRect(x: 0,y: UIScreen.main.bounds.maxY - 50,width: UIScreen.main.bounds.width/3,height: 50))
+        pageControl = UIPageControl(frame: CGRect(x: 0,y: UIScreen.main.bounds.maxY - 90,width: UIScreen.main.bounds.width/3,height: 50))
         self.pageControl.numberOfPages = orderedViewControllers.count
         self.pageControl.currentPage = 0
         
@@ -59,6 +59,30 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         self.pageControl.pageIndicatorTintColor = UIColor.white
         self.pageControl.currentPageIndicatorTintColor = UIColor.black
         self.view.addSubview(pageControl)
+        
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 11, *) {
+            pageControl.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+            pageControl.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
+            
+            // 3. Bind the view with topAnchor of the safe area guide
+            let safeGuide = self.view.safeAreaLayoutGuide
+
+            pageControl.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor, constant: -20).isActive = true
+
+            pageControl.leftAnchor.constraint(equalTo: safeGuide.leftAnchor, constant: -18).isActive = true
+            return
+        }
+        
+        NSLayoutConstraint(item: pageControl, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -20).isActive = true
+
+        NSLayoutConstraint(item: pageControl, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0).isActive = true
+
+        NSLayoutConstraint(item: pageControl, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100).isActive = true
+        NSLayoutConstraint(item: pageControl, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50).isActive = true
+        
+        
     }
     
     func newVc(viewController: String) -> UIViewController {

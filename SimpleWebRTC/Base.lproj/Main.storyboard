@@ -872,7 +872,6 @@
                                 </state>
                                 <connections>
                                     <action selector="chooseHelper:" destination="HUa-yK-0yV" eventType="touchUpInside" id="Bal-Vf-OSQ"/>
-                                    <segue destination="iXa-wI-V7X" kind="show" identifier="channel" id="Kbu-Jx-i5q"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xZR-qN-OQx">
@@ -1001,6 +1000,7 @@
                         <outletCollection property="ratingCollectionImage" destination="ePQ-uB-uf0" collectionClass="NSMutableArray" id="Nvb-0f-AyQ"/>
                         <outletCollection property="ratingCollectionImage" destination="JzZ-rM-dtB" collectionClass="NSMutableArray" id="UF9-1u-ZyS"/>
                         <outletCollection property="ratingCollectionImage" destination="Oc0-eG-yfX" collectionClass="NSMutableArray" id="eB8-Lv-qfi"/>
+                        <segue destination="iXa-wI-V7X" kind="show" identifier="callExpert" id="xXx-vw-SUD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EGk-Y9-317" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1042,7 +1042,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ожидание эксперта" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdv-nv-p23">
-                                        <rect key="frame" x="122.66666666666669" y="486.33333333333331" width="131" height="17"/>
+                                        <rect key="frame" x="121.33333333333333" y="486.33333333333331" width="132.66666666666669" height="17"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" white="0.86824544270833337" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1093,7 +1093,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mt-Ni-cSI">
-                                <rect key="frame" x="16" y="603" width="343" height="70"/>
+                                <rect key="frame" x="16" y="628" width="343" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="CbH-5C-ZOS"/>
                                 </constraints>
@@ -1122,7 +1122,7 @@
                             <constraint firstItem="Wf2-Yi-lcV" firstAttribute="top" secondItem="Gkb-z0-Ux0" secondAttribute="bottom" constant="20" id="KUh-gD-Qyn"/>
                             <constraint firstItem="xLI-n0-bJN" firstAttribute="trailing" secondItem="YxE-Wj-sA3" secondAttribute="trailing" id="Kzf-Mv-EOq"/>
                             <constraint firstItem="Wf2-Yi-lcV" firstAttribute="centerX" secondItem="YxE-Wj-sA3" secondAttribute="centerX" id="UpZ-br-JpJ"/>
-                            <constraint firstItem="xLI-n0-bJN" firstAttribute="bottom" secondItem="3mt-Ni-cSI" secondAttribute="bottom" constant="105" id="bWv-PP-U8h"/>
+                            <constraint firstItem="xLI-n0-bJN" firstAttribute="bottom" secondItem="3mt-Ni-cSI" secondAttribute="bottom" constant="80" id="bWv-PP-U8h"/>
                             <constraint firstItem="YxE-Wj-sA3" firstAttribute="bottom" secondItem="xLI-n0-bJN" secondAttribute="bottom" id="dBA-iz-EYr"/>
                             <constraint firstItem="xLI-n0-bJN" firstAttribute="trailing" secondItem="3mt-Ni-cSI" secondAttribute="trailing" constant="16" id="wLM-Og-PfN"/>
                         </constraints>
@@ -1504,7 +1504,7 @@
         <!--Location-->
         <scene sceneID="g7E-mO-Fak">
             <objects>
-                <viewController storyboardIdentifier="LocationViewController" title="Location" id="bIg-nd-SMg" customClass="LocationViewController" customModule="SimpleWebRTC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationViewController" id="bIg-nd-SMg" customClass="LocationViewController" customModule="SimpleWebRTC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6KD-nQ-L46">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1661,7 +1661,7 @@
                                     <constraint firstAttribute="height" constant="2" id="9SZ-7e-6Jj"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Um-7c-02r">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Um-7c-02r">
                                 <rect key="frame" x="18" y="322" width="339" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Enb-jA-3iF"/>
@@ -1670,7 +1670,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="768-rR-EM4">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="768-rR-EM4">
                                 <rect key="frame" x="18" y="236" width="339" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="osI-3x-wfd"/>
@@ -1698,13 +1698,13 @@
                                     <constraint firstAttribute="height" constant="2" id="WVP-hF-VWe"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Логин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8F-CV-wfd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8F-CV-wfd">
                                 <rect key="frame" x="18" y="211.33333333333334" width="339" height="16"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <color key="textColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Логин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wZ-RO-ASm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wZ-RO-ASm">
                                 <rect key="frame" x="18" y="298" width="339" height="16"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <color key="textColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -1927,13 +1927,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ИНФОРМАЦИЯ ПО СОЕДИНЕНИЮ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-bB-gPy">
-                                <rect key="frame" x="20" y="54" width="335" height="77"/>
+                                <rect key="frame" x="20" y="54.000000000000007" width="335" height="77.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="К сожелению эксперт отменил вызов, нажмите на кнопку, что бы перейти к списку маркетов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-0t-LEp">
-                                <rect key="frame" x="20" y="137" width="335" height="57.333333333333343"/>
+                                <rect key="frame" x="20" y="137.66666666666666" width="335" height="57.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2392,6 +2392,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ciw-AG-VnG"/>
-        <segue reference="Kbu-Jx-i5q"/>
+        <segue reference="xXx-vw-SUD"/>
     </inferredMetricsTieBreakers>
 </document>

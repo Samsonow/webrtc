@@ -360,6 +360,7 @@
 				FD2A2DC82014986A00A68935 /* ViewController.swift */,
 				6C76D69221173E6C0026CAD0 /* ChannelClientViewController.swift */,
 				6C76D6A4211792A70026CAD0 /* ErrorViewController.swift */,
+				6C76D68921161F220026CAD0 /* LocationViewController.swift */,
 				6C76D6A62117A0CB0026CAD0 /* MapClientViewController.swift */,
 			);
 			path = ClientCase;
@@ -549,7 +550,6 @@
 				6C2DDD652115CADC0005A962 /* Products */,
 				EE7AC0152113AE3600668663 /* Network */,
 				EEB194A22113A7CC0017ED59 /* Entities */,
-				6C76D68921161F220026CAD0 /* LocationViewController.swift */,
 				6C76D69121173DD90026CAD0 /* ExpertCase */,
 				6C76D69421173E790026CAD0 /* ClientCase */,
 				EE9E5EEE2126255C003DD864 /* PageControl */,

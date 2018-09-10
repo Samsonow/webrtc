@@ -51,8 +51,8 @@ class MapClientViewController: BaseViewController {
             
             
             //self.mapView.mapWindow.map!.mapObjects?.addPlacemark(with: pont)
-            let image = UIImage(named: "iconPin")
-            
+            let image = UIImage(named: "minPin")
+        
             self.mapView.mapWindow.map!.mapObjects?.addPlacemark(with: pont, image: image)
             
             self.mapView.mapWindow.map!.move(with: position, animationType: animation, cameraCallback: nil)

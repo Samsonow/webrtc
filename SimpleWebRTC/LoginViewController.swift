@@ -97,7 +97,6 @@ class LoginViewController: BaseViewController {
 
         params = ["phone": phone, "password": pass]
         requst()
-      
     }
     
     func requst() {
@@ -120,6 +119,7 @@ class LoginViewController: BaseViewController {
         }.catch { error in
             self.stopAnimating()
             if let er = error as? NetworkError {
+                
                 if case .openCHANNEL(let channel) = er {
                     channelStart = channel
                     self.gotoDrawer()
@@ -140,8 +140,6 @@ class LoginViewController: BaseViewController {
             let controller = storyboard.instantiateViewController(withIdentifier: "DrawerController")
             //let newWindow = UIWindow()
             
-            
-            
             appDelegate.replaceWindow(controller)
             //newWindow.rootViewController = controller
         }
@@ -150,6 +148,7 @@ class LoginViewController: BaseViewController {
     
     func checkChanel(user: User) -> Promise<Void> {
         return Promise { resolver in
+
             if user.type == .client {
                 networkService.getChannelsClient(parameters: [:]).done { result in
                         if result.result.isEmpty {
